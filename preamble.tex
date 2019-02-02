@@ -1,0 +1,102 @@
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{chngcntr}
+\usepackage{sectsty}
+\usepackage{yfonts}
+\usepackage{xfrac}
+\usepackage{stmaryrd}
+\usepackage{hyperref} % Uncommment to make references clickable
+\usepackage[a4paper,margin=1.2in,footskip=0.25in]{geometry}
+
+% Configuring style of references
+\hypersetup{
+    colorlinks = True,
+    allcolors = blue	
+}
+
+% Makes equation numbering based on section
+\counterwithin{equation}{section}
+
+% Changing the styling of section and subsection titles. Comment to get default styling
+\sectionfont{\centering\mdseries\scshape}
+\subsectionfont{\mdseries\scshape}
+\subsubsectionfont{\mdseries\scshape}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Defining environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{slimDefinitionStyle} % name
+    {\topsep}                    	  % Space above
+    {\topsep}                    	  % Space below
+    {}			                   	  % Body font
+    {}                           	  % Indent amount
+    {\mdseries\scshape}			  	  % Theorem head font
+    { ---}                         	  % Punctuation after theorem head
+    {.5em}                       	  % Space after theorem head
+    {}  % Theorem head spec (can be left empty, meaning ‘normal’)
+\newtheoremstyle{slimTheoremStyle} 	% name
+    {\topsep}                    	% Space above
+    {\topsep}                    	% Space below
+    {\itshape}                   	% Body font
+    {}                           	% Indent amount
+    {\mdseries\scshape}			 	% Theorem head font
+    { ---}                         	% Punctuation after theorem head
+    {.5em}                       	% Space after theorem head
+    {}  % Theorem head spec (can be left empty, meaning ‘normal’)
+\theoremstyle{slimTheoremStyle} % Comment this to get boldface theorem headers
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+% \theoremstyle{definition}
+\theoremstyle{slimDefinitionStyle}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{assumption}{Assumption}
+\newtheorem*{construction}{Construction}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Defining custom commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Common fonts
+\renewcommand{\cal}[1]{\mathcal{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand{\frak}[1]{\textfrak{#1}}
+
+% Common sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+% Expectation
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Ex}[1]{\mathbb{E}\left[ #1 \right]}
+\newcommand{\ExCond}[2]{\mathbb{E} \left[\left. #1 \right| #2 \right]}
+
+% Probability
+\renewcommand{\P}{\mathbb{P}}
+\renewcommand{\Pr}[1]{\mathbb{P} \left( #1 \right)}
+\newcommand{\PrCond}[2]{\mathbb{P} \left( \left. #1 \right| #2 \right)}
+\newcommand{\Ind}{\mathbbm{1}}
+
+% Common distributions 
+\newcommand{\dNorm}[2]{\mathcal(N)\left( #1, #2 \right)}
+\newcommand{\dExp}[1]{\text{Exp} \left( #1 \right)}
+\newcommand{\dBer}[1]{\text{Ber} \left( #1 \right)}
+\newcommand{\dPo}[1]{\text{Poisson} \left( #1 \right)}
+
+% Miscellaneous math stuff
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\bbracket{\llbracket}{\rrbracket}
+\DeclarePairedDelimiterX{\norm}[1]{\lVert}{\rVert}{#1}

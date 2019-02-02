@@ -1,0 +1,55 @@
+\section{Effect of selection on ancestry: an exactly soluble case and its phenomenological generalization}\label{dec:}
+
+\begin{quote}
+{\small Placeholder text. }
+\end{quote}
+
+\section{The space $D$}
+This section is based on Sections 3,11 and 12 of \cite{jacod2013limit}. Consider $D(I, \R)$ where $I$ is a closed interval. 
+Let $\Lambda$ be the space of continuous bijections from $[0,1]$ to itself which are zero at zero. The $J_1$ topology is defined by the metric
+\begin{equation}
+d_{J_1}(f,g) = \inf_{\lambda \in \Lambda} \{ \norm{f \circ \lambda}_{\infty} \lor \norm{\lambda - Id}_{\infty} \}, 
+\end{equation}
+where $Id : x \mapsto x$. The $M_1$ topology is defined by the same metric but on the completed graph. Note that The topology $J_1$ is stronger. These definitions extend to $I \ [0, \infty)$ by saying that $x_n \in D$ converges to $x \in D$ if convergence happens in $D([0, t])$ for all continuity points $t$ of $x$. The topology this defines is metrisable (see page 83 of \cite{jacod2013limit}). The topologies they induce are called strong and sometimes written $SJ_1$ and $SM_1$. We talk about weak topologies when we consider $D(I, \R^k)$ with $k > 1$ and they are equal to the product topology, but they are not important to our discussion. \\
+
+The $(S)J_2$ and $(S)M_2$ topologies are the ones induced by applying the Hausdorff metric to the functions graphs and completed graphs respectively. 
+
+
+\section{Background}
+\begin{theorem}[{{\cite[Theorem 7.4.1.]{durrett2010probability}}}]
+Let $\{X_{m,n} \mid\, 0 \leq m < n\}$ be a family of random variables satisfying 
+\begin{enumerate}[(i)]
+\item $X_{l,n} \leq X_{l,m} + X_{m, n}$ for all $l < m < n$
+\item The distribution of $\{X_{m + k, n + k} \mid\, 0 \leq m < n\}$ does not depend on $k \in \N$
+\item $\Ex{X_{0,1}^+} < \infty$ and there exists $\gamma > -\infty$ such that $\Ex{X_{0,n}} > \gamma n$ for all $n \in \N$. 
+\end{enumerate}
+Then 
+\end{theorem}
+
+\section{exactly soluble}
+The model we consider is constructed as follows: The individual at position $x_0 \in \R$ has offspring according to a poisson process with intensity measure that has density $x \mapsto \exp(- (x - x_0))$ with respect to the Lebesgue measure. Out of the offspring of all individuals, the $N$ right-most are selected to form the population of the next generation. By additivity of Poisson processes, the location of the offspring is described by a Poisson process with density $\Psi(x) \sum\limits_{i = 1}^N \exp(-(x - x_i))$ where $x_i$ denotes the position of the $i$'th individual in the current generation. 
+
+% Denote by $X_{N+1}$ the $N+1$-st rightmost particle's poisition. We compute the density of $X_{N+1}$ using the properties of Poisson processes:
+% \begin{align*}
+% f_{X_{N+1}}(x) &= \lim\limits_{\Delta \to 0} \frac{\Pr{X_{N+1} \in [x, x + \Delta]}} {\Delta} \\
+% 			   &= \lim\limits_{\Delta \to 0} \frac{1}{N!\, \Delta}(1 - \exp(-\int\limits_x^{x+\Delta} \Psi(u)\, du))\exp(-\int\limits_{x+\Delta}^\infty \Psi(u)\,du) (\int\limits_{x+\Delta}^\infty \Psi(u)\,du) ^ N \\
+% 			   &= \frac{1}{N!} \Psi(x) (\int\limits_x^\infty \Psi(u)\,du) ^ N \exp(-\int\limits_x^\infty \Psi(u)\,du) 
+% \end{align*}
+
+Let us find the joint density of the $N+1$ rightmost particles. Let $x_1, ..., x_{N+1}$ denote them, with $X_{N+1} < X_i$ for $i \in [N]$ but with no particular order on $X_1, ..., X_N$. Then weby the mean value theorem for integrals we have: \\
+\begin{align*}
+\Pr{\bigcap\limits_{i = 1}^{N+1} \{ X_i \in [x_i, x_i + \Delta_i] \}} = \frac{1}{N!} \exp\left(-\int\limits_{x_{N+1}}^\infty \Psi(u)\,du\right) \prod\limits_{i = 1}^{N+1}\left\{ \Delta_i \Psi(x_i) \right\} (1 + o(1)). \\
+\end{align*}
+Thus, dividing by $\Delta_1 \times ... \times \Delta_{N+1}$ and taking the $\Delta_i$ go to zero, we get the density
+\begin{equation*}
+f_{X_1, ..., X_{N+1}}(x_1, ..., x_{N+1}) = \frac{1}{N!} \exp\left(-\int\limits_{x_{N+1}}^\infty \Psi(u)\,du\right) \prod\limits_{i = 1}^{N+1} \Psi(x_i).
+\end{equation*}
+Now we can marginalise to obtain the density of $X_{N+1}$:
+\begin{equation*}
+f_{X_{N+1}}(x) = \frac{1}{N!} \Psi(x) \left(\int\limits_x^\infty \Psi(u)\,du\right)^N \exp\left(-\int\limits_x^\infty \Psi(u)\,du\right). 
+\end{equation*}
+From here it is easy to see that conditional on $X_{N+1}$, the $X_i$ are independent with density
+\begin{equation*}
+f(x) = \frac{\Psi(x)}{\int\limits_{X_{N+1}}^\infty \Psi(u)\, du} \Ind_{\{X_{N+1} < x\}}. 
+\end{equation*}
+
