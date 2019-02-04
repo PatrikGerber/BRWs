@@ -1,47 +1,85 @@
 \subsection{Exponentially decaying tails}
 \subsubsection{Construction}
 
-The first variation of the $N$-branching random walk that we consider is the one studied in \cite{exp_tails} by Bérard and Gouéré. Suppose that at timestep $n \geq 0$ there is a particle at $x \in \R$. During the branching step the particle dies giving birth to two children, whose positions independently (from each other and the past) follow a distribution with cumulative distribution function $p(\,\cdot - x)$. Out of all $2N$ children, the population at time $n+1$ is then formed by the $N$ rightmost particles. 
-\begin{construction} Let $X = (X_n)_{n \geq 0} = (\sum_{i = 1}^N \delta_{X_n(i)})_{n \geq 0}$ denote the $\cal{C}_N$-valued discrete time Markov process defined by the branching-selection procedure detailed above. Note that we suppress the dependence on $N$ in our notation for simplicity. We can construct $X$ easily: Let $\cal{E}_N \defeq (\epsilon_{l, i, j})_{l \geq 0,\,i \in \bbracket{1,N},\,j = 1,2}$ be an i.i.d. collection of random variables distributed like $p$. For $n \geq 0$ define $Y_{n+1} \defeq \sum_{i = 1}^N \sum_{j=1,2} \delta_{X_n(i) + \epsilon_{n, i, j}}$ and take $X_{n+1}$ to be the counting measure supported on the rightmost $N$ atoms of $Y_{n+1}$. This construction gives rise to an important monotonicity property that we record in the following Lemma:
+The first variation of the $N$-branching random walk that we consider is very similar to the one studied in \cite{exp_tails} by Bérard and Gouéré. However, we treat a slightly more general case where the number of offspring of each particle is random, opposed to being fixed at two. Denote by $X = (X_n)_{n \geq 0} = (\sum_{i = 1}^N \delta_{X_n(i)})_{n \geq 0}$ the $N$-branching random walk with particles at positions $X_n(1) \leq ... \leq X_n(N)$. At each timestep the system undergoes the following two steps:
+\begin{enumerate}[(i)]
+\item Branching: Each particle dies and gives birth to a random number of offspring. The number of children is distributed with law $q$ and is independent of the past of the process. Given the position of the parent, say $x$, each child's position follows the law $p(\,\cdot - x)$ independently. 
+\item Selection: Out of all children, the $N$ rightmost are selected to form the population at the next timestep. 
+\end{enumerate}
+
+\begin{construction} As before, let $X = (X_n)_{n \geq 0}$ denote the $\cal{C}_N$-valued discrete time Markov process defined by the branching-selection procedure detailed above. Note that we suppress the dependence on $N$ in our notation for simplicity. We can construct $X$ easily: Let $\cal{E}_N \defeq (\epsilon_{l, i, j})_{l \geq 0,\,i \in \bbracket{1,N},\,j \geq 1}$ and $\cal{M}_N \defeq (\tau_{l, i})_{l \geq 0, i \in \bbracket{1, N}}$ be i.i.d. collections of random variables distributed like $p$ and $q$ respectively, with the collections also independent from each other. Now, given the process up to time $n \geq 0$, we construct $X_{n+1}$ as follows: define $Y_{n+1} \defeq \sum_{i = 1}^N \sum_{j=1}^{\tau_{n, i}} \delta_{X_n(i) + \epsilon_{n, i, j}}$ and take $X_{n+1}$ to given by the $N$ rightmost particles of $Y_{n+1}$. This construction gives rise to an important monotonicity property that we record in the following Lemma:
 \end{construction}
 
 \begin{lemma}[{{\cite[Corollary 2]{exp_tails}}}]\label{lem:monotonicity}
-For any $1 \leq N_1 \leq N_2$ and $\mu_i \in \cal{C}_{N_i}$ with $i=1,2$ such that $\mu_1 \preceq \mu_2$, there exists a coupling $(X^{(1)}_n, X^{(2)}_n)_{n \geq 0}$ between two versions of the branching-selection particle system started from $\mu_1$ and $\mu_2$ respectively satisfying $X^{(1)}_n \preceq X^{(2)}_n$ almost surely for all $n \geq 0$. 
+For any $1 \leq N_1 \leq N_2$ and $\tau_i \in \cal{C}_{N_i}$ with $i=1,2$ such that $\tau_1 \preceq \tau_2$, there exists a coupling $(X^{(1)}_n, X^{(2)}_n)_{n \geq 0}$ between two versions of the branching-selection particle system started from $\tau_1$ and $\tau_2$ respectively satisfying $X^{(1)}_n \preceq X^{(2)}_n$ almost surely for all $n \geq 0$. 
 \end{lemma}
 \begin{proof}
-The proof is a straightworward consequence of our construction. The idea is to take an i.i.d. family $\cal{E}_{N_2} = (\epsilon_{l,i,j})_{l \geq 0,\, i \in \bbracket{1, N_2},\, j = 1,2}$ of random variables with law given by $p$ and to use it to construct both $(X^{(1)})_n$ and $(X^{(2)}_n)_{n \geq 0}$.  
+The proof is a straightworward extension of our construction. The idea is to take the i.i.d. families $\cal{E}_{N_2}$ and $\cal{M}_{N_2}$ defined as above and use them to define both processes. Note that the argument hinges on the fact that in our notation $X_n(1) \leq ... \leq X_n(N)$. 
+\end{proof}
+
+\subsubsection{Assumptions}
+
+Let $\nu \in \cal{C}$ be a random, finite counting measure with the same distribution as the offspring of a single particle at origin in our branching-selection mechanism (the fact that $\nu \in \cal{C}$ follows from Assumption \ref{ass:offspring}). In other words, the number of atoms of $\nu$ has distribution $q$ and each atom is placed independently at position drawn from $p$. Let us now define the logarithmic moment generation function of $\nu$: 
+\begin{equation*}
+\psi(t) \defeq \E\int_\R e^{tx} d\nu (x).  
+\end{equation*}
+Note that in their analysis Bérard and Gouéré define a slightly different function $\Lambda(t) = \psi(t) - \log 2$, however the branching random walk literature usually uses our definition. We now state the assumptions necessary to gain access to the results of \cite{gantert2008asymptotics}. 
+\begin{assumption}\label{ass:exponential_tails}
+$\psi$ is finite in some neighbourhood of $0$. 
+\end{assumption}
+\begin{assumption}\label{ass:weird}
+There exists $t^* > 0$ in the interior of the domain of $\psi$ such that $t^*\psi'(t^*) = \psi(t^*)$. 
+\end{assumption}
+
+Assumption \ref{ass:exponential_tails} is in fact equivalent to the requirement that $p$ have exponentially decaying tails, furthermore it implies that $p$ has finite moments of all orders. The third assumption concerns the distribution $q$: 
+\begin{assumption}\label{ass:offspring}
+$q$ has exponentially decaying tails, $q(0) = 0$ and $\sum_{i = 1}^\infty i q(i) > 1$.   
+\end{assumption}
+
+We will use the notation $\mu \defeq \int_{[1, \infty)} x dq(x) > 1$. The results that follow in this section are conditional upon Assumptions \ref{ass:exponential_tails}, \ref{ass:weird} and \ref{ass:offspring} being satisfied. We now record a technical lemma that will help us later \\
+\begin{lemma}\label{lem:ExpTailsMax}
+Let $\tau \in \N$ be a random variable with exponentially decaying tails and let $(\epsilon_i)_{i \geq 1}$ be an i.i.d. sequence of random variables with exponentially decaying tails, independent of $\tau$. Then $M \defeq \max_{1 \leq i \leq \tau} \epsilon_i$ has exponentially decaying tails. 
+\end{lemma}
+
+\begin{proof}
+Let $C, \gamma, t_0 > 0$ be such that $\Pr{|\epsilon_1| \leq t} \geq 1 - C e^{- \gamma t}$ for all $t > t_0$. Then for $t > t_0$ Bernoulli's inequality gives 
+\begin{align*}
+\Pr{M > t} &= 1 - \Ex{\Pr{\epsilon_1 \leq t}^\tau} \leq 1 - \Ex{(1 - C e^{-\gamma t})^\tau} \\
+		   &\leq 1 - \Ex{1 - C e^{- \gamma t} \tau} = C \Ex{\tau} e^{- \gamma t}. 
+\intertext{Similarly, looking at the lower tail we get}
+\Pr{M < -t} &\leq 1 - \Ex{\Pr{|\epsilon_1| \leq t}^\tau} \leq 1 - \Ex{(1 - Ce^{-\gamma t})^\tau} \leq C \Ex{\tau} e^{- \gamma t}. 
+\end{align*}
 \end{proof}
 
 \subsubsection{Properties of the model}
+Denote by $\max X_n$ and $\min X_n$ the right- and leftmost atom of $X_n$ respectively. It is worth noting that $\min X_n$ and $\max X_n$ are integrable and hence finite by Assumptions \ref{ass:exponential_tails} and \ref{ass:offspring} when started from any fixed $X_0 \in \cal{C}_N$. Indeed, by independence we have 
+\begin{equation}\label{eqn:ExpTailsMaxIntegrable}
+\E|\max X_n| \leq \E\left\vert\max X_0 + \sum\limits_{l=0}^{n-1} \sum\limits_{i=1}^N \sum\limits_{j=1}^{\tau_{l,i}} \epsilon_{l,i,j} \right\vert \leq |\max X_0| + N n \Ex{\tau_{0,1}} \E|\epsilon_{0, 1, 1}|. 
+\end{equation}
+Denote by $d(X_n) \defeq \max X_n - \min X_n$ the diameter of $X_n$. We have the following result, analogous to Corollary 1 of \cite{exp_tails}: 
 
-Let us now define the logarithmic moment generation function of $p$:
-\begin{equation*}
-\Lambda(t) \defeq \log \int_\R \exp(tx) dp(x). 
-\end{equation*}
-In their analysis, Bérard and Gouéré impose some conditions on the domain $\cal{D}(\Lambda) \defeq \{t \mid\, \Lambda(t) < \infty \}$ of $\Lambda$ in order for the results of \cite{gantert2008asymptotics} to be applicable. 
-\begin{assumption}\label{ass:exponential_tails}
-$\Lambda$ is finite in some neighbourhood of $0$. 
-\end{assumption}
-\begin{assumption}\label{ass:weird}
-There exists $t^* > 0$ in the interior of $\cal{D}(\Lambda)$ such that $t^*\Lambda'(t^*) - \Lambda(t^*) = \log 2$. 
-\end{assumption}
-
-Assumption \ref{ass:exponential_tails} is in fact equivalent to the requirement that $p$ have exponentially decaying tails, furthermore it implies that $p$ has finite moments of all orders. The results that follow in this section are conditional upon Assumptions \ref{ass:exponential_tails} and \ref{ass:weird} being satisfied. \\
-
-Denote by $\max X_n$ and $\min X_n$ the right- and leftmost atom of $X_n$ respectively. It is worth noting that $\min X_n$ and $\max X_n$ are integrable and hence finite by Assumption \ref{ass:exponential_tails} when started from any fixed $X_0 \in \cal{C}_N$. Denote by $d(X_n) \defeq \max X_n - \min X_n$ the diameter of $X_n$. 
-
-\begin{proposition}[{{\cite[Corollary 1]{exp_tails}}}]\label{prop:diameter}
+\begin{proposition}\label{prop:diameter}
 For any $N \geq 1$ and initial population $X_0 \in \cal{C}_N$, we have 
 \begin{equation*}
 \frac{d(X_n)}{n} \xrightarrow[n \to \infty]{a.s.,\, L^1} 0. 
 \end{equation*}
 \end{proposition}
 
-% \begin{proof}
-% Set $u_N \defeq \ceil{\frac{\log N}{\log 2}} + 1$ and consider $n \geq u_N$. Recalling the definition of the $\cal{E}_N$ from the construction of $X$, let $\cal{E} \defeq \{ \epsilon_{l, i, j} \mid\, l \in \bbracket{n - u_N,n - 1},\, i \in \bbracket{1, N},\, j = 1,2 \}$ and define $M \defeq \max \cal{E}$ and $m \defeq \min \cal{E}$. Now consider the process $X$ in the timeframe $\bbracket{n - u_N, n}$ where the evolution of $X$ is governed by the random variables in $\cal{E}$. Write $y \defeq \max X_{n - u_N}$ for the front's position at time $n-u_N$. \\
-% Suppose for contradiction that for each $k \in \bbracket{1, u_N}$ we have $\min X_{n - u_N + k} < y + k m$. As all steps during branching are $ \geq m$, this implies that all descendents of the particle at position $y$ at time $n - u_N$ are selected during the selection steps until time $n$. As $y$ has exactly $2^{u_N} > N$ descendents at time $n$, we have a contradiction. Therefore it must be that $\min X_{n - u_N + k} \geq y + k_0 m$ for some $k_0$. However, by the definition of $m$ this must also hold for all $k \in \bbracket{k_0, u_N}$, in particular for $k = u_N$. Noting that $\max X_n \leq y + u_N M$, it follows that $d(X_n) \leq u_N (M - m)$ almost surely. \\
-% It follows by Assumption \ref{ass:exponential_tails} that $M-m$ has exponentially decaying tails, in particular $\Ex{M - m} < \infty$ so that $n^{-1}\Ex{d(X_n)} \leq n^{-1}\Ex{M - m}$ gives convergence in $L^1$. For any $\epsilon > 0$, exponentially decaying tails also give $\sum_{n \geq u_N} \Pr{n^{-1} d(X_n) > \epsilon} \leq \sum_{n \geq u_N} \Pr{M - m > n \epsilon} < \infty$ so that by the Borel-Cantelli lemma a.s. $n^{-1} d(X_n) > \epsilon$ happens only for finitely many $n$. Almost sure convergence to zero now follows by taking the intersection of these events over $\epsilon \in \Q_+$. 
-% \end{proof}
+\begin{proof}
+Let $u_\kappa \defeq \kappa\ceil{\log N}$ for some $\kappa \in \N_+$ and take $n \geq u_N$. Define $\cal{E} \defeq \{ \epsilon_{l, i, j} \mid\, l \in \bbracket{n - u_N,n - 1},\, i \in \bbracket{1, N},\, j \in \bbracket{1, \tau_{l,i}} \}$ and let $M \defeq \max \cal{E}$, $m \defeq \min \cal{E}$ noting that both have exponentially decaying tails by Lemma \ref{lem:ExpTailsMax}. Now consider the process $X$ in the timeframe $\bbracket{n - u_N, n}$ where the evolution of $X$ is governed by $\cal{E}$. Write $y \defeq \max X_{n - u_N}$ for the rightmost particle's position at time $n-u_N$. Suppose that for each $k \in \bbracket{1, u_N}$ we have $\min X_{n - u_N + k} < y + k m$. As all steps during branching are $ \geq m$, this implies in particular that the descendents of the particle '$y$' survive all selection steps until time $n$. Therefore, on the event $A_\kappa \defeq \{ \text{number of descendants of } y \text{ at time } n \text{ is } > N\}$ almost surely $\min X_{n - u_N + k} \geq y + k_0 m$ for some $k_0$. By the definition of $m$ this must also hold for all $k \in \bbracket{k_0, u_N}$, in particular for $k = u_N$. Noting that $\max X_n \leq y + u_N M$, it follows that 
+\begin{equation}\label{eqn:ExpTailDiamUpperBound}
+d(X_n)\Ind_{A_\kappa} \leq u_N (M - m), 
+\end{equation}
+with probability one. A simple argument shows that $\Ind_{A_\kappa} \to 1$ almost surely as $\kappa \uparrow \infty$: 
+\begin{equation}
+\Pr{A^c_\kappa} \leq \sum\limits_{k = 0}^{N - 1} {u_\kappa \choose k} q(1)^{u_\kappa - k} (1 - q(1))^k \leq u_\kappa^{N-1} q(1)^{u_\kappa} \to 0 \text{ as } \kappa \uparrow \infty \text{ since } q(1) < 1. 
+\end{equation}
+Fix $\epsilon > 0$ and take $\kappa$ large enough so that $\Pr{A_\kappa^c} < \epsilon^2$. Consider the decomposition
+\begin{equation}\label{eqn:ExpTailsDiamDecomp}
+\frac{d(X_n)}{n} = \frac{d(X_n)}{n} \Ind_{A_\kappa} + \frac{d(X_n)}{n} \Ind_{A_\kappa^c}. 
+\end{equation}
+Taking expectations and then taking $n$ to infinity, the first term vanishes by \ref{eqn:ExpTailDiamUpperBound}. The second term is upper by $(\Pr{A_\kappa^c} \Ex{d(X_n)^2 / n^2})^{1/2}$ using Hölder's inequality. A rough bound on $d(X_n)$ suffices now: at each branching step $l \geq 0$ take the maximum and the minimum of the $\sum_{j=1}^N \tau_{l, j}$ random walk steps. The diameter certainly grows by no more than the difference between these two at each step. By Lemma \ref{lem:ExpTailsMax} this yields $\Ex{d(X_n)^2} = \cal{O}(n^2)$ which implies that the second term in \ref{eqn:ExpTailsDiamDecomp} is $\cal{O}(\epsilon)$. Taking $\epsilon$ to zero concludes the proof of $L^1$ convergence. Almost sure convergence is a consequence of the next Proposition. 
+\end{proof}
 
 \begin{proposition}[{{\cite[Proposition 2]{exp_tails}}}]\label{prop:ExpTailsSpeedExistence}
 There exists $v_N = v_N(p) \in \R$ such that for any initial population $X_0 \in \cal{C}_N$ the following holds almost surely and in $L^1$:
@@ -51,16 +89,22 @@ There exists $v_N = v_N(p) \in \R$ such that for any initial population $X_0 \in
 \end{proposition}
 
 \begin{proof}
-Recall the definition of $\cal{E}_N$ from the construction of $X$. For each $l \geq 0$ we define the process $(X^l_n)_{n \geq 0}$ by shifting the origin of time by $l$. More precisely, given the process up to time $n \geq 0$, define $X^l_{n+1}$ to be given by the $N$ rightmost atoms of $\sum_{i = 1}^N \sum_{j=1,2} \delta_{X^l_n(i) + \epsilon_{n + l, i, j}}$. It is clear that each $(X^l_n)_{n \geq 0}$ is distributed as the $N$-branching random walk with offspring law $p$. \\
-Suppose that for each $l \geq 0$ we start $(X^l_n)_{n \geq 0}$ from $N \delta_0$ and notice that $(X^0_n)_{n \geq 0} = (X_n)_{n \geq 0}$ almost surely, provided that $X_0 = N \delta_0$ also. From Lemma \ref{lem:monotonicity} it follows easily that 
-\begin{align}
-\max X^0_{n + m} &\leq \max X^0_n + \max X^n_m && \forall\, n,m \geq 0. 
-\end{align}
-Provided that the conditions of the theorem hold, applying Kingman's Subadditive Ergodic theorem yields $\lim_{n \to \infty} n^{-1} \max X_n = \lim_{n \to \infty} \Ex{n^{-1} \max X_n} = \inf_n \Ex{n^{-1} \max X_n} = v_N \in \R$ where the first limit is almost sure and also in $L^1$. Using the fact that $p$ has exponentially decaying tails (Assumption \ref{ass:exponential_tails}) and the independence of $\cal{E}_N$, the conditions are easily verified. \\
-From Proposition \ref{prop:diameter} we immediately get $\lim_{n \to \infty} n^{-1} \min X_n = v_N$, so the proof is complete in the case $X_0 = N \delta_0$. By translation invariance of the dynamics of the system the result also follows for initial conditions of the form $N \delta_{x_0}$ for any $x_0 \in \R$. Finally, for arbitrary $X_0 \in \cal{C}_N$ note that the result is a consequence of Lemma \ref{lem:monotonicity} and a sandwiching argument between the initial configurations $N \delta_{\min X_0}$ and $N \delta_{\max X_0}$. 
+First we treat the case $X_0 = N \delta_0$. Recall the definition of $\cal{E}_N$ and $\cal{M}_N$ from the construction of $X$. For each $l \geq 0$ we define the process $(X^l_n)_{n \geq 0}$ by shifting the origin of time by $l$. More precisely, given the process up to time $n \geq 0$, define $X^l_{n+1}$ to be given by the $N$ rightmost particles of $\sum_{i = 1}^N \sum_{j=1}^{\tau_{n + l,i}} \delta_{X^l_n(i) + \epsilon_{n + l, i, j}}$. It is clear that each $(X^l_n)_{n \geq 0}$ is distributed as the $N$-branching random walk with offspring law $p$. For this proof we start $(X^l_n)_{n \geq 0}$ from $N \delta_0$ for each $l \geq 0$ so that $(X^0_n)_{n \geq 0} = (X_n)_{n \geq 0}$ almost surely. From Lemma \ref{lem:monotonicity} it follows easily that 
+\begin{equation}\label{eqn:subadd}
+\max X^0_{n + m} \leq \max X^0_n + \max X^n_m \qquad \forall\, n,m \geq 0. 
+\end{equation}
+For notational simplicity define $Y_{i,j} = \max X^i_{j - i}$ for $0 \leq i \leq j$. Then \ref{eqn:subadd} reads $Y_{0, j} \leq Y_{0,i} + Y_{i,j}$ for all $0 \leq i \leq j$, which is familiar territory for Kingman's Subadditive Ergodic Theorem. We postpone showing that the conditions of the theorem hold to Lemma \ref{lem:ExpTailsKingmanHolds}. Applying the theorem yields $\lim_{n \to \infty} n^{-1} \max X_n = \lim_{n \to \infty} \Ex{n^{-1} \max X_n} = \inf_n \Ex{n^{-1} \max X_n} = v_N \in \R$ where the first limit is almost sure. Noting that the process $(-X_n)_{n \geq 0}$ satisfies all the same assumptions as $X$, we can deduce from the identity $\min X_n = - \max (-X_n)$ that $\lim_{n \to \infty} n^{-1} \min X_n = \lim_{n \to \infty} \Ex{n^{-1} \min X_n} = \inf_n \Ex{n^{-1} \min X_n} = \tilde{v}_N \in \R$ exists too, where the first limit is almost sure. From the proof of Proposition \ref{prop:diameter} we immediately get $\tilde{v}_N = v_N$ by uniqueness of $L^1$ limits, which gives $\lim_{n\to\infty} n^{-1}d(X_n) = v_N - \tilde{v}_N = 0$ almost surely as claimed. The proof is complete in the case $X_0 = N \delta_0$. By translation invariance of the dynamics of the system the result also follows for initial conditions of the form $N \delta_{x_0}$ for any $x_0 \in \R$. Finally, for arbitrary $X_0 \in \cal{C}_N$ note that the result is a consequence of Lemma \ref{lem:monotonicity} and a sandwiching argument between the initial configurations $N \delta_{\min X_0}$ and $N \delta_{\max X_0}$. 
 \end{proof}
 
-\begin{proposition}[{{\cite[Proposition 3]{exp_tails}}}]\label{prop:increasing_speed}
+\begin{lemma}\label{lem:ExpTailsKingmanHolds}
+The random variables $Y_{i,j}$ as defined in the proof of Proposition \ref{prop:ExpTailsSpeedExistence} satisfy the hypothesis of Kingman's Subadditive Theorem. 
+\end{lemma}
+
+\begin{proof}
+For each $k \geq 1$ the sequence $\{Y_{k, 2k}, Y_{2k, 3k}, ...\} = \{\max X^k_k, \max X^{2k}_k, ... \}$ is i.i.d. so stationary and ergodic. Clearly the distribution of $(Y_{i, i + k})_{k \geq 0} = (\max X^i_k)_{k \geq 0}$ is independent of $i$. $\E Y^+_{0,1} = \E (\max X_1)^+ < \infty$ because $\max X_1 \in L^1$ by \ref{eqn:ExpTailsMaxIntegrable}. Finally, $\E Y_{0, n} = \E \max X_n \geq n\, \E \min\{\epsilon_{0, i, j} \mid\, i \in \bbracket{1,N},\, j \in \bbracket{1, \tau_{0, i}}\}$ where the expectation is finite by Lemma \ref{lem:ExpTailsMax}. 
+\end{proof}
+
+\begin{proposition}[{{\cite[analogue of Proposition 3]{exp_tails}}}]\label{prop:increasing_speed}
 The sequence $(v_N)_{N \geq 1}$ is non-decreasing. 
 \end{proposition}
 \begin{proof}
@@ -68,42 +112,41 @@ This is again a consequence of Lemma \ref{lem:monotonicity}.
 \end{proof}
 
 \begin{remark}\label{rem:constants}
-From Proposition \ref{prop:increasing_speed} we can deduce that $v_N$ increases to a possibly infinite limit $v_\infty$ as $N$ goes to infinity. Assumption \ref{ass:exponential_tails} implies that $\Lambda$ is smooth on the interior of $\cal{D}(\Lambda)$ so that both quantities $v \defeq \Lambda'(t^*)$ and $\chi \defeq \frac{\pi^2}{2} t^* \Lambda''(t^*)$ are finite. In Section \ref{sec:ExpTails_BrunDer} we will see that $v_\infty$ is in fact equal to $v$. 
+From Proposition \ref{prop:increasing_speed} we can deduce that $v_N$ increases to a possibly infinite limit $v_\infty$ as $N$ goes to infinity. Assumption \ref{ass:exponential_tails} implies that $\Lambda$ is smooth on the interior of $\cal{D}(\Lambda)$ so that both quantities $v \defeq \phi'(t^*)$ and $\chi \defeq \frac{\pi^2}{2} t^* \phi''(t^*)$ are finite. In Section \ref{sec:ExpTails_BrunDer} we will see that $v_\infty$ is in fact equal to $v$. 
 \end{remark}
 
 \subsubsection{Killed branching random walks}
-Following the notation used in \cite{exp_tails}, we formally define a Branching Random Walk (BRW) to be a pair $(\cal{T}, \Phi)$, where $\cal{T}$ is a rooted binary tree and $\Phi$ is a random map assigning a random variable $\Phi(u)$ to each vertex $u \in \cal{T}$. $\Phi$ must be such that  $\Phi(\text{root}) = 0$ and $\{\Phi(v) - \Phi(u) \mid\, \text{$u$ is the parent of $v$}\}$ is i.i.d. with common distribution $p$. We call $\Phi(u)$ the value of the BRW at vertex $u$ and write $\cal{T}(n)$ for the set of vertices in $\cal{T}$ at distance $n$ from the root. We say a sequence of vertices $u_1, u_2, ...$ is a path if $u_{i+1}$ is the parent of $u_i$ for each $i \geq 1$. \\
-Suppose that we have a BRW $(\cal{T}, \Phi)$ and take $v \in \R$ and $m \geq 1$. We say that vertex $u$ is $(m, v)$-good if there exists a path $u = u_0, u_1, ..., u_m$ such that $\Phi(u_i) - \Phi(u) \geq vi$ for all $i \in \bbracket{0,m}$. This is essentially saying that there exists a path started from $u$ that stays to the right of the space-time line through $(u, \Phi(u))$ with slope $v$, for at least $m$ steps. The definition of an $(\infty, v)$-good vertex is analogous. We now state two results from \cite{gantert2008asymptotics} that we will need to prove Theorem \ref{thm:ExpTails_BrunDer}. Recall the definitions of $v$ and $\chi$ from Remark \ref{rem:speeds}. 
+Adapting the notation used in \cite{exp_tails}, we formally define a Branching Random Walk (BRW) to be a pair $(\cal{T}, \Phi)$, where $\cal{T}$ is a Galton-Watson tree with offspring distribution $q$ and $\Phi$ is a map assigning a random variable $\Phi(u)$ to each vertex $u \in \cal{T}$, independently of $\cal{T}$. $\Phi$ must be such that  $\Phi(\text{root}) = 0$ and $\{\Phi(v) - \Phi(u) \mid\, \text{$u$ is the parent of $v$}\}$ is i.i.d. with common distribution $p$. We call $\Phi(u)$ the value of the BRW at vertex $u$ and write $\cal{T}(n)$ for the set of vertices in $\cal{T}$ at depth $n$. We say a sequence of vertices $u_1, u_2, ...$ is a path if $u_{i+1}$ is the parent of $u_i$ for each $i \geq 1$. \\
+Suppose that we have a BRW $(\cal{T}, \Phi)$ and take $v \in \R$ and $m \geq 1$. We say that vertex $u$ is $(m, v)$-good if there exists a path $u = u_0, u_1, ..., u_m$ such that $\Phi(u_i) - \Phi(u) \geq vi$ for all $i \in \bbracket{0,m}$. This is essentially saying that there exists a path started from $u$ that stays to the right of the space-time line through $(u, \Phi(u))$ with slope $v$, for at least $m$ steps. The definition of an $(\infty, v)$-good vertex is analogous. We now state two results from \cite{gantert2008asymptotics} that we will need to prove Theorem \ref{thm:ExpTails_BrunDer}. Recall the definitions of $v$ and $\chi$ from Remark \ref{rem:constants}. 
 
 \begin{theorem}[{{\cite[Theorem 1.2]{gantert2008asymptotics}}}]\label{thm:infty_good}
-Let $\rho(\infty, \epsilon)$ denote the probability that the root of the BRW with offspring distribution $p$ is $(\infty, v - \epsilon)-good$. Then, as $\epsilon > 0$ goes to zero, 
+Let $\rho(\infty, \epsilon)$ denote the probability that the root of the BRW with offspring distribution $q$ and step distribution $p$ is $(\infty, v - \epsilon)-good$. Then, as $\epsilon > 0$ goes to zero, 
 \begin{equation}
-\rho(\infty, \epsilon) \leq \exp\left( - \left( \frac{\chi + o(1)}{\epsilon} \right)^{\sfrac{1}{2}} \right). 
+\rho(\infty, \epsilon) \leq \exp\left( - \left( \frac{\chi + o(1)}{\epsilon} \right)^{1/2} \right). 
 \end{equation}
 \end{theorem}
 
 A similar result can be stated for the probability of observing a $(m, v - \epsilon)$-good root with $m$ finite:
-\begin{theorem}[{{\cite[Theorem 3]{exp_tails}}}]
+\begin{theorem}[{{\cite[Consequence of proof of Theorem 1.2]{gantert2008asymptotics}}}]\label{thm:finite_good}
 Let $\rho(m, \epsilon)$ denote the probability that the root of the BRW with offspring distribution $p$ is $(m, v - \epsilon)$-good. For any $0 < \beta < \chi$, there exists $\theta > 0$ such that for all large $m$, 
-\begin{equation}\label{thm:finite_good}
-\rho(m, \epsilon) \leq \exp\left( - \left( \frac{\chi - \beta}{\epsilon} \right)^{\sfrac{1}{2}} \right), \qquad \text{with } \epsilon \defeq \theta m^{-2/3}. 
-\end{equation}
+\begin{equation*}
+\rho(m, \epsilon) \leq \exp\left( - \left( \frac{\chi - \beta}{\epsilon} \right)^{1/2} \right), \qquad \text{with } \epsilon \defeq \theta m^{-2/3}. 
+\end{equation*}
 \end{theorem}
 
 \subsubsection{Brunet-Derrida behaviour}\label{sec:ExpTails_BrunDer}
 
-We are now ready to present the main result of Bérard and Gouéré on $N$-branching random walks with exponentially decaying tails:
+We are now ready to present and prove our main result in this section, the analogue of Bérard and Gouéré's Theorem 1:
 \begin{theorem}\label{thm:ExpTails_BrunDer}
 As $N$ goes to infinity, 
-\begin{equation}
+\begin{equation*}
 v_\infty - v_N = \frac{\chi}{(\log N)^2} + o((\log N)^{-2}). 
-\end{equation}
+\end{equation*}
 \end{theorem}
 
-Let us describe the coupling between the $N$-branching random walk and $N$ independent branching random walks, which will allow us to relate Theorems \ref{thm:infty_good} and \ref{thm:finite_good} to the $N$-branching random walk. Let $(\text{BRW}_i)_{i \in \bbracket{1,N}} = ((\cal{T}_i, \Phi_i))_{i \in \bbracket{1,N}}$ be a set of $N$ independent copies of the BRW with offspring distribution $p$. Define $\bb{T}_n \defeq \bigsqcup_{i=1}^N \cal{T}_i(n)$ to be the disjoint union of vertices at depth $n$ in the $N$ BRWs, and fix an arbitrary (nonrandom) total order on $\bb{T}_n$ for each $n$. We now inductively define a sequence $(G_n)_{n \geq 0}$ of random subsets of $\bb{T}_n$, each with exactly $N$ elements. These random subsets will correspond to the particles alive in the coupled $N$-braching random walk at time $n$. Define $G_0 = \bb{T}_0$ and given $G_n$, define $H_n$ to be the vertices in $\bb{T}_{n+1}$ that descend from vertices in $G_n$. Finally, set $G_{n+1}$ to be the set of $N$ vertices in $H_n$ with the gratest value, resolving ties via the fixed total order on $\bb{T}_{n+1}$. If we now define (with some abuse of notation) $\frak{X}_n = \sum_{u,i : u \in G_n \cap \cal{T}_i} \delta_{\Phi_i(u)}$ then $(\frak{X}_n)_{n \geq 0}$ has the same distribution as $X$ started from $N \delta_0$. \\
-Let us record a technical lemma that will be used in the proof of the lower bound in Theorem \ref{thm:ExpTails_BrunDer}. 
+First let us describe the coupling between the $N$-branching random walk and $N$ independent branching random walks which allows us to relate Theorems \ref{thm:infty_good} and \ref{thm:finite_good} to the $N$-branching random walk. Let $(\text{BRW}_i)_{i \in \bbracket{1,N}} = ((\cal{T}_i, \Phi_i))_{i \in \bbracket{1,N}}$ be a set of $N$ independent copies of the BRW with offspring distribution $q$ and step distribution $p$. Define $\bb{T}_n \defeq \bigsqcup_{i=1}^N \cal{T}_i(n)$ to be the disjoint union of vertices at depth $n$ in the $N$ BRWs, and fix an arbitrary (nonrandom) total order on $\bb{T}_n$ for each $n$. We now inductively define a sequence $(G_n)_{n \geq 0}$ of random subsets of $\bb{T}_n$, each with exactly $N$ elements. These random subsets will correspond to the particles alive in the coupled $N$-braching random walk at time $n$. Define $G_0 = \bb{T}_0$ and given $G_n$, define $H_n$ to be the vertices in $\bb{T}_{n+1}$ that descend from vertices in $G_n$. Finally, set $G_{n+1}$ to be the set of $N$ vertices in $H_n$ with the gratest value, resolving ties via the fixed total order on $\bb{T}_{n+1}$. If we now define (with some abuse of notation) $\frak{X}_n = \sum_{u,i : u \in G_n \cap \cal{T}_i} \delta_{\Phi_i(u)}$ then $(\frak{X}_n)_{n \geq 0}$ has the same distribution as $X$ started from $N \delta_0$. Going forward we will alternate between the notation of the two constructions of the $N$-branching random walk that we have given. Concretely, we will refer to $\cal{T}$, $\Phi$, $\epsilon_{n,i,j}$ and $\tau_{n,i}$ without explicitly explaining the obvious relationships between these objects. Let us now record a technical lemma that will be used in the proof of the lower bound in Theorem \ref{thm:ExpTails_BrunDer}. 
 
-\begin{lemma}[{{\cite[Adapted by Bérard and Gouéré from Lemma 5.2]{pemantle2009search}}}]\label{lem:ExpTails_technical}
+\begin{lemma}[{{\cite[Adapted by Bérard and Gouéré from Lemma 5.2]{pemantle2009search}}}]\label{lem:ExpTailsGoodSequencesTechnical}
 Let $v_1 < v_2 \in \R$ and $1 \leq m \leq n \in \N$. Suppose $0 \eqdef x_0, ..., x_n$ is a sequence of real numbers such that $\max_{i \in \bbracket{0, n - 1}} (x_{i+1} - x_i) \leq K$ for some $K > 0$, and define $I \defeq \{ i \in \bbracket{0, n - m} \mid\, x_{i + j} - x_i \geq j v_1,\quad \forall j\in\bbracket{0,m}\}$. If $x_n \geq v_2 n$, then $|I| \geq \frac{v_2 - v_1}{K - v_1}\frac{m}{n} - \frac{K}{K - v_1}$. 
 \end{lemma}
 
@@ -123,7 +166,7 @@ Take $\gamma \in (0, 1)$ and define $v_1 = v - \epsilon$ and $v_2 = v - (1 - \ga
 \end{align}
 The strategy for the proof is to show that both $(I)$ and $(II)$ are $o((log N)^{-2})$. The result then follows, as $v_2 = v - (1 - \gamma)(\chi - \beta)(1+\lambda)^{-2}(\log N)^{-2}$ where $\gamma, \beta, \lambda$ can be taken arbitrarily small. \\ 
 
- Let $B_n$ be the number of vertices in $\sqcup_{i=1}^n G_i$ that are $(m, v_1)$-good with respect to their respective BRWs. Define $K = \kappa \log (2Nn)$ for some $\kappa > 0$ and notice that the quantity $\frac{v_2 - v_1}{K - v_1}\frac{m}{n} - \frac{K}{K - v_1} = \Theta(N^\xi (\log N)^{-4})$ so that for large enough $N$ it is positive. Let $u_0, u_1, ..., u_n$ be a path in $\cal{T}_{i_0}$ for some $i_0 \in \bbracket{1,N}$ such that $u_0 = root_{i_0}$ and $u_n \in G_n$ with $\Phi_{i_0}(u_n) = \max X_n$. In other words, let $u_0, ..., u_n$ be the path from the root to the rightmost particle at time $n$ of the coupled $N$-branching random walk. On the event $E \defeq \{ \max X_n \geq v_2 n \}$, we apply Lemma \ref{lem:ExpTails_technical} to the sequence of real numbers $(\Phi_{i_0}(u_i))_{i \in \bbracket{1,n}}$ to see that either there is an $(m, v_1)$-good vertex among the $u_i$ or one of the random walk steps along the path is $ \geq K$. These events are respectively included in the events that $B_n \geq 1$ and that $M \defeq \max \{\epsilon_{l, i, j} \mid\, l \in \bbracket{0, n - 1},\, i \in \bbracket{1,N},\, j = 1,2 \} \geq K$. We can use this to bound the probability of $E$:
+ Let $B_n$ be the number of vertices in $\sqcup_{i=1}^n G_i$ that are $(m, v_1)$-good with respect to their respective BRWs. Define $K = \kappa \log (2Nn)$ for some $\kappa > 0$ and notice that the quantity $\frac{v_2 - v_1}{K - v_1}\frac{m}{n} - \frac{K}{K - v_1} = \Theta(N^\xi (\log N)^{-4})$ so that for large enough $N$ it is positive. Let $u_0, u_1, ..., u_n$ be a path in $\cal{T}_{i_0}$ for some $i_0 \in \bbracket{1,N}$ such that $u_0 = root_{i_0}$ and $u_n \in G_n$ with $\Phi_{i_0}(u_n) = \max X_n$. In other words, let $u_0, ..., u_n$ be the path from the root to the rightmost particle at time $n$ of the coupled $N$-branching random walk. On the event $E \defeq \{ \max X_n \geq v_2 n \}$, we apply Lemma \ref{lem:ExpTailsGoodSequencesTechnical} to the sequence of real numbers $(\Phi_{i_0}(u_i))_{i \in \bbracket{1,n}}$ to see that either there is an $(m, v_1)$-good vertex among the $u_i$ or one of the random walk steps along the path is $ \geq K$. These events are respectively included in the events that $B_n \geq 1$ and that $M \defeq \max \{\epsilon_{l, i, j} \mid\, l \in \bbracket{0, n - 1},\, i \in \bbracket{1,N},\, j = 1,2 \} \geq K$. We can use this to bound the probability of $E$:
 \begin{equation}
 \Pr{E} \leq \Pr{M \geq K} + \Pr{B_n \geq 1}. 
 \end{equation}
