@@ -4,9 +4,26 @@
 {\small Placeholder text. }
 \end{quote}
 
-DEfine the \textit{censored}  Galton Watson process $(X_n)_{n \geq 0}$ with offspring distribution $\cal{X}$  to be the discrete time $\N$ valued stochastic process satisfying
+\subsubsection{Censored Galton-Watson process}
+Let $\cal{X}$ be a $\N$-valued random variable with $\Pr{\cal{X} = 0} > 0$ and $\Ex{\cal{X}} > 1$. Define the Galton Watson process $(X^N_n)_{n \geq 0}$ with offspring distribution $\cal{X}$ censored at level $N \geq 2$ to be the discrete time $\bbracket{0,N}$-valued stochastic process satisfying
 \begin{enumerate}[(i)]
-\item $X_0 = N$
-\item $X_{n + 1} = \min\left\{ N, \sum\limits_{i = 1}^{X_n} \cal{X}_{i, n + 1}\right\}$ for all $n \geq 0$
+\item $X^N_0 = N$
+\item $X^N_{n + 1} = \min\left\{ N, \sum\limits_{i = 1}^{X^N_n} \cal{X}_{i, n + 1}\right\}$ for all $n \geq 0$
 \end{enumerate}
-where $(\cal{X}_{i, n})_{i \geq 0,\, n \geq 0}$ is an i.i.d. collection of random variables with distribution $\cal{X}$. Complete at some later point, since this is really easy material. 
+where $(\cal{X}_{i, n})_{i,n \geq 0}$ is a collection of i.i.d. copies of $\cal{X}$. Let $\tau_N \defeq \min\{ n \geq 0 \mid\, X^N_n = 0\}$ be the survival time of the process, with $\min\varnothing \defeq \infty$ by convention. Further define $q$ to be the probability of survival of the standard, supercritical Galton-Watson process, with offspring distribution $\cal{X}$. By basic results about branching processes $q \in (0,1)$. Based on \cite{topchii2009time}, in \cite{couronne2014branching} Couronné and Gerin show that the censored Galton-Watson process converges in the following sense:
+\begin{theorem}[{{\cite[Theorem 1]{couronne2014branching}}}]
+With the previous definitions, 
+\begin{equation}
+q^N U_N \rightarrow \dExp{1}
+\end{equation}
+where $\dExp{1}$ is an exponential random variable with mean $1$, and the convergence happens in distribution as well as in mean. 
+\end{theorem}
+
+\subsubsection{Connection to branching-selection processes}
+Let $(\cal{X}, \cal{X}')$ be a random element of $\N^2$ such that $\Ex{\cal{X}} > 1$ and $\cal{X} + \cal{X}' \geq 1$ almost surely. Consider the branching-selection process taking values in $\cal{C}_N$ where at each timestep: \\
+
+1) Each particle gives birth to a random number of offspring, positioned at the parent or one unit to the right of it, distributed like $\cal{X}'$ and $\cal{X}$ respectively. \\
+
+2) Among the offspring, the $N$ rightmost are selected to form the population at the next timestep. \\
+
+
