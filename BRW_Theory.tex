@@ -1,0 +1,85 @@
+\subsection{Branching Random Walks}
+
+\begin{quote}
+{\small Placeholder text. }
+\end{quote}
+
+In this section we describe the most important result in the study of BRWs and some of its consequences. At its heart is a probability change which enables us to say things about the BRW via its associated spine, a one-dimensional random walk. The idea was first introduced for BRWs by Lyons in \cite{lyons1997simple}. In our exposition we follow \cite{mallein2018n} and \cite[Section 4.7]{shi2015branching}. 
+
+Firs let us introduce the notation that's most commonly used in the literature of BRWs. For a BRW started from a single particle at zero, denote by $\bb{T}$ the genealogical tree of the system and write $(V(x))_{x \in \bb{T}}$ for the positions of the particles on the real line. Further let $|x|$ be the generation of $x$ and write $x_i$ for the ancestor of $x$ in generation $i$ so that $x_0 = \varnothing$ where $\varnothing$ denotes the root of $\scr{T}$. Let $(\bb{T}, V)$ be a BRW started from $0$ and $\scr{L} \in \frak{M}$ be the point process that governs its evolution. It is easy to see then that $\bb{T}$ is a Galton-Watson tree with $\# \scr{L}$ as its reproduction law. For our results on $N$-BRWs we will assume 
+\begin{equation}
+\Ex{\# \scr{L}} > 1 \qquad\text{and}\qquad \# \scr{L} \geq 1 \qquad \text{almost surely},  
+\end{equation}
+where we write $\# \scr{L}$ for the total mass of $\scr{L}$. The former ensures that $\bb{T}$ is supercritical while the latter assumption is needed as we're ultimately interested in $N$-BRWs: if $\# \scr{L} = 0$ with nonzero probability then the $N$-BRW dies out almost surely. Consider now the logarithmic moment generating function
+\begin{equation}
+\psi(t) \defeq \log \E \int_\R e^{t x} \scr{L}(dx) = \log \E \sum\limits_{x \in \bb{T}: |x|=1} e^{t V(x)} 
+\end{equation}
+for $t \in \R$ where it is defined. Let $\zeta \defeq \sup\{ t > 0 \mid\, \psi(t) < \infty \}$. We will also assume that 
+\begin{equation}\label{eqn:BRW_generator_finite}
+0 < \zeta, 
+\end{equation}
+so that the BRW doesn't spread to the right too fast. Note that by standard results $\psi$ is $C^\infty$ on $(0, \zeta)$. 
+
+
+
+
+
+\subsubsection{The Many-to-One Lemma and an affine transformation}
+
+Suppose now that $V$ satisfies
+\begin{equation}\label{eqn:BRW_V_Ass}
+e^{\psi(1)} = \E \sum\limits_{|x|=1} e^{V(x)} = 1. 
+\end{equation}
+Then we can define a random variable $X$ by giving it's distribution function: 
+\begin{equation}
+\Pr{X \leq x} = \E \sum\limits_{|u| = 1} \Ind_{\{V(u) \leq x\}} e^{V(u)}. 
+\end{equation}
+If $(S_n)_{n\geq0}$ is a random walk with step distribution $X$ started from some $S_0 = a \in \R$ then we have the following result:
+\begin{lemma}[Many-to-one]\label{lem:many_to_one}
+Let $V$ be as in (\ref{eqn:BRW_V_Ass}) and take $g$ measurable, $a \in \R$ and $n \geq 1$. If $V'(\cdot) = a + V(\cdot)$ and $S_0 = a$ almost surely, then provided the integrals exist 
+\begin{equation}
+\E \sum\limits_{|x| = n} g(V'(x_1), ...,V'(x_n)) = \Ex{e^{a-S_n} g(S_1, ...,S_n)}. 
+\end{equation}
+\end{lemma}
+
+Lemma \ref{lem:many_to_one} is a consequence of the Spinal Decomposition Theorem, possibly the most important tool in the study of BRWs. For more details see Chapter 4 of \cite{shi2015branching} and Section 4.7 in particular. $(S_n)_{n\geq0}$ is sometimes called the random walk associated with the BRW $(\bb{T}, V)$. An application of the many-to-one formula with $a=0$ and $g(x) = x e^{-x}$ yields $\E X = \E \sum_{|x|=1} V(x) \exp(V(x))$ while for the variance we get $\bb{V}(X) = \E \sum_{|x|=1} V(x)^2 \exp(V(x)) - (\E X)^2$ provided that the necessary integrability conditions hold. \\
+
+One might ask themselves what use the Many-to-One lemma is if it relies on assumption (\ref{eqn:BRW_V_Ass}). However, for any point process $\widehat{\scr{L}}$ which satisfies (\ref{eqn:BRW_generator_finite}), there exists a deterministic, affine transformation of $\widehat{\scr{L}}$ under which it satisfies (\ref{eqn:BRW_V_Ass}). We now restrict our attention to the class of point processes for which $\exists\ t^* \in (0, \zeta)$ such that
+\begin{equation}\label{eqn:t*exists}
+\psi (t^*) = t^* \psi'(t^*). 
+\end{equation}
+For a detailed discussion of when such $t^*$ exists see the appendix of \cite{jaffuel2227critical}. So suppose that $\widehat{\scr{L}}$ satisfies (\ref{eqn:BRW_generator_finite}) and (\ref{eqn:t*exists}) and let $(\widehat{\bb{T}}, \widehat{V})$ be the corresponding BRW with logarithmic moment generating function $\widehat{\psi}$. Let $\gamma_s : \scr{B}(\R) \to \scr{B}(\R)$ to be the right shift operator on the space $\scr{B}(\R)$ of Borel-measurable subsets of $\R$ and define
+\begin{equation}\label{eqn:transformation}
+\scr{L} \defeq (t^* \widehat{\scr{L}}) \circ \gamma_{- \widehat{\psi}(t^*)}. 
+\end{equation}
+If $(\bb{T}, V)$ is the BRW that corresponds to $\scr{L}$ then it is easy to see that $V$ and its logarithmic moment generator function $\psi$ are given by 
+\begin{equation}
+V(x) = t^* \widehat{V}(x) - |x| \widehat{\psi}(t^*) \qquad \psi(t) = -t \widehat{\psi}(t^*) + t^* \widehat{\psi}'(t t^*). 
+\end{equation}
+for $x \in \bb{T}$. Notice that $\psi'(1) = 0$ so $V$ satisfies (\ref{eqn:BRW_V_Ass}). Recall the definition of the random variable $X$ and the associated random walk $(S_n)_{n \geq 0}$. It follows from a simple calculation that then 
+\begin{equation}
+\E{X} = \psi'(1) = 0 \qquad\text{and}\qquad \bb{V}(X) = \psi''(1) = (t^*)^2 \widehat{\psi}''(t^*). 
+\end{equation}
+
+
+
+
+
+\subsubsection{Killed below a linear boundary}
+
+Let $1 \leq m \leq \infty$ and call a sequence of vertices $(u_n)_{0 \leq n \leq m}$ a path if $u_i$ is the parent of $u_{i+1}$ for each $0 \leq i \leq m-1$. For $v \in \R$ we say that the vertex $u \in \bb{T}$ is $(m, v)$-good if there exists a path $(u_n)_{0 \leq n \leq m}$ with $u_0 \defeq u$ such that $V(u_i) - V(u) \geq vi$ for all $i \in [m]$. This is essentially saying that there exists a path starting at $u$ that stays to the right of the space-time line through $(u, V(u))$ with slope $v$, for at least $m$ steps. Let $(\bb{T}, V)$ be the transformed BRW governed by $\scr{L}$ as described in the previous section, and let $X$ be the associated centred random walk. Then we have the following two results: \\
+
+\begin{theorem}[{{\cite[Theorem 1.2]{gantert2008asymptotics}}}]\label{thm:infty_good}
+Let $\rho(\infty, \epsilon)$ denote the probability that the root of $(\bb{T}, V)$ is $(\infty, - \epsilon)-good$. Then, as $\epsilon > 0$ goes to zero, 
+\begin{equation}
+\log\rho(\infty, \epsilon) \leq - \pi \sqrt{\frac{\bb{V}(X) + o(1)}{2 \epsilon}}. 
+\end{equation}
+\end{theorem}
+
+A similar result can be stated for the probability of observing a $(m, - \epsilon)$-good root with $m$ finite:
+\begin{theorem}[{{\cite[Consequence of proof of Theorem 1.2]{gantert2008asymptotics}}}]\label{thm:finite_good}
+Let $\rho(m, \epsilon)$ denote the probability that the root of $(\bb{T}, V)$ is $(m, - \epsilon)$-good. For any $0 < \beta < \bb{V}(X)$, there exists $\theta > 0$ such that for all large $m$, 
+\begin{equation*}
+\log \rho(m, \epsilon) \leq - \pi \sqrt{\frac{\bb{V}(X) - \beta}{2 \epsilon}}, \qquad \text{with } \epsilon \defeq \theta m^{-2/3}. 
+\end{equation*}
+\end{theorem}

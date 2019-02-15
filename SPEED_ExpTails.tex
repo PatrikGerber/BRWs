@@ -128,25 +128,6 @@ The random variables $Y_{i,j}$ as defined in the proof of Proposition \ref{prop:
 For each $k \geq 1$ the sequence $\{Y_{k, 2k}, Y_{2k, 3k}, ...\} = \{\max X^k_k, \max X^{2k}_k, ... \}$ is i.i.d. so stationary and ergodic. Clearly the distribution of $(Y_{i, i + k})_{k \geq 0} = (\max X^i_k)_{k \geq 0}$ is independent of $i$. $\E Y^+_{0,1} = \E (\max X_1)^+ < \infty$ because $\max X_1 \in L^1$ by (\ref{eqn:ExpTailsMaxIntegrable}). Finally, $\E Y_{0, n} = \E \max X_n \geq n\, \E \min\{\epsilon_{0, i, j} \mid\, i \in [N],\, j \in [\tau_{0, i}]\}$ where the expectation is finite by Lemma \ref{lem:ExpTailsMax}. 
 \end{proof}
 
-\subsubsection{Killed branching random walks}
-Adapting the notation used in \cite{exp_tails}, we formally define a Branching Random Walk (BRW) to be a pair $(\cal{T}, \Phi)$, where $\cal{T}$ is a Galton-Watson tree with offspring distribution $q$ and $\Phi$ is a map assigning a random variable $\Phi(u)$ to each vertex $u \in \cal{T}$, independently of the structure of $\cal{T}$. $\Phi$ must be such that  $\Phi(\text{root}) = 0$ and $\{\Phi(v) - \Phi(u) \mid\, \text{$u$ is the parent of $v$}\}$ is an i.i.d. collection with common distribution $p$. We call $\Phi(u)$ the value of the BRW at vertex $u$ and write $\cal{T}(n)$ for the set of vertices in $\cal{T}$ at depth $n$. We say a (possibly finite) sequence of vertices $u_1, u_2, ...$ is a path if $u_{i+1}$ is the parent of $u_i$ for each $i \geq 1$. \\
-Suppose that we have a BRW $(\cal{T}, \Phi)$ and take $v \in \R$ and $m \geq 1$. We say that vertex $u$ is $(m, v)$-good if there exists a path $u = u_0, u_1, ..., u_m$ such that $\Phi(u_i) - \Phi(u) \geq vi$ for all $i \in \bbracket{0,m}$. This is essentially saying that there exists a path started from $u$ that stays to the right of the space-time line through $(u, \Phi(u))$ with slope $v$, for at least $m$ steps. The definition of an $(\infty, v)$-good vertex is analogous. We now state two results from \cite{gantert2008asymptotics} that we will need to prove Theorem \ref{thm:ExpTails_BrunDer}. Recall the definitions of $v$ and $\chi$ from Remark \ref{rem:constants}. 
-
-\begin{theorem}[{{\cite[Theorem 1.2]{gantert2008asymptotics}}}]\label{thm:infty_good}
-Let $\rho(\infty, \epsilon)$ denote the probability that the root of the BRW with offspring distribution $q$ and step distribution $p$ is $(\infty, v - \epsilon)-good$. Then, as $\epsilon > 0$ goes to zero, 
-\begin{equation}
-\rho(\infty, \epsilon) \leq \exp\left( - \left( \frac{\chi + o(1)}{\epsilon} \right)^{1/2} \right). 
-\end{equation}
-\end{theorem}
-
-A similar result can be stated for the probability of observing a $(m, v - \epsilon)$-good root with $m$ finite:
-\begin{theorem}[{{\cite[Consequence of proof of Theorem 1.2]{gantert2008asymptotics}}}]\label{thm:finite_good}
-Let $\rho(m, \epsilon)$ denote the probability that the root of the BRW with offspring distribution $q$ and step distribution $p$ is $(m, v - \epsilon)$-good. For any $0 < \beta < \chi$, there exists $\theta > 0$ such that for all large $m$, 
-\begin{equation*}
-\rho(m, \epsilon) \leq \exp\left( - \left( \frac{\chi - \beta}{\epsilon} \right)^{1/2} \right), \qquad \text{with } \epsilon \defeq \theta m^{-2/3}. 
-\end{equation*}
-\end{theorem}
-
 \subsubsection{Brunet-Derrida behaviour}\label{sec:ExpTails_BrunDer}
 
 We are now ready to present and prove our main result in this section, the analogue of Bérard and Gouéré's Theorem 1:
@@ -164,39 +145,57 @@ Let $v_1 < v_2 \in \R$ and $1 \leq m \leq n \in \N$. Suppose $0 \eqdef x_0, ...,
 \end{lemma}
 
 \begin{proof}[Proof of lower bound in Theorem \ref{thm:ExpTails_BrunDer}]
-As before, we first treat the case $X_0 = N \delta_0$. Our aim is to show $v_N \defeq \lim_{n \to \infty} \Ex{n^{-1} \max X_n} \leq v_\infty - \chi / (\log N)^2 + o((\log N)^{-2})$. However, we shall show this with $v_\infty$ replaced by $v$, which combined with the upper bound also proves that $v_\infty = v$. Set $\beta \in (0, \chi)$ and let $\theta > 0$ be as in Theorem \ref{thm:finite_good}. Let $\lambda > 0$, and define 
+As before, we first treat the case $X_0 = N \delta_0$. Our aim is to show $v_N \defeq \lim_{n \to \infty} \Ex{n^{-1} \max X_n} \leq v_\infty - \chi / (\log N)^2 + o((\log N)^{-2})$. However, we shall show this with $v_\infty$ replaced by $v$, which combined with the upper bound also proves that $v_\infty = v$. Recalling the proof of Proposition \ref{prop:ExpTailsSpeedExistence}, we know by subadditivity that
+\begin{equation}\label{eqn:ExpTailsSubaddDecomp1}
+v_N \leq \frac{\Ex{\max X_n}}{n} \qquad\qquad\forall\, n \in \N. 
+\end{equation}
+In light of the desired correction term, we decompose (\ref{eqn:ExpTailsSubaddDecomp1}) into
+\begin{equation}
+\Ex{\max X_n} = v - \frac{\chi}{(\log N)^2} + \Ex{\max X_n \Ind_{\{\max X_n \geq n (v - \chi (\log N)^{-2})\}}}. 
+\end{equation}
+However, this is not the form of the RHS that we will work with. Let $\gamma \in (0,1)$ and $\epsilon = \epsilon(N)$ be such that approximately $\epsilon \sim \chi (\log N)^{-2}$ as $N \to \infty$. We will show that in
+\begin{equation}
+n^{-1} \Ex{\max X_n} = v - (1 - \gamma)\epsilon + n^{-1} \Ex{\max X_n \Ind_{\{\max X_n \geq n (v - (1 - \gamma) \epsilon)\}}}
+\end{equation}
+the last term is $o((\log N)^{-2})$. This will yield the desired lower bound on $v-v_N$ if we take $\gamma \to 0$. We further decompose the problem: set $w = v - (1 - \gamma) \epsilon$ and $\delta > 0$. We have
+\begin{equation}
+n^{-1} \Ex{\max X_n \Ind_{\{\max X_n \geq n w\}}} \leq (v+\delta)\underbrace{\Pr{\max X_n \geq w n}}_{(I)} + \underbrace{\Ex{n^{-1} \max X_n \Ind_{\{ (v + \delta)n \leq \max X_n \}}}}_{(II)}. \label{eqn:ExpTailsSubaddDecomp2} 
+\end{equation}
+First we show that $(I) = o((\log N)^{-2})$, which requires careful scaling the variables involved. Set $n = \ceil{N^\xi}$ for some $0 < \xi < \gamma$ and $m = m(N) \leq n$ whose exact form we'll specify later. Let $B$ be the number of vertices in $\sqcup_{i=0}^n G_i$ that are $(m, v - \epsilon)$-good with respect to their corresponding BRWs. Let $u_0, u_1, ..., u_n$ be a path in $\cal{T}_{i_0}$ for some $i_0 \in [N]$ such that $u_0 = root_{i_0}$ and $u_n \in G_n$ with $\Phi_{i_0}(u_n) = \max X_n$. In other words, let $BRW_{i_0}$ be the random walk that the rightmost particle of the coupled $N$-branching random walk lives in at time $n$, and let $u_0, ..., u_n$ be the path connecting it to the root. Define the event $E \defeq \{ \max X_n \geq w n \}$, and apply Lemma \ref{lem:ExpTailsGoodSequencesTechnical} to the sequence of real numbers $(\Phi_{i_0}(u_i))_{i \in [n]}$. It follows that on $E$, for any $K > 0$, either one of the random walk steps along the path is $> K$ or $B \geq \frac{w - (v - \epsilon)}{K - (v - \epsilon)}\frac{n}{m} - \frac{K}{K - (v - \epsilon)}$. This yields
+\begin{equation}\label{eqn:ExpTailsEBound}
+(I) = \Pr{E} \leq \Pr{M \geq K} + \Pr{B \geq \frac{w - (v - \epsilon)}{K - (v - \epsilon)}\frac{n}{m} - \frac{K}{K - (v - \epsilon)}},  
+\end{equation}
+where $M \defeq \max \{\epsilon_{l, i, j} \mid\, l \in \bbracket{0, n - 1},\, i \in [N],\, j \in [\tau_{l, i}] \}$. Set $\beta \in (0, \chi)$ and let $\theta > 0$ be as in Theorem \ref{thm:finite_good}. Let $\lambda > 0$, and define 
 \begin{equation}
 m \defeq \ceil*{\theta^{3/2}\left( \frac{(1 + \lambda) \log N}{(\chi - \beta)^{1/2}}\right)^3},
+\end{equation} 
+and $\epsilon \defeq \theta\, m^{-2/3}$. $m$ is carefully chosen so that by Theorem \ref{thm:finite_good}, 
+\begin{equation}\label{eqn:ExpTailsProof}
+\rho(m, \epsilon) \leq N^{-(1 + \lambda)} 
 \end{equation}
-and $\epsilon \defeq \theta\, m^{-2/3}$. The scale of $m$ is carefully chosen so that by Theorem \ref{thm:finite_good}, 
+for all large $N$. Also let $K = \kappa \log N$ for $\kappa > 0$ and observe that $\frac{w - (v - \epsilon)}{K - (v - \epsilon)}\frac{n}{m} - \frac{K}{K - (v - \epsilon)} > 0$ for large enough $N$ (independent of $\kappa, \gamma$). Thus (\ref{eqn:ExpTailsEBound}) turns into
 \begin{equation}
-\rho(m, \epsilon) \leq N^{-(1 + \lambda)} \qquad\text{for all large } N. 
+(I) = \Pr{E} \leq \underbrace{\Pr{M \geq K}}_{(a)} + \underbrace{\Pr{B \geq 1}}_{(b)}. 
 \end{equation}
-Take $\gamma \in (0, 1)$ and define $v_1 = v - \epsilon$ and $v_2 = v - (1 - \gamma) \epsilon$ noting that $v_1 < v_2 < v$. Finally, let $n = \ceil{N^\xi}$ for some $0 < \xi < \lambda$ and consider the following inequality with $\delta > 0$:
-\begin{align}
-\Ex{n^{-1} \max X_n} &= \Ex{n^{-1} \max X_n \left[ \Ind_{\{ \max X_n < n v_2\}} + \Ind_{\{ n v_2 \leq \max X_n < n (v + \delta)n \}} + \Ind_{\{ (v + \delta)n \leq \max X_n \}} \right]}\nonumber \\
-					&\leq v_2 + (v+\delta)\underbrace{\Pr{\max X_n \leq v_2 n}}_{(I)} + \underbrace{\Ex{n^{-1} \max X_n \Ind_{\{ (v + \delta)n \leq \max X_n \}}}}_{(II)}. \label{ExpTailThmDecomposition}
-\end{align}
-The strategy for the proof is to show that both $(I)$ and $(II)$ are $o((log N)^{-2})$. The result then follows, as $v_2 = v - (1 - \gamma)(\chi - \beta)(1+\lambda)^{-2}(\log N)^{-2}$ where $\gamma, \beta, \lambda$ can be taken arbitrarily small. \\ 
 
- Let $B_n$ be the number of vertices in $\sqcup_{i=0}^n G_i$ that are $(m, v_1)$-good with respect to their respective BRWs. Define $K = \kappa \log (N)$ for some $\kappa > 0$ and notice that the quantity $\frac{v_2 - v_1}{K - v_1}\frac{n}{m} - \frac{K}{K - v_1}$ is positive for large enough $N$. Let $u_0, u_1, ..., u_n$ be a path in $\cal{T}_{i_0}$ for some $i_0 \in [N]$ such that $u_0 = root_{i_0}$ and $u_n \in G_n$ with $\Phi_{i_0}(u_n) = \max X_n$. In other words, let $BRW_{i_0}$ be the random walk that the rightmost particle of the coupled $N$-branching random walk lives in at time $n$, and let $u_0, ..., u_n$ be the path connecting it to the root. On the event $E \defeq \{ \max X_n \geq v_2 n \}$, we apply Lemma \ref{lem:ExpTailsGoodSequencesTechnical} to the sequence of real numbers $(\Phi_{i_0}(u_i))_{i \in [n]}$ to see that either there is an $(m, v_1)$-good vertex among the $u_i$ or one of the random walk steps along the path is $ \geq K$. These events are respectively included in the events $\{B_n \geq 1\}$ and $\{M \defeq \max \{\epsilon_{l, i, j} \mid\, l \in \bbracket{0, n - 1},\, i \in [N],\, j \in [\tau_{l, i}] \} \geq K \}$. We can use this to bound the probability of $E$:
-\begin{equation}
-(I) = \Pr{E} \leq \Pr{M \geq K} + \Pr{B_n \geq 1}. 
-\end{equation}
-Consider a vertex $u \in \cal{T}_{i_0}(d)$ for some $i_0 \in [N]$ at depth $d \in \bbracket{0, n}$. The event $\{u \in G_d\}$ is measurable with respect to the sigma algebra generated by the random variables $\{ \Phi_j(v) \mid\, j \in [N],\,\cal{T}_j \ni v'\text{s depth }\leq d\}$. On the other hand, the event $\{ u \text{ is }(m, v_1) \text{-good}\}$ is determined by the variables $\{ \Phi_{i_0}(v) - \Phi_{i_0}(u) \mid\, \cal{T}_{i_0} \ni v'\text{s depth }> d\}$, so that the two events are independent. We can write $B_n$ as 
+\underline{(a):} $\Pr{M \geq K}$ is the probability of $S \defeq \sum_{l = 0}^{n-1}\sum_{i=1}^N \tau_{l,i} \in L^1$ i.i.d. variables with distribution $p$ to be larger than $K$. Since $p$ has exponentially decaying tails, we can take $C, \phi, t_0 > 0$ so that $p([t, \infty)) \leq C \exp(- \phi t)$ for all $t > t_0$. Then for $\kappa > t_0$ large enough for Bernoulli's inequality to apply, we have
+\begin{align}
+\Pr{M \geq K} &= 1 - \Ex{(1 - p([K, \infty)))^{S}} \leq 1 - \Ex{(1 - C \exp(-\phi K))^S} \\
+			  &= 1 - \Ex{(1 - C N^{-\phi \kappa})^S} \leq C N^{-\phi \kappa} \Ex{S} = \underbrace{C \Ex{\tau}}_{< \infty} N^{1 + \xi - \phi \kappa}. 
+\end{align} 
+Thus, $\Pr{M \geq K} = o((\log N)^{-2})$ for large enough $\kappa$. \\
+
+\underline{(b):} Consider a vertex $u \in \cal{T}_{i_0}(d)$ for some $i_0 \in [N]$ at depth $d \in \bbracket{0, n}$. The event $\{u \in G_d\}$ is measurable with respect to the sigma algebra generated by the random variables $\{ \Phi_j(v) \mid\, j \in [N],\,\cal{T}_j \ni v'\text{s depth }\leq d\}$. On the other hand, the event $\{ u \text{ is }(m, v_1) \text{-good}\}$ is determined by the variables $\{ \Phi_{i_0}(v) - \Phi_{i_0}(u) \mid\, \cal{T}_{i_0} \ni v'\text{s depth }> d\}$, so that the two events are independent. We can write $B$ as 
 \begin{equation*}
-B_n = \sum\limits_{i=1}^N \sum\limits_{u \in \cal{T}_i} \Ind_{\{u \text{ is } (n, v_1)\text{-good}\}} \Ind_{\{u \in G_d \text{ for some d} \in \bbracket{0,n}\}}. 
+B = \sum\limits_{i=1}^N \sum\limits_{u \in \cal{T}_i} \Ind_{\{u \text{ is } (n, v - \epsilon)\text{-good}\}} \Ind_{\{u \in G_d \text{ for some d} \in \bbracket{0,n}\}}. 
 \end{equation*}
 Taking expectations gives 
-\begin{equation}\label{eqn:B_nOrder}
-\Ex{B_n} \leq N(n+1)\rho(m, \epsilon) = \cal{O}(N^{\xi -\lambda}) = o((\log N)^{-2}) \qquad\text{as $N$ goes to infinity}, 
+\begin{equation}
+\Ex{B} \leq N(n+1)\rho(m, \epsilon) = \cal{O}(N^{\xi -\lambda}) = o((\log N)^{-2}) \qquad\text{as $N$ goes to infinity}, 
 \end{equation}
-where we used that $G_n$ has $N$ elements for all $n$. We now want to bound $\Pr{M \geq K}$, the probability of $S \defeq \sum_{l = 0}^{n-1}\sum_{i=1}^N \tau_{l,i} \in L^1$ i.i.d. variables with distribution $p$ to be larger than $K$. Since $p$ has exponentially decaying tails, we can take $C, \gamma, t_0 > 0$ so that $p([t, \infty)) \leq C \exp(- \gamma t)$ for all $t > t_0$. Then for $\kappa > t_0$ large enough for Bernoulli's inequality to apply, we have
-\begin{align}
-\Pr{M \geq K} &= 1 - \Ex{(1 - p([K, \infty)))^{S}} \leq 1 - \Ex{(1 - C \exp(-\gamma K))^S} \\
-			  &= 1 - \Ex{(1 - C N^{-\gamma \kappa})^S} \leq C N^{-\gamma \kappa} \Ex{S} = \underbrace{C \Ex{\tau}}_{< \infty} N^{1 + \xi - \gamma \kappa}. 
-\end{align} 
-Thus, for large enough $\kappa$, $\Pr{M \geq K} = o((\log N)^{-2})$. This, combined with (\ref{eqn:B_nOrder}) and Markov's inequality gives $(I) = o((\log N)^{-2})$ as desired. We now turn to showing $(II) = o((\log N)^{-2})$. Consider the obvious inequality $\exp(t \max X_n) \leq \sum_{i \in [N],\, u \in \cal{T}_i(n)} \exp(t \Phi_i(u))$. If we set $\cal{G} \defeq \sigma\{ \tau_{l, i} \mid\, l\in\bbracket{0,n-1},\, i \in [N]\}$, then we have
+where we used that $G_n$ has $N$ elements for all $n$. Applying Markov's inequality to $B$ and combining with our estimate of $(a)$ gives $(I) = o((\log N)^{-2})$ as desired. \\
+
+We now turn to showing $(II) = o((\log N)^{-2})$. Consider the obvious inequality $\exp(t \max X_n) \leq \sum_{i \in [N],\, u \in \cal{T}_i(n)} \exp(t \Phi_i(u))$. If we set $\cal{G} \defeq \sigma\{ \tau_{l, i} \mid\, l\in\bbracket{0,n-1},\, i \in [N]\}$, then we have
 \begin{align}
 \Ex{\exp(t \max X_n)} &\leq \E \sum\limits_{i=1}^N \sum\limits_{u \in \cal{T}_i(n)} \ExCond{\exp(t \Phi_i(u))}{\cal{G}} = \E \sum\limits_{i=1}^N \sum\limits_{u \in \cal{T}_i(n)} \E_{\epsilon \sim p} \left[\exp(t \epsilon)\right]^n \\
  					  &= N \E_{\tau \sim q}\left[\tau\right]^n \E_{\epsilon \sim p}\left[\exp(t \epsilon)\right]^n, 
@@ -230,7 +229,7 @@ We have shown that for any choice of $\gamma \in (0,1)$, $\beta \in (0, \chi)$ a
 \begin{equation}\label{eqn:ExpTailResultTally}
 \Ex{\ceil{N^\xi}^{-1} \max X_{\ceil{N^\xi}}} \leq v - \frac{(1 - \gamma)(\chi - \beta)}{(1 + \lambda)^2(\log N)^2} + o((\log N)^{-2}). 
 \end{equation}
-Recall from the proof of Proposition \ref{prop:ExpTailsSpeedExistence} that $v_N = \inf_n n^{-1} \Ex{\max X_n}$, so the left hand side in (\ref{eqn:ExpTailResultTally}) can be replaced by $v_N$. Taking $\gamma, \beta, \lambda$ and $\xi$ to zero gives the desired result. 
+Taking $\gamma, \beta, \lambda$ and $\xi$ to zero gives the desired result. 
 \end{proof}
 
 \begin{lemma}[{{\cite[Lemma 3]{exp_tails}}}]\label{lem:ExpTailsGW}
@@ -260,4 +259,5 @@ where $\Theta_n$ is distributed as the minimum of $\sum_{l = 0}^{n-1} \sum_{i=1}
 Identical to the one given in \cite{exp_tails}. 
 \end{proof}
 We immediately have $(v - (1 + \eta)\epsilon) n \Pr{B} = o((\log N)^{-2})$ by (\ref{eqn:ExpTailsBBound}). To bound the other term, note that $\Ex{|\Theta_n| \Ind_B} \leq (\Ex{\Theta_n^2}\Pr{B})^{1/2}$ by Hölder's inequality
+
 \end{proof}
