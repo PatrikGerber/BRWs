@@ -1,0 +1,86 @@
+\section{Polynomial tails}
+
+\begin{quote}
+{\small Placeholder text. }
+\end{quote}
+
+\subsection{Mathematical background}
+\subsubsection{Skorokhod's topologies}
+This section is based on material from Sections 3, 11 and 12 of \cite{jacod2013limit}. As usual, for $t > 0$ let $D([0, t]) \defeq D([0, t], \R)$ be the set of real-valued cádlág functions with domain $[0, t]$. Define $\Lambda_t$ to be the space of continuous bijections from $[0,t]$ to itself. Skorokhod's $J_1$ topology (sometimes written $SJ_1$) on $D([0,t], \R)$ is then defined by the metric 
+\begin{equation}
+d_{J_1}(f,g) = \inf_{\lambda \in \Lambda_t} \{ \norm{f \circ \lambda - g}_{\infty} \lor \norm{\lambda - Id}_{\infty} \}, 
+\end{equation}
+where $Id : x \mapsto x$. The intuition behind this definition is the following: Take the graph of $f$ which is a (discontinuous) one-dimensional curve and let $\lambda$ be some reparametrisation of it. The $J_1$ distance between $f$ and $g$ is small if there exists $\lambda$ close to the identity such that the supremum distance between the graph of $g$ and the reparametrised graph of $f$ is small too. $J_1$ convergence allows for a sequence of functions $(f_n)_{n \geq 0} \subset D([0, t])$ to convergence to a limit $f\in D([0, t])$ without the set of discontinuities of any of the $f_n$ coinciding with that of $f$. Skorokhod's $M_1$ topology (sometimes written $SM_1$) is defined by a similar metric, the only difference being that the same idea is applied to completed graphs, which allows continuous functions to converge to a discontinuous one. Note that the topology $J_1$ is stronger. These definitions extend to functions with domain $[0, \infty)$ by saying that $f_n \in D([0, \infty)) \eqdef D$ converges to $f \in D$ if convergence happens in $D([0, t])$ for all continuity points $t$ of $f$. The topology this defines is in fact metrisable (see page 83 of \cite{jacod2013limit}). \\
+% The topologies they induce are called strong and sometimes written $SJ_1$ and $SM_1$. We talk about weak topologies when we consider $D(I, \R^k)$ with $k > 1$ and they are equal to the product topology, but they are not important to our discussion. \\
+
+% The $(S)J_2$ and $(S)M_2$ topologies are the ones induced by applying the Hausdorff metric to the functions graphs and completed graphs respectively. 
+
+\subsubsection{Heavy tails}
+In this section we rely on sections 2 and 3 of \cite{foss2011introduction}. For a random variable $X$ with distribution function $F$, let $\overline{F}(x) \defeq \Pr{X > x} = 1 - F(x)$ be its right tail-function. $F$ is said to be heavy-tailed if 
+\begin{equation}\label{eqn:heavy_tailed_distr_def}
+\int_\R e^{\lambda x} F(dx) = \infty\qquad\forall\, \lambda > 0. 
+\end{equation}
+$F$ is said to be light-tailed if it is not heavy-tailed. It is clear that if $F$ is light-tailed then it has finite moments of all orders. A positive function $f : \R \to \R_+$ is said to be heavy-tailed if 
+\begin{equation}\label{eqn:heavy_tailed_fn_def}
+\limsup\limits_{x \to \infty} e^{\lambda x} f(x) = \infty\qquad\forall\,\lambda > 0. 
+\end{equation}
+We have the following characterisation of heavy tailed distributions:
+
+\begin{theorem}[{{\cite[Theorem 2.6, adapted]{foss2011introduction}}}]
+Let $F$ be a distribution function. The following are equivalent:
+\begin{itemize}
+\item $F$ is heavy-tailed in the sense (\ref{eqn:heavy_tailed_distr_def})
+\item $\overline{F}$ is heavy-tailed in the sense (\ref{eqn:heavy_tailed_fn_def}). 
+\end{itemize}
+If any of the above holds and $F$ has density $f$ with respect to the Lebesgue measure, then $f$ is also heavy-tailed. The converse however is not true in general. 
+\end{theorem}
+
+Let $f$ be a positive function as before. For a positive, non-decreasing function $h:\R \to \R_+$ we say that $f$ is $h$-insensitive if 
+\begin{equation}\label{eqn:h_insensitive_def}
+\lim\limits_{x \to \infty} \sup\limits_{|y| \leq h(x)} \left\lvert \frac{f(x+y)}{f(x)} - 1 \right\rvert = 0. 
+\end{equation}
+If $f$ is $h$-insensitive for all constant functions $h$ we say that $f$ is long-tailed. For $f$ to be long-tailed, $h$-insensitivity for some $h$ with $h(\infty) = \infty$ is obviously sufficient (and also necessary by Lemma 2.19 \cite{foss2011introduction}). Furthermore $f$ being long-tailed implies that $f$ is heavy-tailed by Lemma 2.17 \cite{foss2011introduction}. Virtually all heavy-tailed distributions that appear in practice are long-tailed. By varying the choice of $h$, we can classify long-tailed functions according to the heaviness of their tails. An important subset of long-tailed functions are those of regular variation: A positive function $f:\R \to \R_+$ is said to be regularly varying at $\infty$ with index $\alpha \in \R$ if for all $c > 0$, 
+\begin{equation}
+f(cx) \sim c^\alpha f(x) \qquad\text{ as } x \to \infty. 
+\end{equation}
+Functions that are $0$-regularly varying are called slowly varying. It is a well known result that if $f$ is $\alpha$-regularly varying then it can be written as $f(x) = x^\alpha f_0(x)$ for some slowly varying $f_0$. The definitions of long-tailedness and regular variation naturally extend to probability distributions $F$: we say $F$ is regularly varying with index $\alpha > 0$ if $\overline{F}$ is regularly varying with index $- \alpha$. Notice that a probability distribution having long-tails has a simple probabilistic interpretation. $F$ is long-tailed by definition if 
+\begin{equation}\label{eqn:long_tail_interpretation}
+\PrCond{X > x + y}{X > x} \to 1 \qquad\text{ as } x \to \infty\,, \forall\, y > 0. 
+\end{equation}
+Notice that this doesn't give uniform convergence in $y$ on closed intervals as required by definition (\ref{eqn:h_insensitive_def}), however it is a standard result that the two are equivalent. Interpreting (\ref{eqn:long_tail_interpretation}) in words, given that $F$ exceeds some high level the probability of it exceeding an even higher level is large. 
+
+% Potter's bounds (\cite[Section 6]{poly_tails}) provide a powerful tool for working with regularly varying functions. The result says that for any $C > 1$ and $\delta > 0$ there exist $R \in \R$ such that 
+% \begin{equation}
+% \frac{f(y)}{f(x)} \leq C \left( \frac{y}{x} \right)^{\alpha + \delta} \lor \left( \frac{y}{x} \right)^{\alpha -\delta} \qquad\forall\, x,y \geq R. 
+% \end{equation}
+
+
+\subsection{The model}
+Here we present the model as studied in \cite{poly_tails}. Let $(X_n)_{n \geq 0}$ be the $N$-BRW evolving as follows: At each step each particle gives birth to two children whose position is distributed independently and identically around the position of the parent, according to the law of a random variable $X$. Then, out of all children the $N$ rightmost are selected tp form the next generation where $N \geq 2$ is fixed. The authors further impose the condition $X \geq 0$ almost surely and that the random variable $X$ be regularly varying with index $\alpha > 0$. In \cite{poly_tails} the authors remark that the methods of their analysis could be extended to more general reproduction laws and to $X$ taking values in $\R$, however since no new phenomena can be observed the don't do so. Define the sequence $(c_N)_{N \geq 1}$ by $c_N \defeq \overline{F}^{-1} (1/ (2N \log_2 N))$ where $\overline{F}^{-1}(x) \defeq \inf\{ y :\, \overline{F}(y) > x\}$ is the generalised inverse of $\overline{F}$. Let $d(\cdot, \cdot)$ be the Prokhorov metric on the space of probability distributions on $\R$, which induces the topology of weak convergence. We now present Theorem 1.2 of \cite{poly_tails}, however for simplicity we only list the cases when $\E X < \infty$. 
+
+\begin{theorem}[{{\cite[Theorem 1.2]{poly_tails}}}]
+We distinguish the following cases:
+\begin{enumerate}[(a)]
+
+\item \vspace{-2mm} $\alpha > 1$: The limit $v_N \defeq \lim_{n \to \infty} n^{-1} \max X_n = \lim_{n \to \infty} n^{-1} \min X_n$ exists almost surely and in $L^1$ and satisfies $v_N \sim \rho_\alpha c_N / \log N$ as $N \to \infty$ where $\rho_\alpha > 0$. \\
+
+\item \vspace{-6mm} $\alpha = 1,\, \E X < \infty$: $v_N$ exists as above and satisfies 
+\begin{equation}
+v_N \sim \frac{c_N}{\overline{F}(c_N)\log_2 N} \int\limits^\infty_1 \overline{F}(x c_N) dx \qquad\,\text{as }N \to \infty. \\
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+The way Bérard and Maillard show this is by considering a related stochastic process, which they call the `stairs process'. They prove certain properties of these stairs processes, most importantly their asymptotic speed of propagation when suitably scaling space and time, which is the subject of Theorem 2.5 \cite{poly_tails}. They then essentially couple the $N$-BRW with polynomial tails to the corresponding stairs process, which yields the speed of the $N$-BRW. We briefly describe the stairs process to gain some intuition about Bérard and Maillard's argument. \\
+
+% Further define $(\xi_t)_{t \geq 0}$ by $\xi_t = x$ iff $(t, x)$ is an atom of $\cal{P}$ and zero otherwise. 
+
+Let $\mu_\alpha$ be the measure on $[0, \infty)$ defined by $\mu_\alpha([x, \infty)) = x^{-\alpha}$. Let $\cal{P}$ be a Poisson point process on $\R_+^2$ with intensity $dt \otimes \mu_\alpha$ i.e. let $\cal{P}$ be a random measure on $\R_+^2$ such that for any Borel measurable $G \in \scr{B}(\R_+^2)$ and $n \in \N$ we have $\Pr{\cal{P}(G) = n} = \Pr{\dPo{\int_G dt \otimes \mu_\alpha} = n}$. We will think of the first coordinate as time and of the second as space. The corresponding stairs process $\cal{R}^\alpha \defeq (\cal{R}^\alpha (t))_{t \geq 0}$ is then defined as follows: Suppose that $\cal{R}^\alpha$ is already defined for times $ \leq n$. Now generate the points in the interval $(n, n+1] \times \R_+$ according to $\cal{P}$ and translate every atom $(t,x)$ by $\cal{R}^\alpha (t-1)$ in the space direction. Finally, define $\cal{R}^\alpha$ to be the record process of these points for the time interval $(n, n+1]$. See the introduction of \cite{poly_tails} for two alternate characterisations of $\cal{R}^\alpha$. Bérard and Maillard obtain the following result relating the stairs process and the $N$-BRW with $\alpha$-regularly varying tails:
+
+\begin{theorem}[{{\cite[Theorem 1.1]{poly_tails}}}]
+With notation as above, 
+\begin{align*}
+(c_N^{-1} \max X(\floor{t \log_2 N)})_{t \geq 0} &\rightarrow (\cal{R}^\alpha (t))_{t \geq 0} \qquad&&\text{ in } J_1, \\ 	
+(c_N^{-1} \max X(\floor{t \log_2 N}), c_N^{-1} \min X(\floor{t \log_2 N}))_{t \geq 0} &\rightarrow (\cal{R}^\alpha (t), \cal{R}^\alpha (t - 1))_{t \geq 0} \qquad&&\text{ in } M_1. 
+\end{align*}
+\end{theorem}
