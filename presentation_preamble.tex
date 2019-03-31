@@ -1,0 +1,54 @@
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{yfonts}
+\usepackage{hyperref} % Uncommment to make references clickable
+
+\newtheorem{proposition}{Proposition}[section]
+
+\renewcommand{\cal}[1]{\mathcal{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand{\frak}[1]{\textfrak{#1}}
+\newcommand{\scr}[1]{\mathscr{#1}}
+
+
+% Common sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+% Expectation
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Ex}[1]{\mathbb{E}\left[ #1 \right]}
+\newcommand{\ExCond}[2]{\mathbb{E} \left[\left. #1 \right| #2 \right]}
+
+% Probability
+\renewcommand{\P}{\mathbb{P}}
+\renewcommand{\Pr}[1]{\mathbb{P} \left( #1 \right)}
+\newcommand{\PrCond}[2]{\mathbb{P} \left( \left. #1 \right| #2 \right)}
+\newcommand{\Ind}{\mathbbm{1}}
+
+% Common distributions 
+\newcommand{\dNorm}[2]{\mathcal(N)\left( #1, #2 \right)}
+\newcommand{\dExp}[1]{\text{Exp} \left( #1 \right)}
+\newcommand{\dBer}[1]{\text{Ber} \left( #1 \right)}
+\newcommand{\dPo}[1]{\text{Poisson} \left( #1 \right)}
+\newcommand{\dBin}[2]{\text{Binomial} \left( #1, #2 \right)}
+
+
+% Miscellaneous math stuff
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\bbracket{\llbracket}{\rrbracket}
+\DeclarePairedDelimiterX{\norm}[1]{\lVert}{\rVert}{#1}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}

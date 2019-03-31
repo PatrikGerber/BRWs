@@ -5,15 +5,7 @@
 \end{quote}
 
 \section{Background}
-\begin{theorem}[{{\cite[Theorem 7.4.1.]{durrett2010probability}}}]
-Let $\{X_{m,n} \mid\, 0 \leq m < n\}$ be a family of random variables satisfying 
-\begin{enumerate}[(i)]
-\item $X_{l,n} \leq X_{l,m} + X_{m, n}$ for all $l < m < n$
-\item The distribution of $\{X_{m + k, n + k} \mid\, 0 \leq m < n\}$ does not depend on $k \in \N$
-\item $\Ex{X_{0,1}^+} < \infty$ and there exists $\gamma > -\infty$ such that $\Ex{X_{0,n}} > \gamma n$ for all $n \in \N$. 
-\end{enumerate}
-Then 
-\end{theorem}
+
 
 \section{exactly soluble}
 The model we consider is constructed as follows: The individual at position $x_0 \in \R$ has offspring according to a poisson process with intensity measure that has density $x \mapsto \exp(- (x - x_0))$ with respect to the Lebesgue measure. Out of the offspring of all individuals, the $N$ right-most are selected to form the population of the next generation. By additivity of Poisson processes, the location of the offspring is described by a Poisson process with density $\Psi(x) \sum\limits_{i = 1}^N \exp(-(x - x_i))$ where $x_i$ denotes the position of the $i$'th individual in the current generation. 

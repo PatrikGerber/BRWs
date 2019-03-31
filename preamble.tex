@@ -11,6 +11,7 @@
 \usepackage{chngcntr}
 \usepackage{sectsty}
 \usepackage{yfonts}
+ \usepackage{url}
 \usepackage{wrapfig}
 \usepackage{xfrac}
 \usepackage{stmaryrd}
@@ -18,19 +19,26 @@
 \usepackage{tikz}
 \usepackage[a4paper,margin=1.2in,footskip=0.25in]{geometry}
 
+% \definecolor{nice_blue}{RGB}{0,51,102}
+% \definecolor{nice_blue}{RGB}{73, 115, 171}
+\definecolor{niceBlue}{RGB}{48, 99, 165}
+% \definecolor{nice_blue}{RGB}{61, 89, 171}
+% \definecolor{nice_blue}{RGB}{65, 105, 225}
+\definecolor{oxfordBlue}{RGB}{0, 33, 71}
+
 % Configuring style of references
 \hypersetup{
     colorlinks = True,
-    allcolors = blue	
+    allcolors = blue
 }
 
 % Makes equation numbering based on section
 \counterwithin{equation}{section}
 
 % Changing the styling of section and subsection titles. Comment to get default styling
-\sectionfont{\centering\mdseries\scshape}
-\subsectionfont{\mdseries\scshape}
-\subsubsectionfont{\mdseries\scshape}
+\sectionfont{\centering\sffamily\scshape\color{black}}
+\subsectionfont{\sffamily\color{black}}
+\subsubsectionfont{\sffamily\color{black}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% Defining environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newtheoremstyle{slimDefinitionStyle} % name

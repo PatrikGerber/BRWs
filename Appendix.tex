@@ -1,0 +1,65 @@
+\section{Appendix}\label{sec:appendix}
+\begin{lemma}\label{lem:ExpTailsMax}
+Let $\tau \in L^1$ be an $\N$-valued random variable and let $(\epsilon_n)_{n \geq 1}$ be an i.i.d. sequence of random variables with exponentially decaying tails, independent of $\tau$. Then $M \defeq \max_{1 \leq n \leq \tau} \epsilon_n$ has exponentially decaying tails. 
+\end{lemma}
+
+\begin{proof}
+Let $C, \gamma, t_0 > 0$ be such that $\Pr{|\epsilon_1| \leq t} \geq 1 - C e^{- \gamma t}$ for all $t > t_0$. Then for $t > t_0$ large enough, Bernoulli's inequality gives 
+\begin{align*}
+\Pr{M > t} &\leq 1 - \Ex{\Pr{|\epsilon_1| \leq t}^\tau} \leq 1 - \Ex{(1 - C e^{-\gamma t})^\tau} \\
+		   &\leq 1 - \Ex{1 - C e^{- \gamma t} \tau} = \underbrace{C\, \Ex{\tau}}_{< \infty} e^{- \gamma t}. 
+\intertext{Similarly, looking at the lower tail we get}
+\Pr{M < -t} &\leq 1 - \Ex{\Pr{|\epsilon_1| \leq t}^\tau} \leq C\, \Ex{\tau} e^{- \gamma t}. 
+\end{align*}
+\end{proof}
+
+\begin{lemma} \label{lem:ExpTailBound}
+For all large enough $a$, 
+\begin{equation}
+x \Ind_{\{x \geq a\}} \leq e^{x - a/2}, \qquad\forall\, x \in \R. 
+\end{equation}
+\end{lemma}
+\begin{proof}
+Differentiate the map $f:x \mapsto \exp(x - a/2) - x$ to find that for large enough $a$, f is increasing on $[a, \infty)$. Noting that $f(a) \geq 0$ for all large $a$ concludes the proof.  
+\end{proof}
+
+\begin{lemma}\label{lem:ExpTailsGW}
+Let $(M_n)_{n \geq 0}$ be a supercritical Galton-Watson process with offspring distribution $X$ and let $\mu \defeq \E X > 1$. If $M_0 = 1$ then for all $\mu > \phi > 0$ we have $0 < \liminf_n \Pr{M_n > \phi^n}$. 
+\end{lemma}
+
+\begin{proof}
+By the monotone convergence theorem we can take $R$ large enough so that $\widetilde{\mu} \defeq \Ex{R \land X} > 1$. Let $(\widetilde{M}_n)_{n \geq 0}$ be the Galton-Watson process with offspring distribution $\widetilde{X} \defeq R \land X$ which by assumption is also supercritical. As $\widetilde{X}$ is bounded, Theorem 1 in Section 6, Chapter 1 of \cite{athreya2004branching} gives $\widetilde{\mu}^{-n} \widetilde{M}_n \to M$ almost surely for some $M \geq 0$ with $\Pr{M > 0} > 0$ by Theorem 2 of the same section. By the obvious coupling 
+\begin{equation}
+\Pr{M_n > \phi^n} \geq \Pr{\widetilde{M}_n \mu^{-n} > \phi^n \mu^{-n}}
+\end{equation} 
+so that $\liminf_{n \to \infty} \Pr{M_n > \phi^n} \geq \Pr{M > 0} > 0$. 
+\end{proof}
+
+\begin{theorem}[{{\cite[Theorem 7.4.1.]{durrett2010probability}}}]
+Let $\{X_{m,n} \mid\, 0 \leq m < n\}$ be a family of random variables satisfying 
+\begin{enumerate}[(i)]
+\item $X_{0,n} \leq X_{0,m} + X_{m, n}$ for all $m < n$. 
+\item $(X_{nk, (n+1)k})_{n \geq 0}$ is a stationary and ergodic sequence for each $k \geq 1$. 
+\item The distribution of $\{X_{m + k, n + k} \mid\, 0 \leq m < n\}$ does not depend on $k \in \N$. 
+\item $\Ex{X_{0,1}^+} < \infty$ and there exists $\gamma_0 > -\infty$ such that $\Ex{X_{0,n}} > \gamma_0 n$ for all $n \in \N$. 
+\end{enumerate}
+Then there exists $\gamma \in \R$ such that 
+\begin{equation}
+\lim\limits_{n \to \infty} \frac{\E X_{0, n}}{n} = \inf\limits_{n} \frac{\E X_{0,n}}{n} = \gamma, 
+\end{equation}
+where the last limit is almost sure and in $L^1$. 
+\end{theorem}
+
+\begin{lemma}\label{lem:ExpTailsKingmanHolds}
+The random variables $Z_{i,j}$ as defined in the proof of Proposition \ref{prop:ExpTailsSpeedExistence} satisfy the hypothesis of Kingman's Subadditive Theorem. 
+\end{lemma}
+
+\begin{proof}
+For each $k \geq 1$ the sequence $\{Z_{k, 2k}, Z_{2k, 3k}, ...\} = \{\max X^k_k, \max X^{2k}_k, ... \}$ is i.i.d. so stationary and ergodic. Clearly the distribution of $(Z_{i, i + k})_{k \geq 0} = (\max X^i_k)_{k \geq 0}$ is independent of $i$. $\E Z^+_{0,1} = \E (\max X_1)^+ < \infty$ because $\max X_1 \in L^1$ by (\ref{eqn:ExpTailsMaxIntegrable}). Finally, $\E Z_{0, n} = \E \max X_n \geq n\, \E \scr{L}_{0,1}(1)$. 
+\end{proof}
+
+\begin{lemma}[{{\cite[Adapted by Bérard and Gouéré from Lemma 5.2]{pemantle2009search}}}]\label{lem:ExpTailsGoodSequencesTechnical}
+Let $v_1 < v_2 \in \R$ and $1 \leq m \leq n \in \N$. Suppose $0 \eqdef x_0, ..., x_n$ is a sequence of real numbers such that $\max_{i \in \bbracket{0, n - 1}} (x_{i+1} - x_i) \leq K$ for some $K > 0$, and define $I \defeq \{ i \in \bbracket{0, n - m} \mid\, x_{i + j} - x_i \geq j v_1,\quad \forall j\in\bbracket{0,m}\}$. If $x_n \geq v_2 n$, then $\#I \geq \frac{v_2 - v_1}{K - v_1}\frac{n}{m} - \frac{K}{K - v_1}$. 
+\end{lemma}
+
+\newpage

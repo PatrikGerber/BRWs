@@ -1,4 +1,4 @@
-\section{Polynomial tails}
+\section{POLYNOMIAL TAILS}\label{sec:poly}
 
 \begin{quote}
 {\small Placeholder text. }
@@ -18,7 +18,7 @@ where $Id : x \mapsto x$. The intuition behind this definition is the following:
 \subsubsection{Heavy tails}
 In this section we rely on sections 2 and 3 of \cite{foss2011introduction}. For a random variable $X$ with distribution function $F$, let $\overline{F}(x) \defeq \Pr{X > x} = 1 - F(x)$ be its right tail-function. $F$ is said to be heavy-tailed if 
 \begin{equation}\label{eqn:heavy_tailed_distr_def}
-\int_\R e^{\lambda x} F(dx) = \infty\qquad\forall\, \lambda > 0. 
+\int_\R e^{\lambda x} \overline{F}(dx) = \infty\qquad\forall\, \lambda > 0. 
 \end{equation}
 $F$ is said to be light-tailed if it is not heavy-tailed. It is clear that if $F$ is light-tailed then it has finite moments of all orders. A positive function $f : \R \to \R_+$ is said to be heavy-tailed if 
 \begin{equation}\label{eqn:heavy_tailed_fn_def}
@@ -39,15 +39,29 @@ Let $f$ be a positive function as before. For a positive, non-decreasing functio
 \begin{equation}\label{eqn:h_insensitive_def}
 \lim\limits_{x \to \infty} \sup\limits_{|y| \leq h(x)} \left\lvert \frac{f(x+y)}{f(x)} - 1 \right\rvert = 0. 
 \end{equation}
-If $f$ is $h$-insensitive for all constant functions $h$ we say that $f$ is long-tailed. For $f$ to be long-tailed, $h$-insensitivity for some $h$ with $h(\infty) = \infty$ is obviously sufficient (and also necessary by Lemma 2.19 \cite{foss2011introduction}). Furthermore $f$ being long-tailed implies that $f$ is heavy-tailed by Lemma 2.17 \cite{foss2011introduction}. Virtually all heavy-tailed distributions that appear in practice are long-tailed. By varying the choice of $h$, we can classify long-tailed functions according to the heaviness of their tails. An important subset of long-tailed functions are those of regular variation: A positive function $f:\R \to \R_+$ is said to be regularly varying at $\infty$ with index $\alpha \in \R$ if for all $c > 0$, 
+If $f$ is $h$-insensitive for all constant functions $h$ we say that $f$ is long-tailed. For $f$ to be long-tailed, $h$-insensitivity for some $h$ with $h(\infty) = \infty$ is obviously sufficient (and also necessary by Lemma 2.19 \cite{foss2011introduction}). Furthermore $f$ being long-tailed implies that $f$ is heavy-tailed by Lemma 2.17 \cite{foss2011introduction}. By varying the choice of $h$, we can classify long-tailed functions according to the heaviness of their tails. An important subset of long-tailed functions are those of regular variation: A positive function $f:\R \to \R_+$ is said to be regularly varying at $\infty$ with index $\alpha \in \R$ if for all $c > 0$, 
 \begin{equation}
 f(cx) \sim c^\alpha f(x) \qquad\text{ as } x \to \infty. 
 \end{equation}
 Functions that are $0$-regularly varying are called slowly varying. It is a well known result that if $f$ is $\alpha$-regularly varying then it can be written as $f(x) = x^\alpha f_0(x)$ for some slowly varying $f_0$. The definitions of long-tailedness and regular variation naturally extend to probability distributions $F$: we say $F$ is regularly varying with index $\alpha > 0$ if $\overline{F}$ is regularly varying with index $- \alpha$. Notice that a probability distribution having long-tails has a simple probabilistic interpretation. $F$ is long-tailed by definition if 
 \begin{equation}\label{eqn:long_tail_interpretation}
-\PrCond{X > x + y}{X > x} \to 1 \qquad\text{ as } x \to \infty\,, \forall\, y > 0. 
+\PrCond{X > x + y}{X > x} \to 1 \qquad\text{ as } x \to \infty\,, \forall\, y > 0, 
 \end{equation}
-Notice that this doesn't give uniform convergence in $y$ on closed intervals as required by definition (\ref{eqn:h_insensitive_def}), however it is a standard result that the two are equivalent. Interpreting (\ref{eqn:long_tail_interpretation}) in words, given that $F$ exceeds some high level the probability of it exceeding an even higher level is large. 
+where $X$ has distribution $F$. Notice that this doesn't give uniform convergence in $y$ on closed intervals as required by definition (\ref{eqn:h_insensitive_def}), however it is a standard result that the two are equivalent. Interpreting (\ref{eqn:long_tail_interpretation}) in words, given that $F$ exceeds some high level the probability of it exceeding an even higher level is large. Finally, we introduce the class of subexponential functions: a distribution $F$ is called subexponential if it is long-tailed and 
+\begin{equation}\label{eqn:subexponential_def}
+\overline{F * F} (x) \sim 2 \overline{F}(x) \qquad\text{ as } x \to \infty, 
+\end{equation}
+where $*$ denotes convolution. (\ref{eqn:subexponential_def}) in fact implies $\overline{F^{* (n)}} \sim n \overline{F}$ for $n \geq 1$ so that we have the following probabilistic interpretation: if $(X_i)_{1 \leq i \leq n}$ is an i.i.d. sequence with common distribution $F$ then 
+\begin{equation}
+\Pr{X_1 + ... + X_n > x} \sim \Pr{\max\limits_{1 \leq i \leq n} X_i > x} \qquad\text{ as } x \to \infty. 
+\end{equation}
+Let $\cal{H}, \cal{L}, \cal{S}, \cal{R}$ denote the class of heavy-tailed, long-tailed, subexponential and regularly varying probability distributions respectively. We have the following inclusions:
+\begin{equation}
+\cal{R} \subset \cal{S} \subset \cal{L} \subset \cal{H}, 
+\end{equation}
+where the leftmost inclusion is a consequence of Theorem 3.29 \cite{foss2011introduction}. 
+
+
 
 % Potter's bounds (\cite[Section 6]{poly_tails}) provide a powerful tool for working with regularly varying functions. The result says that for any $C > 1$ and $\delta > 0$ there exist $R \in \R$ such that 
 % \begin{equation}
@@ -55,8 +69,15 @@ Notice that this doesn't give uniform convergence in $y$ on closed intervals as 
 % \end{equation}
 
 
+
+
+
 \subsection{The model}
-Here we present the model as studied in \cite{poly_tails}. Let $(X_n)_{n \geq 0}$ be the $N$-BRW evolving as follows: At each step each particle gives birth to two children whose position is distributed independently and identically around the position of the parent, according to the law of a random variable $X$. Then, out of all children the $N$ rightmost are selected tp form the next generation where $N \geq 2$ is fixed. The authors further impose the condition $X \geq 0$ almost surely and that the random variable $X$ be regularly varying with index $\alpha > 0$. In \cite{poly_tails} the authors remark that the methods of their analysis could be extended to more general reproduction laws and to $X$ taking values in $\R$, however since no new phenomena can be observed the don't do so. Define the sequence $(c_N)_{N \geq 1}$ by $c_N \defeq \overline{F}^{-1} (1/ (2N \log_2 N))$ where $\overline{F}^{-1}(x) \defeq \inf\{ y :\, \overline{F}(y) > x\}$ is the generalised inverse of $\overline{F}$. Let $d(\cdot, \cdot)$ be the Prokhorov metric on the space of probability distributions on $\R$, which induces the topology of weak convergence. We now present Theorem 1.2 of \cite{poly_tails}, however for simplicity we only list the cases when $\E X < \infty$. 
+Here we present the model as studied in \cite{poly_tails}. Let $(X_n)_{n \geq 0}$ be the $N$-BRW evolving as follows: At each step each particle gives birth to two children whose position is distributed independently and identically around the position of the parent, according to the law of a random variable $X$. Then, out of all children the $N$ rightmost are selected tp form the next generation where $N \geq 2$ is fixed. The authors further impose the condition $X \geq 0$ almost surely and that the random variable $X$ be regularly varying with index $\alpha > 0$. In \cite{poly_tails} the authors remark that the methods of their analysis could be extended to more general reproduction laws and to $X$ taking values in $\R$, however since no new phenomena can be observed the don't do so. For $x \geq 0$ define $h$ to be given by
+\begin{equation}
+\Pr{X > x} \eqdef \overline{F}(x) \eqdef \frac{1}{h(x)}. 
+\end{equation} 
+Then our assumptions imply that $h$ is regularly varying at infinity with index $\alpha$. Define the sequence $(c_N)_{N \geq 1}$ by $c_N \defeq h^{-1} (2N \log_2 N)$ where $h^{-1}(x) \defeq \inf\{ y :\, h(y) > x\}$ is the generalised inverse of $h$. Let $d(\cdot, \cdot)$ be the Prokhorov metric on the space of probability distributions on $\R$, which induces the topology of weak convergence. We now present Theorem 1.2 of \cite{poly_tails}, however for simplicity we only list the cases when $\E X < \infty$. 
 
 \begin{theorem}[{{\cite[Theorem 1.2]{poly_tails}}}]
 We distinguish the following cases:
@@ -84,3 +105,5 @@ With notation as above,
 (c_N^{-1} \max X(\floor{t \log_2 N}), c_N^{-1} \min X(\floor{t \log_2 N}))_{t \geq 0} &\rightarrow (\cal{R}^\alpha (t), \cal{R}^\alpha (t - 1))_{t \geq 0} \qquad&&\text{ in } M_1. 
 \end{align*}
 \end{theorem}
+
+\newpage

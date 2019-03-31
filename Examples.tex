@@ -1,0 +1,52 @@
+\section{EXAMPLES}\label{sec:examples}
+As before, let $(X_n)_{n \geq 0}$ be the $N$-BRW governed by the point process $\scr{L}$ with logarithmic moment generating function $\psi$. In this section we provide some concrete examples and reflect upon how they fit into the previous sections' results. 
+
+\subsection{Binary Gaussian N-BRW}
+Suppose that $\scr{L} = \delta_{Y_1} + \delta_{Y_2}$ where $Y_1, Y_2$ are i.i.d. normal with mean $\mu$ and variance $\sigma^2 > 0$. The logarithmic moment generating function takes the form
+\begin{equation}
+\psi(t) = \log \Ex{e^{Y_1} + e^{Y_2}} = \mu t + \frac{\sigma^2 t^2}{2} + \log 2. 
+\end{equation}
+Clearly $\psi(t)$ is finite for all $t \in \R$, and solving for $t^* > 0$ in $\psi'(t^*) t^* = \psi(t^*)$ we get $t^* = \sqrt{\frac{2 \log 2}{\sigma^2}}$. Therefore $\scr{L}$ satisfies the hypothesis of Theorem \ref{thm:ExpTails_BrunDer_non_transformed}, and so 
+\begin{equation}
+\lim\limits_{n \to \infty} \frac{\max X_n}{n} = v_N = \mu + \sqrt{\sigma^2 \log 4} - \frac{\pi^2 \sqrt{\sigma^2 \log 4}}{2 (\log N)^2} + o((\log N)^{-2}). 
+\end{equation}
+In fact, we could replace the Gaussian distribution with any distribution on $\R$ that has finite moment generating function on all of $\R$ and which puts less than $1/2$ mass on its essential supremum. The resulting point process would still satisfy the hypothesis of Theorem \ref{thm:ExpTails_BrunDer_non_transformed} by \cite{jaffuel2227critical}. \\
+
+\subsection{Binary Bernoulli N-BRW}
+Another natural choice might be $Y_1, Y_2$ i.i.d. Bernoulli with parameter $\alpha \in (0, 1)$. However, it turns out that the hypothesis of Theorem \ref{thm:ExpTails_BrunDer_non_transformed} is satisfied if and only if $\alpha \in (0, 1/2)$. This is because for $\alpha \geq 1/2$ the $Y_i$ put $\geq 1/2$ mass on their essential supremum (which in this case is equal to $1$). \\
+
+To see this consider the following. $\psi(t) = \log 2 + \log (\alpha e^t + 1 - \alpha)$ so if $f(t) \defeq t \psi'(t) - \psi(t)$ then $f'(t) = t \psi''(t) > 0$ for all $t > 0$. Now, as $f(0) = -\log 2 < 0$, the equation $f(t^*) = 0$ has a solution $t^* > 0$ if and only if $\lim_{t \to \infty} f(t) > 0$. We have
+\begin{align}
+\lim\limits_{t \to \infty} f(t) &= \lim\limits_{t \to \infty} \left[\frac{\alpha t e^t}{\alpha e^t + 1 - \alpha} - \log(\alpha e^t + 1 - \alpha) - \log 2 \right] \\
+								&= \lim\limits_{t \to \infty} \left[ t \big( 1 - \frac{1 - \alpha}{\alpha e^t + 1 - \alpha}\big) - t - \log (1 + \frac{1-\alpha}{\alpha} e^{-t}) - \log(2 \alpha) \right] \\
+								&= - \log(2\alpha). 
+\end{align} 
+Above expression is positive if and only if $\alpha \in [1/2, 1)$ as claimed. In \cite{exp_tails} Bérard and Gouéré note this as well and go on to show that the correction term is of order $1/N$ in the case $\alpha = 1/2$ and $\exp(-d_* N)$ for some $d_* = d_*(\alpha) > 0$ for $\alpha \in (1/2, 1)$. 
+
+\subsection{N-BBM}
+% Let $(B_t)_{t \geq 0}$ be a standard Branching Brownian Motion (as described in Section \ref{sec:examplessubsec:FKPP}) that branches at rate $\beta$ each time giving birth to $M$ particles. Standard BBM corresponds to the case $\beta = 1$ and $M = 2$. 
+Let $(B_t)_{t \geq 0}$ be a standard Brownian Motion as described in Section \ref{sec:examplessubsec:FKPP}. Clearly $(B_n)_{n \in \N}$ is an $N$-BRW, however explicitly describing its point process is not trivial. Nevertheless, its logarithmic moment generating function is easy to obtain. It is clear that $\# \scr{L}$ is distributed as the simple birth process $(M_t)_{t \geq 0}$ after one unit of time that is started from $M_0 = 1$ with escape rate equal to the number of particles alive. It is an elementary fact that $\E M_t = e^t$ so we get
+\begin{equation}\nonumber
+\psi(t) = 1 + \frac{t^2}{2}. 
+\end{equation}
+Solving $\psi'(t^*) t^* = \psi(t^*)$ we obtain $t^* = \sqrt{2}$. By Theorem \ref{thm:ExpTails_BrunDer_non_transformed} we get
+\begin{equation}\nonumber
+\lim\limits_{n \to \infty} \frac{\max B_n}{n} = \sqrt{2} - \frac{\pi^2}{\sqrt{2}(\log N)^2} + o((\log N)^{-2}). 
+\end{equation}
+
+
+
+
+% \begin{equation}\nonumber
+% \scr{L} = \sum\limits^P_{j=1} \delta_{Y_j}, 
+% \end{equation}
+% where $P \sim 1 + \dPo{\beta}$ and $Y_j \sim \dNorn{0, 1}$ for $j = 1, 2, ...$ are all independent. By a simple calculation
+% \begin{equation}\nonumber
+% \psi(t) = \log
+% \end{equation}
+
+
+\subsection{Light tails with $\alpha$-stable spine}
+Consider the model where $\scr{L}$ is given by a Poisson Point Process with intensity measure $e^{-x} \nu_\alpha(dx)$ for some $\alpha$-stable distribution $\nu_\alpha$ on $\R$ that satisfies $\nu_\alpha([0, \infty)) \in (0, 1)$. 
+
+\newpage

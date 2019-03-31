@@ -1,9 +1,90 @@
-\section{Introduction}\label{dec:introduction}
+\section{INTRODUCTION}
 
-\begin{quote}
-{\small Placeholder text. }
-\end{quote}
+\subsection{Branching-Selection Systems}
+In this essay we will study Branching Random Walks (BRWs) and Branching Random Walks with selection ($N$-BRWs), which the reader can think of as a cloud of particles on $\R$ indexed by discrete time. These models form a subset of the more general class of `branching-selection' systems which in general evolve according to two mechanisms:
+\begin{enumerate}[1]
+\item \vspace{-2mm}\textbf{branching} Each particle gives birth to offspring. 
+\item \vspace{-2mm}\textbf{selection} Out of all children, the rightmost $N$ are selected to form the next generation.
+\end{enumerate}
+Regular BRWs essentially correspond to the case $N = \infty$. Of course one can also consider continuous time branching(-selection) systems, for example Branching Brownian Motion (BBM) which is one of the first such models to be studied. In standard/dyadic BBM the particles follow independent Brownian motions while branching independently at exponential rate $1$. At the time of branching the particle in question is replaced by two particles at the same position, who continue independently on their Brownian path. To this description it is then straightforward to add the selection step, which results in the $N$-BBM model. \\
 
-\subsection{Exponentially decaying tails}
-We first study the $N$-branching random walk in the case
 
+
+
+\subsection{Traveling waves and the FKPP-equation}\label{subsec:FKPP}
+This section relies partly on Prof. Berestycki's lecture notes \footnote{Said lecture notes can be found at \url{www.stats.ox.ac.uk/~berestyc/Articles/EBP18_v2.pdf}} and \cite{brunet2015exactly} to give an introduction to the FKPP-equation and its traveling wave solutions. Let $u:[0, \infty) \times \R \to \R$ be sufficiently differentiable. The general form of the FKPP-equation is 
+\begin{equation}\label{eqn:FKPP}
+\frac{\partial}{\partial t} u(t, x) = \frac{\partial^2}{\partial x^2} u(t, x) + f(u)
+\end{equation}
+with forcing term $f$ that satisfies $f(0)=f(1)=0$, $f \geq 0$ and $f(u) \leq u f'(0)$. Fischer \cite{fisher1937wave} was the first to study a special case of (\ref{eqn:FKPP}): $f(u) = u (1 - u)$ was used to describe the spread of a favorable gene over time in a population along one dimension. $u(t, x)$ denoted the fraction of individuals posessing the gene at position $x$ at time $t$. It turns out that (\ref{eqn:FKPP}) is intimately related to problems of front propagation in many problems of physics, chemistry and biology. Kolmogorov, Petrovskii and Piskunov \cite{FKPP_origin} were the first to study the equation analytically and prove properties of the traveling wave solutions of the FKPP-equation. A function $w_v \in \cal{C}^2$ is called a traveling wave solution if there exists $v \in \R$ such that $(t,x) \mapsto w(x - v t)$ solves the equation. Remarkably, the FKPP-equation is one of the simplest equations that admits traveling wave solutions. Attention is restricted to monotone traveling wave solutions $w_v$ that satisfy $w_v(-\infty) = 1$ and $w_v(\infty) = 0$. Furthermore, such a shape $w_v$ will necessarily have exponentially decaying right tails. Substituting into (\ref{eqn:FKPP}) we see that $w_v$ must satisfy
+\begin{equation}\label{eqn:wave_ODE}
+w_v'' + v w_v' + f(w_v) = 0. 
+\end{equation}
+Under our assumptions with some heuristic arguments following \ref{brunet2015exactly}, we can `deduce' the possible values of $v$. For small values of $w_v(x)$ i.e. for large values of $x$ we can linearise (\ref{eqn:wave_ODE}) to get
+\begin{equation}\nonumber
+w_v'' + v w_v' + f'(0) w_v = 0. 
+\end{equation}
+It is easy to see that the above has a solution whose tail doesn't contradict our assumption of monotonity if and only if $v \geq 2 \sqrt{f'(0)}$. In fact it follows from a rigorous argument that the tail of $w_v$ behaves like $e^{- \gamma x}$ where $\gamma$ is the smaller root of $v = \gamma + f'(0) / \gamma$. The smallest speed which admits a traveling wave solution, sometimes called the critical velocity, is denoted $v_c = 2 \sqrt{f'(0)}$. \\
+
+The nature of the solution of course depends on the initial data $u(0, x)$. A natural question then is to find conditions under which the solution `selects a speed'. More precisely, find conditions on $u(0, x)$ under which there exists $m_\cdot : [0, \infty) \to \R$ such that
+\begin{equation}\nonumber
+u(t, m_t + x) \to w_v \qquad\text{and}\qquad \frac{m_t}{t} \to v
+\end{equation} 
+as $t \to \infty$ uniformly in $x \in \R$. One particular case of interest is when $u(0, x)$'s support is bounded above. In this case
+\begin{equation}\nonumber
+m_t = v_c\,t - \frac{3}{v_c} \log t + const. 
+\end{equation}
+and the limit shape is $w_{v_c}$, as shown by Bramson \cite{bramson1978maximal}. 
+
+As mentioned before, the FKPP-equation has ties to many physical problems of interest. Branching Brownian motion is one of the most studied probabilistic models that have a close connection to the FKPP-equation with Bramson's works such as \cite{bramson1983convergence,bramson1978maximal} being fundamental in this topic. Recall the informal description of standard Branching Brownian Motion from the previous section. For each time $t \geq 0$ let $u(t, \cdot)$ denote the distribution function of the right-most particle's position at time $t$. It is well known that $1 - u(t, x/\sqrt{2})$ satisfies the FKPP-equation with $f(u) = u(1 - u)$. Indeed, let $M(t)$ denote the position of the right-most particle at time $t$ so that $u(t, x) = \Pr{M(t) \leq x}$. For $dt > 0$ consider the right-most particle over the time interval $[t, t+dt]$:
+\begin{itemize}
+\item \vspace{-2mm}With probability $1 - dt + o(dt)$ it does not branch
+\item \vspace{-2mm}With probability $dt + o(dt)$ it branches exactly once
+\item \vspace{-2mm}With probability $o(dt)$ it branches more than once
+\end{itemize}	
+By the law of total probability and ignoring terms of order $o(dt)$ we find that 
+\begin{align}
+\Pr{M(t + dt) < x} &= (1 - dt)\, \Pr{M(t) \leq x - B_{dt}} + dt\, \Pr{M(t) \leq x}^2 + o(dt)\nonumber \\
+				   &= \Ex{u(t, x - B_{dt})} + dt\, (u(t,x)^2 - u(t,x)) + o(dt). \label{eqn:fkpp-decomp} 
+\end{align}
+where $(B_t)_{t \geq 0}$ is an independent standard Brownian motion. Let $f(z) = u(t, z)$ so that $\Ex{u(t, x - B_{dt})} = \E_x f(B_{dt})$. Applying the Kolmogorov's backwards equation to $f$ (assuming $u(t, \cdot)$ is twice differentiable), we have 
+\begin{equation}\nonumber
+\lim\limits_{dt \downarrow 0} \frac{\Ex{u(t, x - B_{dt})} - u(t, x)}{dt} = \frac{1}{2} \frac{\partial^2}{\partial x^2} u(t, x). 
+\end{equation}
+Combining with (\ref{eqn:fkpp-decomp}) we get 
+\begin{equation}\label{eqn:shitty_FKPP}
+\frac{\partial}{\partial t} u(t, x) = \frac{1}{2} \frac{\partial^2}{\partial x^2} u(t, x) + u(t, x)(u(t, x) - 1)
+\end{equation}
+with initial condition
+\begin{equation}\nonumber
+u(0, x) = \Ind_{x \geq 0}. 
+\end{equation}
+After the transformation $\tilde{u}(t, x) = 1 - u(t, x/\sqrt{2})$, (\ref{eqn:shitty_FKPP}) becomes the FKPP-equation with forcing term $f(\tilde{u}) = \tilde{u}(1 - \tilde{u})$ and initial condition $\tilde{u}(0, x) = \Ind_{\{ x < 0\}}$ so that $\tilde{u}$ selects the critical speed $v_c = 2$ i.e. $u$ selects a the speed $\sqrt{2}$. \\
+
+
+
+
+\subsection{Brunet-Derrida behaviour}
+In their seminal paper \cite{brunet1997shift} Brunet and Derrida studied the FKPP-equation where the forcing term is multiplied by a cutoff $\Ind_{\{ u \geq \epsilon\}}$ and asked the question how the critical velocity $v_\epsilon$ behaves as $\epsilon \downarrow 0$. Using non-rigorous arguments they show that $v_\epsilon$ converges to $v_c$, the critical velocity of the problem without a cutoff. The speed at which this convergence occurs is found to be unusually slow:
+\begin{equation}\label{eqn:brun_der_prediction}
+v_\epsilon = v_c - \frac{\pi^2 \sqrt{f'(0)}}{(\log \epsilon)^2} + o(1/(\log \epsilon)^2). 
+\end{equation}
+They also introduce a discrete (in both space and time) front equation (and its cutoff version) which the authors then go on to relate to a probabilistic finite particle model whose limit is governed by said equation. The model, which appears in the study of directed polymers can be described as follows. Given $N \geq 1$ and $p \in (0,1)$, at any time $n \in \N$ there are $N$ particles alive at integer positions $x_1(n), ..., x_N(n)$, possibly multiple particles in the same position. For each $i \in [N]$ we choose $j^i_1, j^i_2 \in [N]$ uniformly at random and set $x_i(n+1) = x_{j^i_1}(n) + b^i_1 \land x_{j^i_2}(n) + b^i_2$ where $b^i_1, b^i_2$ are i.i.d. $\dBer{p}$. They define $h(n, m)$ to be the fraction of particles at time $n$ that fall above $m$ and show in a loose sense that $h(n,m)$ is governed by the discrete front equation in the limit $N \uparrow \infty$. The remarkable observation they make is that the asymptotic velocity $v_N$ of the stochastic model's rightmost particle converges to the critical velocity of the discrete front equation at rate $1/(\log N)^2$. Furthermore, based on the authors' large scale simulations, the constants seem to agree with their predictions of the critical speed of the discrete front equation with cutoff $\epsilon = 1/N$. \\
+
+Consequently, the slow convergence rate $1 / (\log N)^2$ has become known as the 'Brunet-Derrida behaviour'. Along with it came several questions and conjectures
+\begin{enumerate}[(i)]
+\item \vspace{-2mm}Can we understand the relationship between branching(-selection) systems and the FKPP-equation (with cutoff)? 
+\item \vspace{-2mm}What equations exhibit Brunet-Derrida behaviour? \label{item:eqns_brun_der_behav}
+\item \vspace{-2mm}What branching-selection systems exhibit Brunet-Derrida behaviour? \label{item:systems_brun_der_behav}
+\end{enumerate}{}
+There has been progress towards answering (\ref{item:eqns_brun_der_behav}) in \cite{dumortier2007critical} where the authors prove the results of \cite{brunet1997shift} rigorously, in the case $f(u) = (u - g(u)) \times\,\phi(u)$ for a specified class of cutoffs $\phi$ including $u \mapsto \Ind_{\{ u \geq \epsilon\}}$ and functions $g$ including $u \mapsto u^2$. Another related question that emerged was analysing the noisy FKPP-equation. An analogue of Brunet-Derrida behaviour was confirmed in \cite{mueller2011effect} for the equation
+\begin{equation}\nonumber
+\frac{\partial u}{\partial t} = \frac{\partial u}{\partial x^2} + u(1 - u) + \epsilon \sqrt{u(1 - u)} \dot{W}
+\end{equation}
+where $\dot{W}$ is 2-d white noise. \\
+
+
+\subsection{Outline}
+The remainder of this essay will essentially be devoted to question (\ref{item:systems_brun_der_behav}). In \cite{exp_tails} Bérard and Gouéré provided the first rigorous example of a branching-selection system that exhibits the Brunet-Derrida behaviour. They studied binary branching random walks where each particle gives birth to two independent offspring positioned according to some well-behaved distribution on $\R$. In Section \ref{sec:BRW_THEORY} we give a brief introduction to branching random walks and the necessary background to discuss \cite{exp_tails}. In Section \ref{sec:light_tails} we present a full proof of the Brunet-Derrida behaviour of a generalisation of Bérard and Gouér's example. In Section \ref{sec:poly} we discuss \cite{poly_tails} in which the authors consider binary branching random walks, but with less well-behaved (heavy-tailed) offspring distributions. In Section \ref{sec:examples} we give some concrete examples and visualisations of the models that we discussed thus far. Finally, in the appendix we record some original lemmas, known results and omitted proofs that we rely on in Section \ref{sec:light_tails}. 
+
+\newpage
