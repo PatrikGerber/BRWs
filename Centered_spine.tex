@@ -55,11 +55,27 @@ for all sufficiently large $n$. Using this we can get an upper bound on $\E\, d(
 \end{equation}
 \end{remark}
 
-\begin{wrapfigure}{R}{0.5\textwidth}
+\begin{figure}[!h]
 \centering
-\includegraphics[width=0.45\textwidth]{graphics/g2.png}
-% \caption{\label{fig:frog1}This is a figure caption.}
-\end{wrapfigure}
+\begin{minipage}{0.45\textwidth}
+  \centering
+  \includegraphics{graphics/g2}
+  \caption{Proof of Proposition \ref{prop:diameter}. }
+  \label{fig:diam_proof}
+\end{minipage}\hfill%
+\begin{minipage}{0.45\textwidth}
+  \centering
+  \includegraphics{graphics/g1}
+  \caption{Alternative proof of Proposition \ref{prop:diameter}. }
+  \label{fig:diam_alternative_proof}
+\end{minipage}
+\end{figure}
+
+% \begin{wrapfigure}{R}{0.5\textwidth}
+% \centering
+% \includegraphics[width=0.45\textwidth]{graphics/g2.png}
+% % \caption{\label{fig:frog1}This is a figure caption.}
+% \end{wrapfigure}
 
 \begin{proof}[Proof of Proposition \ref{prop:diameter}]
 Let $u \in \N_+$ and for $n \geq u$ consider the process $X$ in the timeframe $\bbracket{n - u, n}$. Define 
@@ -77,7 +93,7 @@ with probability one. Fix $\epsilon > 0$ and take $u$ large enough so that $\Pr{
 \begin{equation}\label{eqn:ExpTailsDiamDecomp}
 \frac{d(X_n)}{n} = \frac{d(X_n)}{n} \Ind_{A_u} + \frac{d(X_n)}{n} \Ind_{A_u^c}. 
 \end{equation}
-Taking expectations and then taking $n$ to infinity, the first term vanishes by (\ref{eqn:ExpTailDiamUpperBound}). The second term is upper bounded by $(\Pr{A_u^c} \Ex{d(X_n)^2 / n^2})^{1/2}$ using Hölder's inequality. A rough bound on $d(X_n)$ suffices: $d(X_n)$ is stochastically dominated by the sum of $n$ i.i.d. copies of $\max_{j \in [N]} \scr{L}_{0, j}(1) - \min_{j \in [N]} \scr{L}_{0,j}(N)$. Since the $\scr{L}_{n,j}(k)$ have exponentially decaying tails, by Lemma \ref{lem:ExpTailsMax} this yields $\Ex{d(X_n)^2} = \cal{O}(n^2)$ which implies that the second term in \ref{eqn:ExpTailsDiamDecomp} is $\cal{O}(\epsilon)$. Taking $\epsilon$ to zero concludes the proof of $L^1$ convergence. Almost sure convergence is a consequence of the proof of the next Proposition. 
+The reader is referred to Figure \ref{fig:diam_proof} to help understanding. Taking expectations and then taking $n$ to infinity, the first term vanishes by (\ref{eqn:ExpTailDiamUpperBound}). The second term is upper bounded by $(\Pr{A_u^c} \Ex{d(X_n)^2 / n^2})^{1/2}$ using Hölder's inequality. A rough bound on $d(X_n)$ suffices: $d(X_n)$ is stochastically dominated by the sum of $n$ i.i.d. copies of $\max_{j \in [N]} \scr{L}_{0, j}(1) - \min_{j \in [N]} \scr{L}_{0,j}(N)$. Since the $\scr{L}_{n,j}(k)$ have exponentially decaying tails, by Lemma \ref{lem:ExpTailsMax} this yields $\Ex{d(X_n)^2} = \cal{O}(n^2)$ which implies that the second term in \ref{eqn:ExpTailsDiamDecomp} is $\cal{O}(\epsilon)$. Taking $\epsilon$ to zero concludes the proof of $L^1$ convergence. Almost sure convergence is a consequence of the proof of the next Proposition. 
 \end{proof}
 
 The original proof of Bérard and Gouéré is identical to ours up to the point where we consider the Galton Watson process $G$. Since they only considered binary BRWs, for $u > \log_2 N$ it is clear that $\Pr{A_u} = 1$ so that there is no need to decompose, they just conclude $d(X_n) \leq u(M_{max} - M_{min}$ almost surely. 
@@ -109,11 +125,11 @@ where the first limit is almost sure. Noting that the process $(-X_n)_{n \geq 0}
 exists too, where the first limit is almost sure. From the proof of Proposition \ref{prop:diameter} we immediately get $\tilde{v}_N = v_N$ by uniqueness of $L^1$ limits, which gives $\lim_{n\to\infty} n^{-1}d(X_n) = v_N - \tilde{v}_N = 0$ almost surely as claimed in the previous proposition. The proof is complete in the case $X_0 = N \delta_0$. By translation invariance of the dynamics of the system the result also follows for initial states of the form $N \delta_{x_0}$ for any $x_0 \in \R$. Finally, for arbitrary $X_0 \in \frak{M}_N$ note that the result is a consequence of Lemma \ref{lem:monotonicity} and a sandwiching argument between the initial states $N \delta_{\min X_0}$ and $N \delta_{\max X_0}$. 
 \end{proof}
 
-\begin{wrapfigure}{R}{0.5\textwidth}
-\centering
-\includegraphics[width=0.45\textwidth]{graphics/g1.png}
-% \caption{\label{fig:frog1}This is a figure caption.}
-\end{wrapfigure}
+% \begin{wrapfigure}{R}{0.5\textwidth}
+% \centering
+% \includegraphics[width=0.45\textwidth]{graphics/g1.png}
+% % \caption{\label{fig:frog1}This is a figure caption.}
+% \end{wrapfigure}
 
 Inspecting the previous proof, we see that the existence of $v_N$ and $\tilde{v}_N$ (the almost sure and $L^1$ limits of the left- and rightmost particles) when started from $X_0 = N \delta_0$ was shown without relying on Proposition \ref{prop:diameter}. We can in fact deduce Proposition \ref{prop:diameter} by an argument inspired by one of Prof. Berestycki's suggestions:
 

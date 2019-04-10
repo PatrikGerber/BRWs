@@ -73,7 +73,24 @@ Suppose that we have a BRW $(\widehat{\bb{T}}, \widehat{V})$ governed by $\wideh
 \begin{equation}\label{eqn:t*exists}
 \widehat{\psi} (t^*) = t^* \widehat{\psi}'(t^*). 
 \end{equation}
-For a complete discussion of when such $t^*$ exists see the appendix of \cite{jaffuel2227critical}. Most prominently, existence of $t^*$ fails if the support of $\scr{L}(1)$ has supremum $x_{max} < \infty$ with $\E \sum_{|x|=1} \Ind_{\{ x = x_{max}\}} \geq 1$. In a lot of cases of interest however $t^*$ exists. Let $\gamma_s : \scr{B}(\R) \to \scr{B}(\R)$ to be the right shift operator on the space $\scr{B}(\R)$ of Borel-measurable subsets of $\R$ and define
+
+Let $x_{max} = \operatorname*{sup~ess} \{\max\widehat{\scr{L}}\}$. Jaffuel gives the following characterization of when $t^*$ exists:
+\begin{proposition}[{{\cite[Proposition A.2]{jaffuel2227critical}}}]\label{prop:jaffuel}
+Suppose $\zeta = \infty$. There exists $t^* > 0$ such that (\ref{eqn:t*exists}) holds if and only if 
+\begin{itemize}
+\item \vspace{-2mm} $x_{max} = \infty$ or
+\item \vspace{-2mm} $\E \sum_{|x|=1} \Ind_{\{ x = x_{max}\}} < 1$
+\end{itemize}	
+\end{proposition}
+
+% and $F(t) \defeq \frac{\widehat{\psi}(t)}{t}$
+% In his proof he uses the following lemma:
+% \begin{lemma}[{{\cite[Lema A.1]{jaffuel2227critical}}}]
+% If there exists no $t^* \in (0, \zeta)$ satisfying (\ref{eqn:t*exists}) then $F: (0, \zeta) \to \R$ is nonde
+% \end{lemma}
+
+
+For a complete discussion (including the case $\zeta < \infty$) see the appendix of \cite{jaffuel2227critical}. Let $\gamma_s : \scr{B}(\R) \to \scr{B}(\R)$ to be the right shift operator on the space $\scr{B}(\R)$ of Borel-measurable subsets of $\R$ and define
 \begin{equation}\label{eqn:transformation}
 \scr{L} \defeq (t^* \widehat{\scr{L}}) \circ \gamma_{- \widehat{\psi}(t^*)}. 
 \end{equation}

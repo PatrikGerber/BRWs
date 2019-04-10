@@ -1,4 +1,6 @@
 \section{Appendix}\label{sec:appendix}
+
+\subsection{Miscellaneous}\label{subsec:miscellaneous}
 \begin{lemma}\label{lem:ExpTailsMax}
 Let $\tau \in L^1$ be an $\N$-valued random variable and let $(\epsilon_n)_{n \geq 1}$ be an i.i.d. sequence of random variables with exponentially decaying tails, independent of $\tau$. Then $M \defeq \max_{1 \leq n \leq \tau} \epsilon_n$ has exponentially decaying tails. 
 \end{lemma}
@@ -61,5 +63,37 @@ For each $k \geq 1$ the sequence $\{Z_{k, 2k}, Z_{2k, 3k}, ...\} = \{\max X^k_k,
 \begin{lemma}[{{\cite[Adapted by Bérard and Gouéré from Lemma 5.2]{pemantle2009search}}}]\label{lem:ExpTailsGoodSequencesTechnical}
 Let $v_1 < v_2 \in \R$ and $1 \leq m \leq n \in \N$. Suppose $0 \eqdef x_0, ..., x_n$ is a sequence of real numbers such that $\max_{i \in \bbracket{0, n - 1}} (x_{i+1} - x_i) \leq K$ for some $K > 0$, and define $I \defeq \{ i \in \bbracket{0, n - m} \mid\, x_{i + j} - x_i \geq j v_1,\quad \forall j\in\bbracket{0,m}\}$. If $x_n \geq v_2 n$, then $\#I \geq \frac{v_2 - v_1}{K - v_1}\frac{n}{m} - \frac{K}{K - v_1}$. 
 \end{lemma}
+
+
+
+
+
+
+\subsection{Skorokhod's topologies}
+This section is based on material from Sections 3, 11 and 12 of \cite{jacod2013limit}. As usual, for $t > 0$ let $D([0, t]) \defeq D([0, t], \R)$ be the set of real-valued cádlág functions with domain $[0, t]$. Define $\Lambda_t$ to be the space of continuous bijections from $[0,t]$ to itself. Skorokhod's $J_1$ topology (sometimes written $SJ_1$) on $D([0,t], \R)$ is then defined by the metric 
+\begin{equation}
+d_{J_1}(f,g) = \inf_{\lambda \in \Lambda_t} \{ \norm{f \circ \lambda - g}_{\infty} \lor \norm{\lambda - Id}_{\infty} \}, 
+\end{equation}
+where $Id : x \mapsto x$. The intuition behind this definition is the following: Take the graph of $f$ which is a (possibly discontinuous) curve in $\R^2$ and let $f \circ \lambda$ be some reparametrisation of it. The $J_1$ distance between $f$ and $g$ is small if there exists $\lambda$ close to the identity such that the supremum distance between the graph of $g$ and the graph of $f \circ \lambda$ is small too. $J_1$ convergence allows for a sequence of functions $(f_n)_{n \geq 0} \subset D([0, t])$ to convergence to a limit $f\in D([0, t])$ without the set of discontinuities of any of the $f_n$ coinciding with that of $f$. Skorokhod's $M_1$ topology (sometimes written $SM_1$) is defined by a similar metric, the only difference being that the same idea is applied to completed graphs, which allows continuous functions to converge to a discontinuous one. Note that the topology $J_1$ is stronger. These definitions extend to functions with domain $[0, \infty)$ by saying that $f_n \in D([0, \infty)) \eqdef D$ converges to $f \in D$ if convergence happens in $D([0, t])$ for all continuity points $t$ of $f$. The topology this defines is in fact metrisable (see page 83 of \cite{jacod2013limit}). \\
+% The topologies they induce are called strong and sometimes written $SJ_1$ and $SM_1$. We talk about weak topologies when we consider $D(I, \R^k)$ with $k > 1$ and they are equal to the product topology, but they are not important to our discussion. \\
+
+% The $(S)J_2$ and $(S)M_2$ topologies are the ones induced by applying the Hausdorff metric to the functions graphs and completed graphs respectively. 
+
+
+\subsection{Stable distributions}
+The material covered here is mainly taken from \cite[Section 17]{feller1957introduction} and we will refer to distributions and their characteristic function itnerchangeably. Let $\omega$ be the characteristic function of some distribution on $\R$. $\omega$ is called \textit{infinitely divisible} if for all $n \in \N$ there exists a characteristic function $\omega_n$ such that 
+\begin{equation}\nonumber
+\omega_n^n = \omega. 
+\end{equation}
+The distribution with characteristic function $\phi$ is in the \textit{domain of attraction} of $\omega$ if there exist $(a_n)_{n \in \N}$ and $(b_n)_{n \in \N}$ with $a_n > 0,\,\forall\,n$ such that 
+\begin{equation}\nonumber
+\left(\phi(\frac{t}{a_n})e^{-itb_n}\right)^n \to \omega(t)\qquad\forall\,t \in \R. 
+\end{equation}
+The characteristic function $\omega$ is called \textit{stable} if $\phi$ too can be replaced by $\omega$ in the above display. We now 
+
+
+
+
+
 
 \newpage
