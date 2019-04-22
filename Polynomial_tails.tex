@@ -1,8 +1,4 @@
-\section{POLYNOMIAL TAILS}\label{sec:poly}
-
-\begin{quote}
-{\small Placeholder text. }
-\end{quote}
+\section{N-BRWs WITH POLYNOMIAL TAILS}\label{sec:poly}
 
 \subsection{Overview of heavy tailed distributions}\label{sec:heavy_tailed_overview}
 In this section we rely on sections 2 and 3 of \cite{foss2011introduction}. For a random variable $X$ with cumulative distribution function $F$, let $\overline{F}(x) \defeq \Pr{X > x} = 1 - F(x)$ be its right tail-function. $F$ is said to be heavy-tailed if 
@@ -64,7 +60,7 @@ where the leftmost inclusion is a consequence of Theorem 3.29 \cite{foss2011intr
 \subsection{The result}\label{sec:poly_result}
 Here we present the model as studied in \cite{poly_tails}. Let $(X_n)_{n \geq 0}$ be the $N$-BRW evolving as follows: At each step each particle gives birth to two children whose position is distributed independently and identically around the position of the parent, according to the law of a random variable $X$. Then, out of all children the $N$ rightmost are selected tp form the next generation where $N \geq 2$ is fixed. The authors further impose the condition $X \geq 0$ almost surely and that the random variable $X$ be regularly varying with index $\alpha > 0$. The authors remark that the methods of their analysis could be extended to more general reproduction laws and to $X$ taking values in $\R$, however since no new phenomena can be observed the don't do so. For $x \geq 0$ define $h$ to be given by
 \begin{equation}
-\Pr{X > x} \eqdef \overline{F}(x) \eqdef \frac{1}{h(x)}. 
+\Pr{X > x} \eqdef \frac{1}{h(x)}. 
 \end{equation} 
 Then our assumptions imply that $h$ is regularly varying at infinity with index $\alpha$. Define the sequence $(c_N)_{N \geq 1}$ by $c_N \defeq h^{-1} (2N \log_2 N)$ where $h^{-1}(x) \defeq \inf\{ y :\, h(y) > x\}$ is the generalised inverse of $h$. Let $\cal{L}(Y)$ denote the law of the random variable $Y$ and let $d(\cdot, \cdot)$ be the Prokhorov metric on the space of probability distributions on $\R$, which induces the topology of weak convergence. We now present Theorem 1.2 of \cite{poly_tails} as it is found there. 
 
@@ -74,17 +70,17 @@ We distinguish the following cases:
 
 \item \vspace{-2mm} $\alpha > 1$: The limits $v_N \defeq \lim_{n \to \infty} n^{-1} \max X_n = \lim_{n \to \infty} n^{-1} \min X_n$ exist almost surely and in $L^1$ and satisfies $v_N \sim \rho_\alpha c_N / \log_2 N$ as $N \to \infty$ where $\rho_\alpha > 0$. \\
 
-\item \vspace{-6mm} $\alpha = 1,\, \E X < \infty$: $v_N$ exists as above and satisfies 
+\item \vspace{-5mm} $\alpha = 1,\, \E X < \infty$: $v_N$ exists as above and satisfies 
 \begin{equation}
 v_N \sim \frac{c_N h(c_N)}{\log_2 N} \int\limits^\infty_1 \frac{1}{h(x c_N)} dx \qquad\,\text{as }N \to \infty. \\
 \end{equation}
 
-\item \vspace{-7mm} $\alpha = 1,\, \E X = \infty$: Let $b_n = \int\limits^{h^{-1}(n)}_{1} h(c_N)/h(c_N x) dx$. For $i=1$ and $i=N$ we have
+\item \vspace{-5mm} $\alpha = 1,\, \E X = \infty$: Let $b_n = \int\limits^{h^{-1}(n)}_{1} h(c_N)/h(c_N x) dx$. For $i=1$ and $i=N$ we have
 \begin{equation}\nonumber
 \lim\limits_{N \to \infty} \limsup\limits_{n \to \infty} d(\cal{L}\left( \frac{\log_2 N}{c_N}\frac{X_n(i)}{n b_n}\right), \delta_1) = 0. 
 \end{equation}
 
-\item \vspace{-5mm} $\alpha \in (0, 1)$: Let $W_\alpha$ be the random variable whose moment generating function is given by
+\item \vspace{-4mm} $\alpha \in (0, 1)$: Let $W_\alpha$ be the random variable whose moment generating function is given by
 \begin{equation}\nonumber
 \E e^{-\lambda W_\alpha} = exp(- \alpha \int\limits^\infty_0 (1 - e^{-\lambda x})x^{-\alpha - 1}dx). 
 \end{equation}
@@ -95,9 +91,9 @@ Then for $i=1$ and $i=N$,
 \end{enumerate}
 \end{theorem}
 
-The way Bérard and Maillard show this is by considering a stochastic process which they call the `stairs process'. As opposed to the light tailed models considered in Section \ref{sec:light_tails}, when the tails are heavy the cloud of particles moves mainly through large occasional jumps. The stairs process is devised so that it mimics this behaviour. They prove certain properties of these stairs processes, most importantly their asymptotic speed of propagation when suitably scaling space and time, which is the subject of Theorem 2.5 \cite{poly_tails}. Using delicate couplings between the $N$-BRW and the continuous and discretized stairs processes, they obtain that $c_N^{-1} \max X_n$ converges to the stairs process in the $J_1$ topology while the minimum converges in the $M_1$. \\
+The way Bérard and Maillard show this is by considering a stochastic process which they call the `stairs process'. As opposed to the light tailed models considered in Section \ref{sec:light_tails}, when the tails are heavy the cloud of particles moves mainly through large occasional jumps. The stairs process is devised so that it mimics this behaviour. They prove certain properties of these stairs processes, most importantly their asymptotic speed of propagation when suitably scaling space and time, which is the subject of Theorem 2.5 \cite{poly_tails}. Using delicate couplings between the $N$-BRW and the continuous and discretized stairs processes, they obtain that $c_N^{-1} \max X_n$ converges to the stairs process in the $J_1$ topology while the minimum converges in the $M_1$ topology. \\
 
-From Theorem \ref{thm:poly_tails_result} it is hard to tell what $v_N$ looks like in practice because of expressions like $c_N$, $h^{-1}(c_N)$. In Section \ref{sec:examples} we present a fully worked example as well as simulations which should give us an idea of what these processes look like. From our discussion in Section \ref{sec:heavy_tailed_overview} we know that Bérard and Maillard didn't cover all classes of heavy-tailed distributions, in particular examining what happens for distributions in $\scr{S} \setminus \scr{L}$ might be the subject of future research.
+From Theorem \ref{thm:poly_tails_result} it is hard to tell what $v_N$ looks like in practice because of expressions like $c_N$, $h^{-1}(c_N)$. In Section \ref{sec:examples} we present a worked example as well as simulations which should give us an idea of what these processes look like. From our discussion in Section \ref{sec:heavy_tailed_overview} we know that Bérard and Maillard didn't cover all classes of heavy-tailed distributions, in particular examining what happens for distributions in $\cal{S} \setminus \cal{L}$ is still open.
 
 
  % We briefly describe the stairs process to gain some intuition about Bérard and Maillard's argument. \\

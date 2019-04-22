@@ -1,12 +1,12 @@
-\section{INTRODUCTION}
+\section{BRUNET-DERRIDA CONJECTURES}
 
-\subsection{Branching-Selection Systems}
-In this essay our main objects of interest are models called Branching Random Walks with selection ($N$-BRWs), which the reader can think of as a cloud of particles on $\R$ indexed by discrete time. Loosely speaking these `branching-selection' systems evolve according to two mechanisms: 
+\subsection{Introduction to Branching-Selection Systems}
+In this essay we will study Branching Random Walks with selection ($N$-BRWs), which the reader can think of as a cloud of particles on $\R$ indexed by discrete time. Loosely speaking these `branching-selection' systems evolve according to two mechanisms: 
 \begin{enumerate}[1]
 \item \textbf{branching} Each particle gives birth to offspring whose position is scattered on the real line. 
 \item \vspace{-2mm}\textbf{selection} Out of all children, the rightmost $N$ are selected to form the next generation.
 \end{enumerate}
-Regular BRWs (without selection) essentially correspond to the case $N = \infty$. For the models that we care about the branching step happens independently for each particle in the population: the position of the offspring of a given particle at say $x \in \R$ is conditionally independent of the past of the process and the other particles' offspring's position given $x$. Of course one can also consider continuous time branching(-selection) systems, for example Branching Brownian Motion (BBM) which is one of the first and most natural such models to be studied. In standard/dyadic BBM the particles follow independent Brownian motions while branching independently at exponential rate $1$. At the time of branching the particle in question is replaced by two particles at the same position, who continue independently on their Brownian path. To this description it is then straightforward to add the selection step, which results in the $N$-BBM model. \\
+Regular Branching Random Walks without selection (BRWs) correspond to the case $N = \infty$. For the models that we care about the branching step happens independently for each particle in the population. Moreover, each particle's offspring is distributed according to the same point process on $\R$ translated by the position of their parent. Of course one could also consider continuous time branching(-selection) systems, for example Branching Brownian Motion (BBM) which is one of the first and most natural such models to be studied. In standard/dyadic BBM the particles follow independent Brownian motions while branching independently at exponential rate $1$. At the time of branching the particle in question is replaced by two particles at the same position, who continue independently on their Brownian path. To this description it is then straightforward to add the selection step, which results in the $N$-BBM model. \\
 
 \begin{figure}[!h]
 \centering
@@ -34,7 +34,6 @@ Regular BRWs (without selection) essentially correspond to the case $N = \infty$
 
 
 
-\newpage
 \subsection{Traveling waves and the FKPP-equation}\label{subsec:FKPP}
 This section relies mainly on \cite{FKPP_origin} and partly on \cite[Section 2]{brunet2015exactly} to give an introduction to the FKPP-equation and its traveling wave solutions. Let $u:[0, \infty) \times \R \to [0,1]$ be sufficiently differentiable. The general form of the FKPP-equation as presented in \cite{FKPP_origin} is 
 \begin{equation}\label{eqn:FKPP}
@@ -60,7 +59,7 @@ Suppose that we're interested in the case where the initial data is given by $u(
 \begin{equation}\label{eqn:wave_ODE}
 v \frac{d}{dx}w_v(x) = \kappa \frac{d^2}{dx^2} w_v (x) + F(w_v). 
 \end{equation}
-With heuristic arguments following \ref{brunet2015exactly} (which can be made rigorous), we can deduce the possible values of $v$: for small values of $w_v(x)$ i.e. for large negative values of $x$ we can linearise (\ref{eqn:wave_ODE}) to get
+With heuristic arguments following \cite{brunet2015exactly} (which can be made rigorous), we can deduce the possible values of $v$: for small values of $w_v(x)$ i.e. for large negative values of $x$ we can linearise (\ref{eqn:wave_ODE}) to get
 \begin{equation}\nonumber
 v \frac{d}{dx}w_v(x) = \kappa \frac{d^2}{dx^2}w_v(x) + F'(0) w_v. 
 \end{equation}
@@ -128,7 +127,7 @@ There has been progress towards answering (\ref{item:eqns_brun_der_behav}) in \c
 where $\dot{W}$ is 2-d white noise. \\
 
 
-\subsection{Outline}
+\subsection{Outline of the essay}
 The remainder of this essay will essentially be devoted to question (\ref{item:systems_brun_der_behav}). In \cite{exp_tails} Bérard and Gouéré provided the first rigorous example of a branching-selection system that exhibits the Brunet-Derrida behaviour. They studied binary branching random walks where each particle gives birth to two independent offspring positioned according to some well-behaved distribution on $\R$. In Section \ref{sec:BRW_THEORY} we give a brief introduction to branching random walks and the necessary background to discuss \cite{exp_tails}. In Section \ref{sec:light_tails} we present a full proof of the Brunet-Derrida behaviour of a generalisation of Bérard and Gouér's example. In Section \ref{sec:poly} we discuss \cite{poly_tails} in which the authors consider binary branching random walks, but with less well-behaved (heavy-tailed) offspring distributions. In Section \ref{sec:examples} we give some concrete examples and visualisations of the models that we discussed thus far. Finally, in the appendix we record some original lemmas, known results and omitted proofs that we rely on in Section \ref{sec:light_tails}. 
 
 \newpage

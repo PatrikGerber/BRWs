@@ -3,9 +3,16 @@
 In this section we present some important results for BRWs that satisfy an exponential moment assumption. At the heart of the result is a probability change which enables us to say things about the BRW via its spine, a one-dimensional random walk. The idea was first introduced for BRWs by Lyons in \cite{lyons1997simple}. In our exposition we rely on \cite{mallein2018n} and \cite[Section 4.7]{shi2015branching}. 
 
 \subsection{Definition and notation}
-It will be convenient to think of BRWs and $N$-BRWs as stochastic processes taking values in the set $\frak{M}$ of counting measures $\mu$ on $\R$ which put non-negative integer mass on every real number and further satisfy $\mu([x, \infty)) < \infty$ for all $x \in \R$. The latter condition is needed for the phrase `rightmost particles' to be meaningful. We will write $\frak{M}_N \subset \frak{M}$ for measures which have total mass $N$ and $\delta_{x_0} \in \frak{M}_1$ for the unit mass at $x_0$. The interpretation is that if $\mu$ is the value of the ($N$-)BRW at some time $n$, then there are exactly $\mu(\{x\})$ particles at position $x$ at time $n$. There is a natural partial order on $\frak{M}$: we say that $\mu \preceq \nu$ if $\mu([x, \infty)) \leq \nu([x, \infty))$ for all $x \in \R$. For random elements (also referred to as point processes) $\scr{L}, \scr{G}$ of $\frak{M}$ we say that $\scr{L} \preceq \scr{G}$ if there exists a coupling $(\scr{L}, \scr{G})$ such that $\scr{L} \preceq \scr{G}$ almost surely. In summations involving $\scr{L}$ we'll write $\sum_{l \in \scr{L}} [\cdots]$ for the sum over positions $l$ of the particles in $\scr{L}$. We will write $\#\scr{L}$ for the total mass of $\scr{L}$. We'll further write $\scr{L}(k)$ for the random variable defined as follows: if $\scr{L}$ has at least $k$ particles then set $\scr{L}(k)$ to be the position of the $k$-th particle from the right; otherwise set it equal to $\min \scr{L}$. We will always assume 
+It will be convenient to think of BRWs and $N$-BRWs as stochastic processes taking values in the set $\frak{M}$ of counting measures $\mu$ on $\R$ which put non-negative integer mass on every real number and further satisfy $0 < \mu([x, \infty)) < \infty$ for some $x \in \R$. The latter condition is needed for the phrase `rightmost particles' to be meaningful. We will write $\frak{M}_N \subset \frak{M}$ for measures which have total mass $N$ and $\delta_{x_0} \in \frak{M}_1$ for the unit mass at $x_0$. The interpretation is that if $\mu$ is the value of the ($N$-)BRW at some time $n$, then there are exactly $\mu(\{x\})$ particles at position $x$ at time $n$. There is a natural partial order on $\frak{M}$: we say that $\mu \preceq \nu$ if $\mu([x, \infty)) \leq \nu([x, \infty))$ for all $x \in \R$. \\
+
+% For $\mu \in \frak{M}$ and scalars $\alpha, \beta \in \R$ we will write
+% \begin{equation}\nonumber
+% \alpha \mu + \beta \defeq \sum\limits_{x \in \R} \mu(\{x\}) \delta_{\alpha x + \beta}. 
+% \end{equation} 
+
+For random elements (also referred to as point processes) $\scr{L}, \scr{G}$ of $\frak{M}$ we say that $\scr{L} \preceq \scr{G}$ if there exists a coupling $(\scr{L}, \scr{G})$ such that $\scr{L} \preceq \scr{G}$ almost surely. In summations involving $\scr{L}$ we'll write $\sum_{l \in \scr{L}} [\cdots]$ for the sum over positions $l$ of the particles in $\scr{L}$ and $\#\scr{L}$ for the total mass of $\scr{L}$. We'll further write $\scr{L}(k)$ for the random variable defined as follows: if $\scr{L}$ has at least $k$ particles then set $\scr{L}(k)$ to be the position of the $k$-th particle from the right; otherwise set it equal to $\min \scr{L}$. We will always assume 
 \begin{equation}\label{eqn:TreeAssumptions}
-1 \leq \# \scr{L} \qquad \text{almost surely} \qquad\text{and}\qquad 1 < \Ex{\# \scr{L}} < \infty. 
+1 \leq \# \scr{L} \qquad \text{almost surely} \qquad\text{and}\qquad 1 < \Ex{\# \scr{L}}. 
 \end{equation}
 The former is necessary and sufficient for the $N$-BRW to survive with positive probability, while the latter ensures that we avoid the trivial case of $\# \scr{L} \equiv 1$ where the model reduces to $N$ independent random walks. \\
 
@@ -13,92 +20,117 @@ The former is necessary and sufficient for the $N$-BRW to survive with positive 
 We call an $\frak{M}$-valued Markov chain $(X_n)_{n \geq 0}$ an $N$-BRW driven by the point process $\scr{L}$ if $X_0 \in \frak{M}_N$ is deterministic and given $X_n$, $X_{n+1}$ is defined as follows. Each particle in $X_n$ gives birth to children according to i.i.d. copies of $\scr{L}$ centred around the parent. Then, out of all children the $N$ rightmost are chosen to form the next generation. 
 \end{definition}
 
-Not surprisingly, regular BRWs are defined similarly except no selection happens. Alternatively one can take $N = \infty$ in Definition \ref{def:NBRW} to get the definition of BRWs. In more mathematical terms we can construct ($N$-)BRWs using the notation we have introduced so far: Suppose that $\scr{L}$ is the point process driving the ($N$-)branching random walk $X \defeq (X_n)_{n\geq0}$ and that $X$ is given up to time $n\geq0$. Define 
+Not surprisingly, regular BRWs are defined similarly except no selection happens. Alternatively one can take $N = \infty$ in Definition \ref{def:NBRW} to get the definition of BRWs. In more mathematical terms we can construct ($N$-)BRWs using the notation we have introduced so far: Suppose that $\scr{L}$ is the point process driving the ($N$-)branching random walk $(X_n)_{n\geq0}$ which is given up to time $n\geq0$. Define 
 \begin{equation}\label{eqn:GeneralConstruction}
 \widetilde{X}_{n+1} \defeq \sum\limits^{\# X_n}_{j=1} \sum\limits_{l \in \scr{L}_{n, j}} \delta_{X_n(j) +  l}. 
 \end{equation}
-If $X$ is a regular BRW just set $X_{n+1} \defeq \widetilde{X}_{n+1}$, in the $N$-BRW case set $X_{n+1}$ to be the $N$ rightmost particles of $\widetilde{X}_{n+1}$. This construction allows for a natural and important coupling between ($N$-)BRWs. This coupling was first described in \cite{exp_tails}, the way we present it here is more general and similar to \cite{mallein2018n} Lemma 4.1.
+If $X$ is a regular BRW just set $X_{n+1} \defeq \widetilde{X}_{n+1}$, in the $N$-BRW case set $X_{n+1}$ to be the $N$ rightmost particles of $\widetilde{X}_{n+1}$. This construction gives way to a natural and important coupling between ($N$-)BRWs. It was first described in \cite{exp_tails}, and the way we present it here is more general and similar to \cite{mallein2018n} Lemma 4.1:
 
 \begin{lemma}\label{lem:monotonicity}
-Let $1 \leq N_1 \leq N_2$, $\mu_i \in \frak{M}_{N_i}$ for $i=1,2$. Take two random elements $\scr{L}_i \frak{M}_{N_i}$ for $i = 1,2$. If $\{(X^{(i)}_n)_{n\geq0}\}_{i=1,2}$ are two ($N$-)BRWs driven by the point processes $(\scr{L}_i)_{i = 1,2}$ and are started from $(\mu_i)_{i = 1,2}$ respectively, then there exists a coupling such that $X^{(1)}_n \preceq X^{(2)}_n$ almost surely for all $n \geq 0$. 
+Let $1 \leq N_1 \leq N_2$ be fixed and $\mu_i \in \frak{M}_{N_i}$ for $i=1,2$ with $\mu_1 \preceq \mu_2$. Take two random elements $(\scr{L}_i)_{i =1,2} \in \frak{M}$ satisfying $\scr{L}_1 \preceq \scr{L}_2$. If $\{(X^{(i)}_n)_{n\geq0}\}_{i=1,2}$ are two ($N_i$-)BRWs driven by the point processes $(\scr{L}_i)_{i = 1,2}$ and are started from $(\mu_i)_{i = 1,2}$ respectively, then there exists a coupling such that $X^{(1)}_n \preceq X^{(2)}_n$ almost surely for all $n \geq 0$. 
 \end{lemma}
 
 \begin{proof}[Sketch of proof]
-We construct the coupling inductively. The base case clearly holds. Given $X^{(1)}_n \preceq X^{(2)}_n$, independently take $N_2$ i.i.d. copies $\{(\scr{L}^{(1)}_i, \scr{L}^{(2)}_i)\}^{N_2}_{i=1}$ of the coupling of $\scr{L}_1$ and $\scr{L}_2$ that witnesses the partial order. Using these, construct $\widetilde{X}^{(1)}_{n+1}$ and $\widetilde{X}^{(2)}_{n+1}$ as in (\ref{eqn:GeneralConstruction}). If the $X^{(i)}$ are regular BRWs just set $X^{(i)}_{n+1} = \widetilde{X}^{(i)}_{n+1}$, if they are $N$-BRWs take the rightmost $N$-particles like before. Either way, we have $X^{(1)}_{n+1} \preceq X^{(2)}_{n+1}$ as desired. 
+We construct the coupling inductively. The base case clearly holds so suppose that we are given $X^{(1)}_n \preceq X^{(2)}_n$ up to some $n \geq 0$. Independently take $N_2$ i.i.d. copies $\{(\scr{L}^{(1)}_i, \scr{L}^{(2)}_i)\}^{N_2}_{i=1}$ of the coupling of $\scr{L}_1$ and $\scr{L}_2$ under which $\scr{L}_1 \preceq \scr{L}_2$ almost surely. Using these, construct $\widetilde{X}^{(1)}_{n+1}$ and $\widetilde{X}^{(2)}_{n+1}$ as in (\ref{eqn:GeneralConstruction}). If the $X^{(i)}$ are regular BRWs just set $X^{(i)}_{n+1} = \widetilde{X}^{(i)}_{n+1}$, if they are $N_i$-BRWs take the rightmost $N_i$-particles. Either way, we have $X^{(1)}_{n+1} \preceq X^{(2)}_{n+1}$ as desired. 
 \end{proof}	
 
 
-Let us introduce more notation that's commonly used in the literature of BRWs. For a BRW started from a single particle at zero, denote by $\bb{T}$ the genealogical tree of the system and write $(V(x))_{x \in \bb{T}}$ for the positions of the particles on the real line. Further let $|x|$ be the generation of $x$ and write $x_i$ for the ancestor of $x$ in generation $i$ so that $x_0 = \varnothing$ where $\varnothing$ denotes the root of $\bb{T}$. Let $(\bb{T}, V)$ be a BRW started from $0$ and $\scr{L} \in \frak{M}$ be the point process that governs its evolution. It is easy to see then that $\bb{T}$ is a Galton-Watson tree with $\# \scr{L}$ as its reproduction law. Consider now the logarithmic moment generating function
-\begin{equation}\nonumber
-\psi(t) \defeq \log \E \int_\R e^{t x} \scr{L}(dx) = \log \E \sum\limits_{x \in \bb{T}: |x|=1} e^{t V(x)} 
-\end{equation}
-for $t \in \R$ where it is defined. The crucial assumption in this section is the following: 
-\begin{equation}\label{eqn:BRW_generator_finite}
-0 < \zeta \defeq \sup\{ t > 0 \mid\, \psi(t) < \infty \}. 
-\end{equation}
-This is the case that is usually studied in the classical BRW literature. The positivity of $\zeta$ ensures that the rightmost particle has an asymptotic velocity by Theorem 1.3 \cite{shi2015branching}. Note that $t \mapsto \exp \psi(t)$ is convex and $\psi(0) = \Ex{\# \scr{L}} \in (1, \infty)$ by (\ref{eqn:TreeAssumptions}) which gives $\psi(t) < \infty$ for $t \in [0, \zeta)$. Convexity also implies continuity and differentiability almost everywhere on this interval. 
-
-% Note that by standard results $\psi$ is $C^\infty$ on $(0, \zeta)$. 
-
-
+Let us introduce more notation that's commonly used in the literature of BRWs. For a BRW started from a single particle at zero, denote by $\bb{T}$ the genealogical tree of the system and write $(V(x))_{x \in \bb{T}}$ for the positions of the particles on the real line. Further let $|x|$ be the generation of $x$ and write $x_i$ for the ancestor of $x$ in generation $i$ so that $x_0 = \varnothing$ where $\varnothing$ denotes the root of $\bb{T}$. Let $(\bb{T}, V)$ be a BRW started from $0$ and $\scr{L} \in \frak{M}$ be the point process that governs its evolution. It is easy to see then that $\bb{T}$ is a Galton-Watson tree with $\# \scr{L}$ as its reproduction law. 
 
 \subsection{The Many-to-One Lemma}
 
 Suppose now that $V$ satisfies
 \begin{equation}\label{eqn:BRW_V_Ass}
-e^{\psi(1)} = \E \sum\limits_{|x|=1} e^{V(x)} = 1. 
+\E \sum\limits_{|x|=1} e^{V(x)} = 1. 
 \end{equation}
 Then we can define a random variable $X$ by giving it's distribution function: 
 \begin{equation}\nonumber
-\Pr{X \leq x} = \E \sum\limits_{|u| = 1} \Ind_{\{V(u) \leq x\}} e^{V(u)}. 
+\Pr{X \leq u} = \E \sum\limits_{|x| = 1} \Ind_{\{V(x) \leq u\}} e^{V(x)}. 
 \end{equation}
 If $(S_n)_{n\geq0}$ is a random walk with step distribution $X$ started from $S_0 = 0$ then we have the following result:
 \begin{lemma}[Many-to-one]\label{lem:many_to_one}
-Let $(\bb{T}, V)$ be a BRW governed by the point process $\scr{L}$ which satisfies (\ref{eqn:BRW_V_Ass}) and (\ref{eqn:TreeAssumptions}). Take $g$ measurable and $n \geq 1$. Provided the integrals exist, 
+Let $(\bb{T}, V)$ be a BRW governed by the point process $\scr{L}$ which satisfies (\ref{eqn:BRW_V_Ass}). Take $n \geq 1$ and let $g:\R^n \to \R$ be measurable. Provided the integrals exist, 
 \begin{equation}\nonumber
 \E \sum\limits_{|x| = n} g(V(x_1), ...,V(x_n)) = \Ex{e^{-S_n} g(S_1, ...,S_n)}. 
 \end{equation}
 \end{lemma}
+\begin{remark}
+One might ask themselves what use the Many-to-One lemma is if it relies on assumption (\ref{eqn:BRW_V_Ass}). However, for a large class of point processes there is a simple transformation that puts them in the desired form as will se in Section \ref{subsec:centering_the_spine}. 
+\end{remark}
 
-Lemma \ref{lem:many_to_one} is a consequence of the Spinal Decomposition Theorem, one of the most important tools in the study of BRWs. For more details we refer the reader to Chapter 4 of \cite{shi2015branching} and Section 4.7 in particular. $(S_n)_{n\geq0}$ is sometimes called the random walk associated with the BRW $(\bb{T}, V)$. An application of the many-to-one formula with $g(x) = x e^{-x}$ yields $\E X = \E \sum_{|x|=1} V(x) \exp(V(x))$ while for the variance we get $\bb{V}(X) = \E \sum_{|x|=1} V(x)^2 \exp(V(x)) - (\E X)^2$ provided that the necessary integrability conditions hold. \\
-
-One might ask themselves what use the Many-to-One lemma is if it relies on assumption (\ref{eqn:BRW_V_Ass}). However, if $\scr{L}$ is a point process which satisfies (\ref{eqn:BRW_generator_finite}) and $t > 0$ is such that $\psi(t) < \infty$, then we can simply consider the point process $t \scr{L}$ that satisfies (\ref{eqn:BRW_V_Ass}). 
-
-
-
+Lemma \ref{lem:many_to_one} is a consequence of the Spinal Decomposition Theorem, one of the most important tools in the study of BRWs. For more details we refer the reader to Chapter 4 of \cite{shi2015branching} and Section 4.7 in particular. $(S_n)_{n\geq0}$ is sometimes called the random walk associated with the BRW $(\bb{T}, V)$. An application of the many-to-one formula with $n=1$ and $g(x) = x e^x$ yields $\E X = \E \sum_{|x|=1} V(x) \exp(V(x))$ while for the variance we get $\bb{V}(X) = \E \sum_{|x|=1} V(x)^2 \exp(V(x)) - (\E X)^2$ provided that the necessary integrability conditions hold. \\
 
 
-\subsection{Centering the spine}
-Suppose that we have a BRW $(\widehat{\bb{T}}, \widehat{V})$ governed by $\widehat{\scr{L}}$ with logarithmic moment generating function $\widehat{\psi}$. Assume that it satisfies (\ref{eqn:BRW_generator_finite}). We have seen that there is a very powerful connection between the BRW and its associated random walk via the Many-to-One lemma, which we would like to exploit. To this end it will be fruitful to have $X$ to be centred. It follows by a simple calculation that the BRW can be transformed to have a centred spine if and only if $\exists\, t^* \in (0, \zeta)$ such that
-\begin{equation}\label{eqn:t*exists}
-\widehat{\psi} (t^*) = t^* \widehat{\psi}'(t^*). 
+
+
+
+\subsection{Logarithmic moment generating functions}\label{subsec:moment_generating_functions}
+Suppose that $(\bb{T}, V)$ is a BRW with point process $\scr{L}$ and define the associated logarithmic moment generating function to be
+\begin{equation}\nonumber
+\psi(t) \defeq \log \E \int_\R e^{t x} \scr{L}(dx) = \log \E \sum\limits_{x \in \bb{T}: |x|=1} e^{t V(x)} 
 \end{equation}
+for $t \in \R$ where it is defined. A standard assumption in the BRW literature is the following: 
+\begin{equation}\label{eqn:BRW_generator_finite}
+0 < \sup\operatorname*{dom} \psi = \sup\{ t > 0 \mid\, \psi(t) < \infty \}. 
+\end{equation}
+This assumption controls the right tail of the point process $\scr{L}$ and ensures that the rightmost particle has an asymptotic velocity by Theorem 1.3 \cite{shi2015branching}. In Section \ref{sec:poly} we will briefly review some results that don't rely on this assumption. Let $t_1 \neq t_2 \in \operatorname*{dom} \psi$ and $\lambda \in (0, 1)$. Since $x \to e^x$ is convex we have
+\begin{align*}
+\exp [\psi(\lambda t_1 + (1 - \lambda) t_2)] &= \E \sum\limits_{|x| = 1} e^{\lambda (t_1 V(x))+ (1 - \lambda) (t_2 V(x))} \\
+									  &\leq	\lambda e^{\psi(t_1)} + (1 - \lambda)e^{\psi(t_2)} < \infty. 
+\end{align*} 
+This shows that the domain of $\psi$ is an interval and that the function $\Psi \defeq \exp(\psi)$ is convex. Suppose now that $\scr{L}$ satisfies (\ref{eqn:BRW_V_Ass}) so that $\Psi(1) = 1$. Then by the Many-to-One lemma for all $t \in \operatorname*{dom} \psi$ we have
+\begin{equation}
+\Psi(t) = \Ex{e^{(t - 1)X}}. 
+\end{equation}
+By standard results on moment generating functions we know that $t \mapsto \Ex{e^{(t - 1)X}}$ is $C^\infty$ on $(\operatorname*{dom} \psi)^\circ$ moreover
+its derivatives are given by 
+\begin{equation}
+\frac{d^n}{dt^n} \Psi(t) = \Ex{X^n e^{(t - 1)X}} = \E \sum\limits_{|x| = 1} V(x)^n e^{t V(x)}. 
+\end{equation}
+Furthermore, if $[a, b] \subset \operatorname*{dom} \psi$ then left and right derivatives of all orders exist satisfying $\Psi^{(n)}_+(a) = \Ex{X^n e^{(a - 1)X}}$ and $\Psi^{(n)}_-(b) = \Ex{X^n e^{(b - 1)X}}$ where $X^n e^{(a - 1)X}$ and $X^n e^{(b - 1)X}$ are quasi-integrable. As $\Psi$ is convex we also know that ${\Ex{X^n e^{(a - 1)X}} < \infty}$ and that $\Ex{X^n e^{(b - 1)X}} > -\infty$. 
 
-Let $x_{max} = \operatorname*{sup~ess} \{\max\widehat{\scr{L}}\}$. Jaffuel gives the following characterization of when $t^*$ exists:
-\begin{proposition}[{{\cite[Proposition A.2]{jaffuel2227critical}}}]\label{prop:jaffuel}
-Suppose $\zeta = \infty$. There exists $t^* > 0$ such that (\ref{eqn:t*exists}) holds if and only if 
-\begin{itemize}
-\item \vspace{-2mm} $x_{max} = \infty$ or
-\item \vspace{-2mm} $\E \sum_{|x|=1} \Ind_{\{ x = x_{max}\}} < 1$
-\end{itemize}	
-\end{proposition}
-
-% and $F(t) \defeq \frac{\widehat{\psi}(t)}{t}$
-% In his proof he uses the following lemma:
-% \begin{lemma}[{{\cite[Lema A.1]{jaffuel2227critical}}}]
-% If there exists no $t^* \in (0, \zeta)$ satisfying (\ref{eqn:t*exists}) then $F: (0, \zeta) \to \R$ is nonde
-% \end{lemma}
 
 
-For a complete discussion (including the case $\zeta < \infty$) see the appendix of \cite{jaffuel2227critical}. Let $\gamma_s : \scr{B}(\R) \to \scr{B}(\R)$ to be the right shift operator on the space $\scr{B}(\R)$ of Borel-measurable subsets of $\R$ and define
+
+
+\subsection{Centering the spine}\label{subsec:centering_the_spine}
+Shi \cite{gantert2008asymptotics} notes that the condition $\psi'(1) = 0 = \psi(1)$ is `fundamental to various universality behaviours of BRWs'. This condition ensures that the rightmost particle in the corresponding BRW (wrihout selection) has asymptotic velocity equal to $0$. However, for general $\psi$ it is not necessarily the case that $1 \in \operatorname*{dom}\psi$. Even if $\psi(1) < \infty$, if $1$ is the right endpoint of $\operatorname*{dom}\psi$ then the (right-)derivative might be infinite. We now discuss when this assumption can be made. \\
+
+For scalars $\alpha > 0, \beta \in \R$ let $\gamma_{\alpha, \beta} : \scr{P}(\R) \to \scr{P}(\R)$ be the map on the powerset of $\R$ given by
+\begin{equation}
+\gamma_{\alpha, \beta}(A) = \{x \in \R\,:\, (x - \beta) / \alpha \in A\}
+\end{equation}
+for each $A \subseteq \R$. Putting it more simply, $\gamma_{\alpha, \beta}$ maps a subset $A \subseteq \R$ to the set obtained by shrinking $A$ by $\alpha$ and translating it to the left by $\beta$. Take a BRW $(\bb{\widehat{T}}, \widehat{V})$ with point process $\widehat{\scr{L}}$ and logarithmic moment generating function $\widehat{\psi}$. For some $0 < t^* \in \operatorname*{dom} \psi$, define
 \begin{equation}\label{eqn:transformation}
-\scr{L} \defeq (t^* \widehat{\scr{L}}) \circ \gamma_{- \widehat{\psi}(t^*)}. 
+\scr{L} \defeq \widehat{\scr{L}} \circ \gamma_{t^* , - \widehat{\psi}(t^*)}. 
 \end{equation}
-If $(\bb{T}, V)$ is the BRW that corresponds to $\scr{L}$ then it is easy to see that $V$ and its logarithmic moment generator function $\psi$ are given by 
+Clearly $\scr{L}$ is a point process much like $\widehat{\scr{L}}$ so we can consider $(\bb{T}, V)$, the corresponding BRW. It is easy to see that $V$ and its logarithmic moment generator function $\psi$ are given by 
 \begin{equation}\label{eqn:transformation2}
 V(x) = t^* \widehat{V}(x) - |x| \widehat{\psi}(t^*) \qquad\text{and}\qquad \psi(t) = \widehat{\psi}(t t^*) -t \widehat{\psi}(t^*) 
 \end{equation}
-for $x \in \bb{T}$. The transformation is chosen specifically so that two conditions are satisfied. First, $\psi(1) = 0$ i.e. $V$ satisfies (\ref{eqn:BRW_V_Ass}) and second, $\E X = 0$ i.e. the associated random walk is centred.
+for $x \in \bb{T}$. The form of (\ref{eqn:transformation}) is chosen precisely so that $\psi(1) = 0$. Differentiating, we obtain
+\begin{equation}
+\psi'(t) = t^* \widehat{\psi}'(t t^*) - \widehat{\psi} (t^*). 
+\end{equation}
+We can achieve $\psi'(1) = 1$ if and only if there exists $t^*$ such that $t^* \widehat{\psi}'(t^*) = \widehat{\psi} (t^*)$. For simplicity we will also require $t^*$ be in the interior of the domain, in summary:
+\begin{equation}\label{eqn:t*exists}
+\exists\,t^* \in (0, \infty) \cap (\operatorname*{dom}\widehat{\psi})^\circ\text{ such that } t^* \widehat{\psi}'(t^*) = \widehat{\psi} (t^*). 
+\end{equation}
+Since $t^*$ is chosen to be in the interior of $\operatorname*{dom}\widehat{\psi}$, it follows that $\psi$ is smooth in a neighbourhood of $1$. In particular
+\begin{equation}\nonumber
+\E{X} = \psi'(1) = 0 \qquad\text{and}\qquad \bb{V}(X) = \psi''(1) = (t^*)^2 \widehat{\psi}''(t^*) < \infty. 
+\end{equation} 
+\begin{remark}
+Note that if we didn't insist that $t^*$ be in the interior of $\operatorname*{dom} \widehat{\psi}$ then it would be possible for $t^*$ to be the right endpoint of the domain. In this case we might have $\E X = t^* \widehat{\psi}'_-(t^*) - \widehat{\psi}(t^*)$ but $\widehat{\psi}''_-(t^*) = \bb{V}(X) = \infty$. This is briefly explored in Section \ref{subsec:alpha_stable_spine}. 
+\end{remark}
+Let $x_{max} = \operatorname*{ess\,sup} \{\max\widehat{\scr{L}}\}$ be the essential supremum of the rightmost particle in a realisation of $\widehat{\scr{L}}$. Jaffuel gives the following characterization of when $t^*$ exists:
+\begin{proposition}[{{\cite[Proposition A.2]{jaffuel2227critical}}}]\label{prop:jaffuel}
+Suppose $[0, \infty) \subset \operatorname*{dom}\widehat{\psi}$. Then there exists $t^* > 0$ such that (\ref{eqn:t*exists}) holds if and only if 
+\begin{equation}\nonumber
+x_{max} = \infty \qquad \text{or} \qquad\E \sum_{l \in \widehat{\scr{L}}} \Ind_{\{ l = x_{max}\}} < 1. 
+\end{equation}
+\end{proposition}
+In words, assuming $\Ex{\#\widehat{\scr{L}}} < \infty$ and $\widehat{\psi}(t) < \infty$ for all $t>0$, there exists $t^* > 0$ satisfying (\ref{eqn:t*exists}) if and only if (a) the particles in $\scr{L}$ can be arbitrarily far to the right or (b) if $\scr{L}$ doesn't put too much weight on $x_{max}$. For a complete discussion (including the case $\sup \operatorname*{dom} \widehat{\psi} < \infty$) see the appendix of \cite{jaffuel2227critical}.
 
 
 
@@ -111,26 +143,16 @@ for $x \in \bb{T}$. The transformation is chosen specifically so that two condit
 
 \subsection{Killed below a linear boundary}
 
-Let $1 \leq m \leq \infty$ and call a sequence of vertices $(u_n)_{0 \leq n \leq m}$ a path if $u_i$ is the parent of $u_{i+1}$ for each $0 \leq i \leq m-1$. For $v \in \R$ we say that the vertex $u \in \bb{T}$ is $(m, v)$-good if there exists a path $(u_n)_{0 \leq n \leq m}$ with $u_0 \defeq u$ such that $V(u_i) - V(u) \geq vi$ for all $i \in [m]$. This is essentially saying that there exists a path starting at $u$ that stays to the right of the space-time line through $(u, V(u))$ with slope $v$, for at least $m$ steps. \\
-
-Let $(\bb{T}, V)$ be the BRW governed by $\scr{L}$ with logarithmic moment generating function $\psi$ which is obtained after the transformation (\ref{eqn:transformation}). We now state two results lifted from \cite{gantert2008asymptotics} that we will use in Section \ref{sec:light_tails}. Suppose that 
+Let $(\bb{T}, V)$ be the BRW governed by $\scr{L}$ with logarithmic moment generating function $\psi$ which is obtained after the transformation (\ref{eqn:transformation}) with $t^*$ as in (\ref{eqn:t*exists}). We now state two results from \cite{gantert2008asymptotics} that we will use in Section \ref{sec:light_tails}. The assumptions necessary to apply them are as follows. Suppose 
 \begin{equation}\label{ass:killed_assumption_Lp}
 1 < \Ex{(\# \scr{L})^{1 + \delta}} < \infty\qquad\text{ for some } \delta > 0, 
 \end{equation}
-and that there exist $\delta_- < 0 < \delta_+$ such that
+and that 
 \begin{equation}\label{ass:DacyingTails}
-\psi(\delta_-) < \infty \qquad\text{and}\qquad \psi(\delta_+) < \infty. 
+0 \in (\operatorname*{dom} \psi)^\circ. 
 \end{equation}
-Let $(\zeta_-, \zeta_+)$ be the interior of the domain of $\psi$ noting that it includes both $0$ and $1$. Because $\psi$ is convex and satisfies (\ref{ass:DacyingTails}), by standard results it is $C^\infty$ on its domain and satisfies $d^n \psi(t) / dt^n = \E \sum_{|x|=1} V^n(x) \exp(t V(x))$. To see this we can apply the Many-to-One lemma:
-\begin{equation}\nonumber
-\psi(t) = \log \E \sum\limits_{|x| = 1} e^{t V(x)} = \log \Ex{e^{(t - 1)X}}. 
-\end{equation}
-Since $1$ is in the interior of the domain of $\psi$ we see that $X$ must have finite moment generating function in a neighbourhood of $0$. Differentiating and using basic properties of moment generating functions we obtain the required conclusion. With existence out of the way, we see that 
-\begin{equation}\nonumber
-\E{X} = \psi'(1) = 0 \qquad\text{and}\qquad \bb{V}(X) = \psi''(1) = (t^*)^2 \widehat{\psi}''(t^*). 
-\end{equation} \\
 
-Under assumptions (\ref{ass:killed_assumption_Lp}) and (\ref{ass:DacyingTails}) the following holds. 
+Let $1 \leq m \leq \infty$ and call a sequence of vertices $(u_n)_{0 \leq n \leq m}$ a path if $u_i$ is the parent of $u_{i+1}$ for each $0 \leq i \leq m-1$. For $v \in \R$ we say that the vertex $u \in \bb{T}$ is $(m, v)$-good if there exists a path $(u_n)_{0 \leq n \leq m}$ with $u_0 \defeq u$ such that $V(u_i) - V(u) \geq vi$ for all $i \in [m]$. This is essentially saying that there exists a path starting at $u$ that stays to the right of the space-time line through $(|u|, V(u))$ with slope $v$, for at least $m$ steps. Under assumptions (\ref{ass:killed_assumption_Lp}) and (\ref{ass:DacyingTails}) the following holds. 
 \begin{theorem}[{{\cite[Theorem 1.2]{gantert2008asymptotics}}}]\label{thm:infty_good}
 Let $\rho(\infty, - \epsilon)$ denote the probability that the root of $(\bb{T}, V)$ is $(\infty, - \epsilon)-good$. Then, as $\epsilon > 0$ goes to zero, 
 \begin{equation}\nonumber

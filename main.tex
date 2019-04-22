@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \input{preamble}
 
 \begin{document}
@@ -7,18 +7,18 @@
    \begin{center}
        \vspace*{1cm}
  
-       \textbf{{\color{blue}{\huge Branching Random Walks with Selection}}}
+       \textbf{{\color{blue}{\huge Branching Random Walks \\ with Selection}}}
        \vspace{1.5cm} \\
-       \textbf{Patrik Gerber}
+       \textbf{Candidate number: 1006416}
        \vspace{0.5cm} \\
        Supervised by Prof. Julien Berestycki 
        \vspace{0.5cm} \\
        Dissertation on a topic in Statistics \linebreak presented for MMath in Mathematics and Statistics
        \vspace{0.3cm} \\
-       \today
+       Trinity term 2019
        \vfill
  
-       \includegraphics[width=0.4\textwidth]{graphics/oxford_logo.png}
+       \includegraphics[width=0.5\textwidth]{graphics/oxford_logo.png}
  
  
    \end{center}
@@ -27,18 +27,21 @@
 \tableofcontents
 \newpage
 
-% \input{Killed_BRWs}
-% \input{misc}
-
-
-% \input{INTRODUCTION}
 \input{Introduction}
 \input{BRW_Theory}
 \input{Centered_spine}
 \input{Polynomial_tails}
 \input{Examples}
 \input{Appendix}
-% \input{SPEED_GeneralisedBernoulli}
+
+\section{CODE FOR SIMULATIONS}
+
+\subsection{Figures \ref{fig:normal}, \ref{fig:cauchy}, \ref{fig:ber25} and \ref{fig:ber75}}
+\inputminted[obeytabs=true,tabsize=2]{python}{simulations/simulation(for_show).py}
+
+\subsection{Figure \ref{fig:Cauchy_spine}}
+\inputminted[obeytabs=true,tabsize=2]{python}{simulations/PPP_simulation(for_show).py}
+\newpage
 
 \bibliographystyle{plain}
 \bibliography{bibliography}

@@ -1,8 +1,8 @@
 title Compiling Latex into PDF
 :: Takes one command line argument, the name of the tex file you want to compile
 set filename=%1
-pdflatex %filename%
-rem bibtex %filename%
-rem pdflatex %filename%
-rem pdflatex %filename%
+pdflatex --shell-escape %filename%
+bibtex %filename%
+pdflatex --shell-escape %filename%
+pdflatex --shell-escape %filename%
 start %filename%.pdf

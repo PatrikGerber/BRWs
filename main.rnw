@@ -1,0 +1,189 @@
+\documentclass[12pt]{article}
+\input{preamble}
+
+\begin{document}
+
+\begin{titlepage}
+   \begin{center}
+       \vspace*{1cm}
+ 
+       \textbf{{\color{blue}{\huge Branching Random Walks \\ with Selection}}}
+       \vspace{1.5cm} \\
+       \textbf{Candidate number: 1006416}
+       \vspace{0.5cm} \\
+       Supervised by Prof. Julien Berestycki 
+       \vspace{0.5cm} \\
+       Dissertation on a topic in Statistics \linebreak presented for MMath in Mathematics and Statistics
+       \vspace{0.3cm} \\
+       Trinity term 2019
+       \vfill
+ 
+       \includegraphics[width=0.5\textwidth]{graphics/oxford_logo.png}
+ 
+ 
+   \end{center}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\input{Introduction}
+\input{BRW_Theory}
+\input{Centered_spine}
+\input{Polynomial_tails}
+\input{Examples}
+% \input{Code}
+\input{Appendix}
+
+The following code was used to create Figures \ref{fig:normal}, \ref{fig:cauchy}, \ref{fig:ber25} and \ref{fig:ber75}:
+<<echo=TRUE, cache=FALSE>>=
+import scipy.stats as stat
+import numpy as np
+import matplotlib.pyplot as plt
+
+class PointProcess:
+	def __init__(self):
+		pass
+
+	def simulate(self):
+		n = 2
+		# return stat.norm.rvs(size = n)
+		# return stat.cauchy.rvs(size = n)
+		return stat.bernoulli.rvs(0.75, size = n)
+
+
+class N_BRW:
+	def __init__(self, pointProcess, N):
+		self.N = N
+		self.pointProcess = pointProcess
+		self.currPos = [0]*N
+		self.history = [self.currPos[:]]
+		
+	def run(self, nGen):
+		for gen in range(nGen):
+			print('Currently in generation {0}'.format(gen))
+			self.currPos = self.select(self.branch())[0]
+			self.history += [self.currPos]
+
+	# INPUT array of positions and a poinProcess supporting .simulate()
+	# OUTPUT array of tuples of the form (position, parent index)
+	def branch(self):
+		n = len(self.currPos)
+		descendants = [None]*n
+		for particle in range(n):
+			children = np.array(self.pointProcess.simulate())
+			nChild = len(children)
+			descendants[particle] = zip(np.array([self.currPos[particle]]*nChild) + children, [particle]*nChild)
+		return reduce(lambda x,y: x+y, descendants)
+
+	# INPUT array of positions of descendants and the number N
+	# OUTPUT tuple of the next generations and the genealogy after selection
+	def select(self, descendants):
+		indices = np.argsort([d[0] for d in descendants])[-self.N:]
+		nextGen = [descendants[i][0] for i in indices]
+		genealogy = [descendants[i][1] for i in indices]
+		return (nextGen, genealogy)
+
+
+nGenerations = 50
+N = 10
+
+pointProcess = PointProcess()
+nBRW = N_BRW(pointProcess, N)
+nBRW.run(nGenerations)
+
+time = range(nGenerations + 1)
+rolledTime = reduce(lambda x,y:x+y, [[i]*N for i in range(nGenerations + 1)])
+
+positions = nBRW.history
+rolledPositions = reduce(lambda x,y:x+y, nBRW.history)
+
+avgs = np.array(map(np.mean, positions))
+stds = np.array(map(np.std, positions))
+
+
+plt.rcParams.update({'font.size': 18})
+plt.gcf().subplots_adjust(bottom=0.15)
+plt.plot(rolledTime, rolledPositions, '.')
+plt.ylabel('Position')
+plt.xlabel('Generation')
+# plt.title('Bernoulli binary N-BRW with N=10, p = 0.75')
+plt.show()
+@
+
+The following code was use to create Figure \ref{fig:Cauchy_spine}:
+<<echo=TRUE, cache=FALSE>>=
+import scipy.stats as stat
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.integrate as integrate
+from scipy.special import expi
+import sys
+from pynverse import inversefunc
+# sys.setrecursionlimit(60000)
+
+class CPP_nBRW:
+	def __init__(self, N):
+		self.N = N
+		self.currPos = [0]*N
+		self.history = [self.currPos[:]]
+
+	def run(self, nGen):
+		for gen in range(nGen):
+			print('Currently in generation {0}'.format(gen))
+			self.currPos = self.branch_and_select()
+			self.history += [self.currPos]
+
+	def unnormalized_cdf(self, x, lower_bound):
+		return self.primitive(x) - self.primitive(lower_bound)
+
+	def primitive(self, x):
+		if x == np.inf:
+			return np.real(self.N * (np.exp(1j) + np.exp(-1j)) / 2)
+		return np.real(sum([1j * np.exp(-1j) * (np.exp(2j)*expi(-(x-x0)-1j) - expi(1j - (x-x0))) / (2*np.pi) for x0 in self.currPos]))
+
+	def inverse_sample(self, lower_bound, upper_bound, normalizing_constant):
+		cdf = lambda x: self.unnormalized_cdf(x, lower_bound) / normalizing_constant
+		return inversefunc(cdf, stat.uniform.rvs(), domain=[lower_bound, min(upper_bound, lower_bound + 20)], image=[0,1])
+		# grid = np.arange(lower_bound, 10, 0.1)
+		# plt.plot(grid, [cdf(x) for x in grid])
+		# plt.show()
+
+	def simulate(self):
+		normalizing_constant = max(self.unnormalized_cdf(np.infty, 0), 0)
+		nPoints = stat.poisson.rvs(mu = normalizing_constant)
+		positions = [self.inverse_sample(0, np.inf, normalizing_constant) for _ in range(nPoints)]
+		lower_bound = upper_bound = 0
+		while (nPoints < self.N):
+			upper_bound = lower_bound
+			lower_bound -= 1
+			normalizing_constant = max(self.unnormalized_cdf(upper_bound, lower_bound), 0)
+			newPoints = stat.poisson.rvs(mu = normalizing_constant)
+			positions += [self.inverse_sample(lower_bound, upper_bound, normalizing_constant) for _ in range(newPoints)]
+			nPoints += newPoints
+		return positions
+
+	def branch_and_select(self):
+		newPositions = sorted(self.simulate())
+		return newPositions[-self.N:]
+
+N = 100
+nGenerations = 1000
+
+nBRW = CPP_nBRW(N)
+nBRW.run(nGenerations)
+
+time = range(nGenerations + 1)
+rolledTime = reduce(lambda x,y:x+y, [[i]*N for i in range(nGenerations + 1)])
+
+positions = nBRW.history
+rolledPositions = reduce(lambda x,y:x+y, nBRW.history)
+
+plt.plot(rolledTime, rolledPositions, '.')
+plt.show()
+@
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+\end{document}
