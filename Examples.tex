@@ -44,9 +44,9 @@ In fact, we could replace the Gaussian distribution with any distribution on $\R
 
 
 \subsection{Binary Bernoulli N-BRW}\label{subsec:binary_bernoulli_BRW}
-Another natural choice might be $Y_1, Y_2$ i.i.d. Bernoulli with parameter $\alpha \in (0, 1)$. However, it turns out that the hypothesis of Theorem \ref{thm:ExpTails_BrunDer_non_transformed} is satisfied if and only if $\alpha \in (0, 1/2)$. This is because for $\alpha \geq 1/2$ the $Y_i$ put $\geq 1/2$ mass on their essential supremum (which in this case is equal to $1$). \\
+Another natural choice might be $Y_1, Y_2$ i.i.d. Bernoulli with parameter $\alpha \in (0, 1)$. However, it turns out that the hypothesis of Theorem \ref{thm:ExpTails_BrunDer_non_transformed} is satisfied if and only if $\alpha \in (0, 1/2)$. This is because for $\alpha \geq 1/2$ the $Y_i$ put $\geq 1/2$ mass on their essential supremum (which in this case is equal to $1$) and the claim follows by Proposition \ref{prop:jaffuel}. \\
 
-To see this consider the following. $\psi(t) = \log 2 + \log (\alpha e^t + 1 - \alpha)$ so if $f(t) \defeq t \psi'(t) - \psi(t)$ then $f'(t) = t \psi''(t) > 0$ for all $t > 0$. Now, as $f(0) = -\log 2 < 0$, the equation $f(t^*) = 0$ has a solution $t^* > 0$ if and only if $\lim_{t \to \infty} f(t) > 0$. We have
+To confirm this consider the following. $\psi(t) = \log 2 + \log (\alpha e^t + 1 - \alpha)$ so if $f(t) \defeq t \psi'(t) - \psi(t)$ then $f'(t) = t \psi''(t) > 0$ for all $t > 0$. Now, as $f(0) = -\log 2 < 0$, the equation $f(t^*) = 0$ has a solution $t^* > 0$ if and only if $\lim_{t \to \infty} f(t) > 0$. We have
 \begin{align*}
 \lim\limits_{t \to \infty} f(t) &= \lim\limits_{t \to \infty} \left[\frac{\alpha t e^t}{\alpha e^t + 1 - \alpha} - \log(\alpha e^t + 1 - \alpha) - \log 2 \right] \\
 								&= \lim\limits_{t \to \infty} \left[ t \big( 1 - \frac{1 - \alpha}{\alpha e^t + 1 - \alpha}\big) - t - \log (1 + \frac{1-\alpha}{\alpha} e^{-t}) - \log(2 \alpha) \right] \\
@@ -89,11 +89,11 @@ while for $\alpha \in (1/2, 1]$ we have
 % \subsection{N-BBM}
 % % Let $(B_t)_{t \geq 0}$ be a standard Branching Brownian Motion (as described in Section \ref{sec:examplessubsec:FKPP}) that branches at rate $\beta$ each time giving birth to $M$ particles. Standard BBM corresponds to the case $\beta = 1$ and $M = 2$. 
 % Let $(B_t)_{t \geq 0}$ be a standard $N$-BBM (as described in Section \ref{subsec:FKPP}) started from $N\,\delta_0$. Clearly $(B_n)_{n \in \N}$ is an $N$-BRW, however explicitly describing its point process is not trivial. Nevertheless, its logarithmic moment generating function is easy to obtain. It is clear that $\# \scr{L}$ is distributed as the simple birth process $(M_t)_{t \geq 0}$ after one unit of time that is started from $M_0 = 1$ with escape rate equal to the number of particles alive. It is an elementary fact that $\E M_t = e^t$ so we get
-% \begin{equation}\nonumber
+% \begin{equation}
 % \psi(t) = 1 + \frac{t^2}{2}. 
 % \end{equation}
 % Solving $\psi'(t^*) t^* = \psi(t^*)$ we obtain $t^* = \sqrt{2}$. By Theorem \ref{thm:ExpTails_BrunDer_non_transformed} we get
-% \begin{equation}\nonumber
+% \begin{equation}
 % v_N \defeq \lim\limits_{n \to \infty} \frac{\max B_n}{n} = \sqrt{2} - \frac{\pi^2}{\sqrt{2}(\log N)^2} + o((\log N)^{-2})
 % \end{equation}
 % where the limit is both in $L^1$ and almost surely. We can use a simple sandwiching argument to get the corresponding result for continuous time. We have
@@ -109,7 +109,7 @@ while for $\alpha \in (1/2, 1]$ we have
 % |\max B_t - \max B_{\floor{t}}| \stackrel{st.}{\leq} \cal{B}
 % \end{equation}
 % where the distribution of $\cal{B} \in L^1$ is independent of $t$. This gives $t^{-1} \max B_t \to v_N$ in $L^1$ while almost sure convergence follows by the Borel-Cantelli lemma. Indeed, let $(\cal{B}_j)_{j \geq 0}$ be an i.i.d. collection distributed like $\cal{B}$. Then
-% \begin{equation}\nonumber
+% \begin{equation}
 % \Pr{t^{-1} \max B_t \nrightarrow v_N} \leq \sum\limits_{k = 1}^\infty \Pr{\cal{B}_n > n/k \text{ for infinitely many }n \in \N} = 0, 
 % \end{equation}
 % since $\int_0^\infty \Pr{\cal{B} > \lambda} d\lambda = \E\cal{B} < \infty$. 
@@ -123,22 +123,22 @@ while for $\alpha \in (1/2, 1]$ we have
 % This
 
 
-% \begin{equation}\nonumber
+% \begin{equation}
 % \scr{L} = \sum\limits^P_{j=1} \delta_{Y_j}, 
 % \end{equation}
 % where $P \sim 1 + \dPo{\beta}$ and $Y_j \sim \dNorn{0, 1}$ for $j = 1, 2, ...$ are all independent. By a simple calculation
-% \begin{equation}\nonumber
+% \begin{equation}
 % \psi(t) = \log
 % \end{equation}
 
 
 \subsection{N-BRW with Cauchy spine}
-Consider the model where $\scr{L}$ is given by a Poisson Point Process with intensity measure $e^{-x} \nu_\alpha (dx)$ where $\nu_\alpha$ is some $\alpha$-stable distribution with $\nu_\alpha(0, \infty) \in (0, 1)$. By The Slivnyak-Mecke Theorem \cite[Theorem 1.13]{baccelli2009stochastic} we have
+Consider the model where $\scr{L}$ is given by a Poisson Point Process (PPP) with intensity measure $e^{-x} \nu_\alpha (dx)$ where $\nu_\alpha$ is some $\alpha$-stable distribution with $\nu_\alpha(0, \infty) \in (0, 1)$. By The Slivnyak-Mecke Theorem \cite[Theorem 1.13]{baccelli2009stochastic} we have
 \begin{equation}\nonumber
 \E \sum\limits_{l \in \scr{L}} e^l = \int_\R e^\lambda e^{-\lambda} \nu_\alpha(d\lambda) = 1
 \end{equation}
 so $\scr{L}$ satisfies (\ref{eqn:BRW_V_Ass}). We claim that the spine is in the domain of attraction of $\nu_\alpha$. Indeed, we just have to observe that 
-\begin{equation}
+\begin{equation}\nonumber
 \Pr{X \leq x} \defeq \E \sum\limits_{l \in \scr{L}} \Ind_{\{ l \leq x \}} e^l  = \int\limits^x_{-\infty} \nu_\alpha(d \lambda), 
 \end{equation}
  by the Slivnyak-Mecke theorem. Since stable distributions are in their own domains of attraction (\cite[p. 576]{feller1957introduction}) we are done. 
@@ -157,7 +157,7 @@ In Figure \ref{fig:Cauchy_spine} we see a simulation of the above model. Produci
 
 \subsection{Binary N-BRW with polynomial tails}
 As in Sections \ref{subsec:examples_gaussian_BRW} and \ref{subsec:binary_bernoulli_BRW}, let $\scr{L} = \delta_{Y_1} + \delta_{Y_2}$ where this time $Y_1, Y_2$ are i.i.d. with distribution given by
-\begin{equation}
+\begin{equation}\nonumber
 \Pr{Y_1 > x} = \frac{1}{x^\alpha},\qquad\forall\,x \geq 1
 \end{equation}
 for some $\alpha > 0$. If $\alpha > 1$ we can use the notation of Section \ref{sec:poly_result} to get $c_N = (2N \log_2 N)^{1/\alpha}$ so that
@@ -165,7 +165,7 @@ for some $\alpha > 0$. If $\alpha > 1$ we can use the notation of Section \ref{s
 v_N \sim \frac{\rho_\alpha c_N}{\log_2 N} \propto \left( \frac{N}{(\log N)^{\alpha - 1 }} \right)^{1/\alpha}
 \end{equation}
 by Theorem \ref{thm:poly_tails_result}. For $\alpha = 1$ we are in case $(c)$ of Theorem \ref{thm:poly_tails_result} and we have $c_N = 2 N \log_2 N$ and $b_N = \int^n_1 dx/x = \log n + \cal{O}(1)$. Thus loosely speaking we get 
-\begin{equation}
+\begin{equation}\nonumber
 \frac{\max X_n}{n \log n} \approx \delta_{2N}. 
 \end{equation}
 It is worth noting that in both of these cases the behaviour of the system is vastly different from the Brunet-Derrida behaviour. In particular, the speed at which the particles propagate diverges as $N \to \infty$. 

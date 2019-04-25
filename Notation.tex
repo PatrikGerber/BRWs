@@ -1,0 +1,33 @@
+\section*{Notation}
+\begin{tabularx}{\linewidth}{ l X }
+$\N$ 						& $\{0, 1, 2, ...\}$ \\
+$\R$ 						& The set of real numbers \\
+$[n]$ 					& $\{ 1, 2, ..., n\}$  \\
+$\bbracket{n, m}$ 		& $\{n, n+1, ..., m\}$ \\
+$a \land b$				& $\min\{ a, b\}$ \\
+$a \lor b$				& $\max\{ a, b\}$ \\
+$f(x) \sim g(x),\,\text{as }x\to x_0$   & $\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = 1$ \\
+$f(x) = o(g(x)),\,\text{as }x\to x_0$   & $\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = 0$ \\
+$f(x) = \cal{O}(g(x))$ & $\exists\,M, R > 0\text{ such that } |f(x)| \leq M g(x)\text{ for all } x > R$ \\
+$f(x) = \Theta(g(x))$ & $\exists\,M_1, M_2, R > 0\text{ such that } M_1 g(x) \leq f(x) \leq M_2 g(x)\text{ for all } x > R$ \\
+$f(x) \propto g(x)$	& $\exists\,\alpha > 0$ such that $f(x) = \alpha g(x)$ for all $x$ \\
+$A^\circ$ & Interior of $A \subseteq \R$ \\
+$\operatorname*{dom}f$ & Domain of $f$, the set of values on which $f$ is defined \\
+$\P$ & Underlying probability measure \\
+$\E[\cdot], \bb{V}(\cdot)$ & Expectation and variance with respect to $\P$ \\
+$L^p,\,p\geq 1$     		& Lebesgue space of random variables with finite $p$'th moment \\
+$\operatorname*{ess\,sup}f$ & $||f||_{L^\infty}\defeq\inf\{ M > 0\,:\, |f|\leq M\text{ almost everywhere}\}$ \\
+$C^k, C^\infty$				& Space of functions with continuous $k$'th derivative and space of smooth functions respectively \\
+BRW						& Branching random walk \\
+N-BRW					& Branching random walk with selection \\
+$(\bb{T}, V)$			& Representation of a BRW with genealogical tree $\bb{T}$ and particle positions $(V(x))_{x \in \bb{T}}$ \\
+$(X_n)_{n \geq 0}$ 		& Used to denote the $N$-BRW in question throughout the essay \\
+$\scr{L}$				& Point process driving $(X_n)_{n \geq 0}$ \\
+$\min \scr{L},\,\max \scr{L}$			& Position of right- and leftmost particle in the point process $\scr{L}$, provided they exist \\
+$\scr{L}(k)$ 			& Position of $k$'th particle from the right given it exists, otherwise equal to $\min \scr{L}$ \\
+$X$ 					& The distribution of the spine of $(X_n)_{n \geq 0}$ \\
+$\psi$ 					& Logarithmic moment generating function of $\scr{L}$ \\
+$\frak{M}$				& A specific subset of the counting measures on $\R$ (see Section \ref{sec:BRW_THEORY})\\
+$\frak{M}_n$			& Measures in $\frak{M}$ with total mass $n$ \\
+$\ceil{\cdot},\,\floor{\cdot}$ & Ceiling and floor functions respectively 
+\end{tabularx}\hfill

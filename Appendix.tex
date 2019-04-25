@@ -5,6 +5,10 @@
 Let $\tau \in L^1$ be an $\N$-valued random variable and let $(\epsilon_n)_{n \geq 1}$ be an i.i.d. sequence of random variables with exponentially decaying tails, independent of $\tau$. Then $M \defeq \max_{1 \leq n \leq \tau} \epsilon_n$ has exponentially decaying tails. 
 \end{lemma}
 
+\begin{remark}
+This is an original Lemma that comes in handy many times in Section 3. 
+\end{remark}
+
 \begin{proof}
 Let $C, \gamma, t_0 > 0$ be such that $\Pr{|\epsilon_1| \leq t} \geq 1 - C e^{- \gamma t}$ for all $t > t_0$. Then for $t > t_0$ large enough, Bernoulli's inequality gives 
 \begin{align*}
@@ -17,7 +21,7 @@ Let $C, \gamma, t_0 > 0$ be such that $\Pr{|\epsilon_1| \leq t} \geq 1 - C e^{- 
 
 \begin{lemma} \label{lem:ExpTailBound}
 For all large enough $a$, 
-\begin{equation}
+\begin{equation}\nonumber
 x \Ind_{\{x \geq a\}} \leq e^{x - a/2}, \qquad\forall\, x \in \R. 
 \end{equation}
 \end{lemma}
@@ -29,11 +33,15 @@ Differentiate the map $f:x \mapsto \exp(x - a/2) - x$ to find that for large eno
 Let $(M_n)_{n \geq 0}$ be a supercritical Galton-Watson process with offspring distribution $X$ and let $\mu \defeq \E X > 1$. If $M_0 = 1$ then for all $\mu > \phi > 0$ we have $0 < \liminf_n \Pr{M_n > \phi^n}$. 
 \end{lemma}
 
+\begin{remark}
+This is a slightly stronger version of the lemma used in \cite{exp_tails} to prove the lower bound of the Brunet-Derrida behaviour.  
+\end{remark}
+
 \begin{proof}
-By the monotone convergence theorem we can take $R$ large enough so that $\mu_R \defeq \Ex{R \land X} > \phi$. Let $(M^R_n)_{n \geq 0}$ be the Galton-Watson process with offspring distribution $R \land X$ which by assumption is also supercritical. As $R \land X$ is bounded, Theorem 1 in Section 6, Chapter 1 of \cite{athreya2004branching} gives $\mu_R^{-n} M^R_n \to M$ almost surely for some $M \geq 0$ with $\Pr{M > 0} > 0$ by Theorem 2 of the same section. By the obvious coupling 
-\begin{equation}
+By the monotone convergence theorem we can take $R$ large enough so that $\mu_R \defeq \Ex{R \land X} > \phi$. Let $(M^R_n)_{n \geq 0}$ be the Galton-Watson process with offspring distribution $R \land X$ which is also supercritical. As $R \land X$ is bounded, Theorem 1 in Section 6, Chapter 1 of \cite{athreya2004branching} gives $\mu_R^{-n} M^R_n \to M$ almost surely for some $M \geq 0$ with $\Pr{M > 0} > 0$ by Theorem 2 of the same section. By the obvious coupling 
+\begin{equation}\nonumber
 \Pr{M_n > \phi^n} \geq \Pr{M^R_n \mu_R^{-n} > \phi^n \mu_R^{-n}}
-\end{equation} 
+\end{equation}
 so that $\liminf_{n \to \infty} \Pr{M_n > \phi^n} \geq \Pr{M > 0} > 0$. 
 \end{proof}
 
@@ -46,7 +54,7 @@ Let $\{X_{m,n} \mid\, 0 \leq m < n\}$ be a family of random variables satisfying
 \item $\Ex{X_{0,1}^+} < \infty$ and there exists $\gamma_0 > -\infty$ such that $\Ex{X_{0,n}} > \gamma_0 n$ for all $n \in \N$. 
 \end{enumerate}
 Then there exists $\gamma \in \R$ such that 
-\begin{equation}
+\begin{equation}\nonumber
 \lim\limits_{n \to \infty} \frac{\E X_{0, n}}{n} = \inf\limits_{n} \frac{\E X_{0,n}}{n} = \gamma, 
 \end{equation}
 where the last limit is almost sure and in $L^1$. 
@@ -69,12 +77,12 @@ Let $v_1 < v_2 \in \R$ and $1 \leq m \leq n \in \N$. Suppose $0 \eqdef x_0, ...,
 
 
 
-\subsection{Skorokhod's topologies}
-This section is based on material from Sections 3, 11 and 12 of \cite{jacod2013limit}. As usual, for $t > 0$ let $D([0, t]) \defeq D([0, t], \R)$ be the set of real-valued cádlág functions with domain $[0, t]$. Define $\Lambda_t$ to be the space of continuous bijections from $[0,t]$ to itself. Skorokhod's $J_1$ topology (sometimes written $SJ_1$) on $D([0,t], \R)$ is then defined by the metric 
-\begin{equation}
-d_{J_1}(f,g) = \inf_{\lambda \in \Lambda_t} \{ \norm{f \circ \lambda - g}_{\infty} \lor \norm{\lambda - Id}_{\infty} \}, 
-\end{equation}
-where $Id : x \mapsto x$. The intuition behind this definition is the following: Take the graph of $f$ which is a (possibly discontinuous) curve in $\R^2$ and let $f \circ \lambda$ be some reparametrisation of it. The $J_1$ distance between $f$ and $g$ is small if there exists $\lambda$ close to the identity such that the supremum distance between the graph of $g$ and the graph of $f \circ \lambda$ is small too. $J_1$ convergence allows for a sequence of functions $(f_n)_{n \geq 0} \subset D([0, t])$ to convergence to a limit $f\in D([0, t])$ without the set of discontinuities of any of the $f_n$ coinciding with that of $f$. Skorokhod's $M_1$ topology (sometimes written $SM_1$) is defined by a similar metric, the only difference being that the same idea is applied to completed graphs, which allows continuous functions to converge to a discontinuous one. Note that the topology $J_1$ is stronger. These definitions extend to functions with domain $[0, \infty)$ by saying that $f_n \in D([0, \infty)) \eqdef D$ converges to $f \in D$ if convergence happens in $D([0, t])$ for all continuity points $t$ of $f$. The topology this defines is in fact metrisable (see page 83 of \cite{jacod2013limit}). \\
+% \subsection{Skorokhod's topologies}
+% This section is based on material from Sections 3, 11 and 12 of \cite{jacod2013limit}. As usual, for $t > 0$ let $D([0, t]) \defeq D([0, t], \R)$ be the set of real-valued cádlág functions with domain $[0, t]$. Define $\Lambda_t$ to be the space of continuous bijections from $[0,t]$ to itself. Skorokhod's $J_1$ topology (sometimes written $SJ_1$) on $D([0,t], \R)$ is then defined by the metric 
+% \begin{equation}
+% d_{J_1}(f,g) = \inf_{\lambda \in \Lambda_t} \{ \norm{f \circ \lambda - g}_{\infty} \lor \norm{\lambda - Id}_{\infty} \}, 
+% \end{equation}
+% where $Id : x \mapsto x$. The intuition behind this definition is the following: Take the graph of $f$ which is a (possibly discontinuous) curve in $\R^2$ and let $f \circ \lambda$ be some reparametrisation of it. The $J_1$ distance between $f$ and $g$ is small if there exists $\lambda$ close to the identity such that the supremum distance between the graph of $g$ and the graph of $f \circ \lambda$ is small too. $J_1$ convergence allows for a sequence of functions $(f_n)_{n \geq 0} \subset D([0, t])$ to convergence to a limit $f\in D([0, t])$ without the set of discontinuities of any of the $f_n$ coinciding with that of $f$. Skorokhod's $M_1$ topology (sometimes written $SM_1$) is defined by a similar metric, the only difference being that the same idea is applied to completed graphs, which allows continuous functions to converge to a discontinuous one. Note that the topology $J_1$ is stronger. These definitions extend to functions with domain $[0, \infty)$ by saying that $f_n \in D([0, \infty)) \eqdef D$ converges to $f \in D$ if convergence happens in $D([0, t])$ for all continuity points $t$ of $f$. The topology this defines is in fact metrisable (see page 83 of \cite{jacod2013limit}). \\
 % The topologies they induce are called strong and sometimes written $SJ_1$ and $SM_1$. We talk about weak topologies when we consider $D(I, \R^k)$ with $k > 1$ and they are equal to the product topology, but they are not important to our discussion. \\
 
 % The $(S)J_2$ and $(S)M_2$ topologies are the ones induced by applying the Hausdorff metric to the functions graphs and completed graphs respectively. 
@@ -82,11 +90,11 @@ where $Id : x \mapsto x$. The intuition behind this definition is the following:
 
 % \subsection{Stable distributions}\label{subsec:stable_distributions}
 % The material covered here is mainly taken from \cite[Section XVII]{feller1957introduction} and we will refer to distributions and their characteristic function interchangeably. Let $\omega$ be the characteristic function of some distribution on $\R$. $\omega$ is called \textit{infinitely divisible} if for all $n \in \N$ there exists a characteristic function $\omega_n$ such that 
-% \begin{equation}\nonumber
+% \begin{equation}
 % \omega_n^n = \omega. 
 % \end{equation}
 % The distribution with characteristic function $\phi$ is in the \textit{domain of attraction} of $\omega$ if there exist $(a_n)_{n \in \N}$ and $(b_n)_{n \in \N}$ with $a_n > 0,\,\forall\,n$ such that 
-% \begin{equation}\nonumber
+% \begin{equation}
 % \left[ \phi\left( \frac{t}{a_n}\right) e^{-itb_n} \right] ^n \to \omega(t)\qquad\forall\,t \in \R. 
 % \end{equation}
 % The characteristic function $\omega$ is called \textit{stable} if $\phi$ too can be replaced by $\omega$ in the above display. We now 

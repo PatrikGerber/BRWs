@@ -55,7 +55,7 @@ Fisher \cite{fisher1937wave} was the first to study a special case of (\ref{eqn:
 \end{figure}
 
 
-Suppose that we're interested in the case where the initial data is given by $u(0, x) \defeq \Ind_{\{ x > 0\}}$. A sketch of a typical solution can be found in Figure \ref{fig:waves}. We see that as $t$ grows, the shape seems to converge, while also moving to the left. The natural question to ask is then: what shape does it converge to, and what is limiting rate at which it propagates to the left. Instead of answering this straight away, let us look for a traveling wave solution $w_v$ to the FKPP equation which satisfies $w_v(-\infty) = 0$ and $w_v(\infty) = 1$. Substituting into (\ref{eqn:FKPP}) we see that $w_v$ must satisfy
+Suppose that we're interested in the case where the initial data is given by $u(0, x) \defeq \Ind_{\{ x > 0\}}$. A sketch of a typical solution can be found in Figure \ref{fig:waves}. We see that as $t$ grows, the shape seems to converge, while also moving to the left. The natural question to ask is then: what shape does it converge to, and what is the limiting rate at which it propagates to the left. Instead of answering this straight away, let us look for a traveling wave solution $w_v$ to the FKPP equation which satisfies $w_v(-\infty) = 0$ and $w_v(\infty) = 1$. Substituting into (\ref{eqn:FKPP}) we see that $w_v$ must satisfy
 \begin{equation}\label{eqn:wave_ODE}
 v \frac{d}{dx}w_v(x) = \kappa \frac{d^2}{dx^2} w_v (x) + F(w_v). 
 \end{equation}
@@ -65,7 +65,7 @@ v \frac{d}{dx}w_v(x) = \kappa \frac{d^2}{dx^2}w_v(x) + F'(0) w_v.
 \end{equation}
 It is easy to see that the above has a solution whose tail stays inside $[0,1]$ if and only if $v \geq 2 \sqrt{\kappa F'(0)}$. Further, the left tail of $w_v$ behaves like $e^{\gamma x}$ as $x \to -\infty$ where $\gamma$ is the smaller root of $v = \gamma \kappa + F'(0) / \gamma$. The smallest speed which admits a traveling wave solution, sometimes called the critical velocity, is denoted $v_c = 2 \sqrt{\kappa F'(0)}$ and the corresponding value of $\gamma$ by $\gamma_c = v_c / (2 \kappa)$. \\
 
-Back to the problem of finding the limiting shape in Figure \ref{fig:waves}: we want to find conditions under which the solution `selects a speed' and what that speed is. More precisely, find conditions on $u(0, x)$ under which there exists $m : [0, \infty) \to [0, \infty)$ and $v \in \R$ such that
+Back to the problem of finding the limiting shape in Figure \ref{fig:waves}: we want to find conditions under which the solution `selects a speed'. More precisely, find conditions on $u(0, x)$ under which there exists $m : [0, \infty) \to [0, \infty)$ and $v \in \R$ such that
 \begin{equation}\nonumber
 u(t, x + m(t)) \to w_v \qquad\text{and}\qquad \frac{m(t)}{t} \to v
 \end{equation} 
@@ -75,7 +75,7 @@ m(t) = v_c\,t - \frac{3}{2 \gamma_c} \log t + const.
 \end{equation}
 works and the limit shape is $w_{v_c}$, as shown by Bramson \cite{bramson1978maximal}. The above in fact holds for more general initial conditions, in particular for ones with support bounded from below. \\
 
-As mentioned before, the FKPP-equation has ties to many physical problems of interest. Branching Brownian motion is a well-studied probabilistic model that have a very precise connection to the FKPP-equation, with Bramson's works such as \cite{bramson1983convergence,bramson1978maximal} being fundamental in this topic. Recall the informal description of standard Branching Brownian Motion from the previous section. For each time $t \geq 0$ let $u(t, \cdot)$ denote the distribution function of the right-most particle's position at time $t$. We now present a short and informal proof of the fact that $1 - u(t, - x)$ satisfies the FKPP-equation with $F(u) = u(1 - u)$ and $\kappa = 1/2$, based on Professor Berestycki's lecture notes. Indeed, let $M(t)$ denote the position of the right-most particle at time $t$ so that $u(t, x) = \Pr{M(t) \leq x}$. For $dt > 0$ consider the right-most particle over the time interval $[t, t+dt]$:
+As mentioned before, the FKPP-equation has ties to many physical problems of interest. Branching Brownian motion is a well-studied probabilistic model that has a very precise connection to the FKPP-equation, with Bramson's works such as \cite{bramson1983convergence,bramson1978maximal} being fundamental in this topic. Recall the informal description of standard Branching Brownian Motion from the previous section. For each time $t \geq 0$ let $u(t, \cdot)$ denote the distribution function of the right-most particle's position at time $t$. We now present a short and informal proof of the fact that $1 - u(t, - x)$ satisfies the FKPP-equation with $F(u) = u(1 - u)$ and $\kappa = 1/2$, based on Professor Berestycki's lecture notes. Indeed, let $M(t)$ denote the position of the right-most particle at time $t$ so that $u(t, x) = \Pr{M(t) \leq x}$. For $dt > 0$ consider the right-most particle over the time interval $[t, t+dt]$:
 \begin{itemize}
 \item \vspace{-2mm}With probability $1 - dt + o(dt)$ it does not branch
 \item \vspace{-2mm}With probability $dt + o(dt)$ it branches exactly once
@@ -98,7 +98,7 @@ with initial condition
 \begin{equation}\nonumber
 u(0, x) = \Ind_{x \leq 0}. 
 \end{equation}
-After the transformation $\tilde{u}(t, x) = 1 - u(t, - x)$, (\ref{eqn:shitty_FKPP}) becomes the FKPP-equation with forcing term $F(\tilde{u}) = \tilde{u}(1 - \tilde{u})$ and initial condition $\tilde{u}(0, x) = \Ind_{\{ x > 0\}}$ so that $\tilde{u}$ selects the critical speed $v_c = \sqrt{2}$ so that the limit shape of $u$ propagates to the right at speed $\sqrt{2}$. \\
+After the transformation $\tilde{u}(t, x) = 1 - u(t, - x)$, (\ref{eqn:shitty_FKPP}) becomes the FKPP-equation with forcing term $F(\tilde{u}) = \tilde{u}(1 - \tilde{u})$ and initial condition $\tilde{u}(0, x) = \Ind_{\{ x > 0\}}$ so that $\tilde{u}$ selects the critical speed $v_c = \sqrt{2}$ showing that the limit shape of $u$ propagates to the right at speed $\sqrt{2}$. \\
 
 
 
@@ -112,7 +112,7 @@ Assume for simplicity that $\kappa = 1$ in \ref{eqn:FKPP}. In their seminal pape
 \begin{equation}\label{eqn:brun_der_prediction}
 v_\epsilon = v_c - \frac{\pi^2 \gamma_c^2 v''(\gamma_c)}{2 (\log \epsilon)^2} + o(1/(\log \epsilon)^2) 
 \end{equation}
-where $v(\gamma) = \gamma + F'(0)/\gamma$. They also introduce a discrete (in both space and time) front equation (and its cutoff version) which the authors then go on to relate to a probabilistic finite particle model whose limit is governed by said equation. The model, which appears in the study of directed polymers can be described as follows. Given $N \geq 1$ and $p \in (0,1)$, at any time $n \in \N$ there are $N$ particles alive at integer positions $x_1(n), ..., x_N(n)$, possibly multiple particles in the same position. For each $i \in [N]$ we choose $j^i_1, j^i_2 \in [N]$ uniformly at random and set $x_i(n+1) = x_{j^i_1}(n) + b^i_1 \land x_{j^i_2}(n) + b^i_2$ where $b^i_1, b^i_2$ are i.i.d. $\dBer{p}$. They define $h(n, m)$ to be the fraction of particles at time $n$ that fall above $m$ and show in a loose sense that $h(n,m)$ is governed by the discrete front equation in the limit $N \uparrow \infty$. The remarkable observation they make is that the asymptotic velocity $v_N$ of the stochastic model's rightmost particle converges to the critical velocity of the discrete front equation at rate $1/(\log N)^2$. Furthermore, based on the authors' large scale simulations, the constants seem to agree with their predictions of the critical speed of the discrete front equation with cutoff $\epsilon = 1/N$. \\
+as $\epsilon \downarrow 0$ where $v(\gamma) = \gamma + F'(0)/\gamma$. They also introduce a discrete (in both space and time) front equation (and its cutoff version) which the authors then go on to relate to a probabilistic finite particle model whose limit is governed by said equation. The model, which appears in the study of directed polymers can be described as follows. Given $N \geq 1$ and $p \in (0,1)$, at any time $n \in \N$ there are $N$ particles alive at integer positions $x_1(n), ..., x_N(n)$, possibly multiple particles in the same position. For each $i \in [N]$ we choose $j^i_1, j^i_2 \in [N]$ uniformly at random and set $x_i(n+1) = [x_{j^i_1}(n) + b^i_1] \land [x_{j^i_2}(n) + b^i_2]$ where $b^i_1, b^i_2$ are i.i.d. $\dBer{p}$. In other words, for each $i \in [N]$ we draw two random parents from the previous generation, add on random displacements and then choose the offspring with greater position. They define $h(n, m)$ to be the fraction of particles at time $n$ that fall above $m$ and show in a loose sense that $h(n,m)$ is governed by the discrete front equation in the limit $N \uparrow \infty$. The remarkable observation they make is that the asymptotic velocity $v_N$ of the stochastic model's rightmost particle converges to the critical velocity of the discrete front equation at rate $1/(\log N)^2$. Furthermore, based on the authors' large scale simulations, the constants seem to agree with their predictions of the critical speed of the discrete front equation with cutoff $\epsilon = 1/N$. \\
 
 Consequently, the slow convergence rate $1 / (\log N)^2$ has become known as the 'Brunet-Derrida behaviour'. Along with it came several questions and conjectures
 \begin{enumerate}[(i)]
@@ -120,11 +120,11 @@ Consequently, the slow convergence rate $1 / (\log N)^2$ has become known as the
 \item \vspace{-2mm}What equations exhibit Brunet-Derrida behaviour? \label{item:eqns_brun_der_behav}
 \item \vspace{-2mm}What branching-selection systems exhibit Brunet-Derrida behaviour? \label{item:systems_brun_der_behav}
 \end{enumerate}{}
-There has been progress towards answering (\ref{item:eqns_brun_der_behav}) in \cite{dumortier2007critical} where the authors prove the results of \cite{brunet1997shift} rigorously, in the case $f(u) = (u - g(u)) \times\,\phi(u)$ for a specified class of cutoffs $\phi$ including $u \mapsto \Ind_{\{ u \geq \epsilon\}}$ and functions $g$ including $u \mapsto u^2$. Another related question that emerged was analysing the noisy FKPP-equation. An analogue of Brunet-Derrida behaviour was confirmed in \cite{mueller2011effect} for the equation
+There has been progress towards answering (\ref{item:eqns_brun_der_behav}) in \cite{dumortier2007critical} where the authors prove the results of \cite{brunet1997shift} rigorously, in the case $F(u) = (u - G(u)) \times\,\phi(u)$ for a specified class of cutoffs $\phi$ including $u \mapsto \Ind_{\{ u \geq \epsilon\}}$ and functions $G$ including $u \mapsto u^2$. Another related question that emerged was analysing the noisy FKPP-equation. An analogue of Brunet-Derrida behaviour was confirmed in \cite{mueller2011effect} for the equation
 \begin{equation}\nonumber
 \frac{\partial u}{\partial t} = \frac{\partial u}{\partial x^2} + u(1 - u) + \epsilon \sqrt{u(1 - u)} \dot{W}
 \end{equation}
-where $\dot{W}$ is 2-d white noise. \\
+where $\dot{W}$ is space-time white noise. \\
 
 
 \subsection{Outline of the essay}

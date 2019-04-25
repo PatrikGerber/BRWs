@@ -2,31 +2,38 @@ import scipy.stats as stat
 import numpy as np
 import matplotlib.pyplot as plt
 
+# The class representing a Point process with n points. 
 class PointProcess:
-	def __init__(self):
-		pass
+	# INPUT number of particles in each realisation. n=2 corresponds 
+	# 		binary N-BRWs.  
+	def __init__(self, n = 2):
+		self.n = n
 
+	# INPUT None
+	# OUTPUT returns n i.i.d. samples from the offspring distribution 
 	def simulate(self):
-		n = 2
-		# return stat.norm.rvs(size = n)
-		# return stat.cauchy.rvs(size = n)
-		return stat.bernoulli.rvs(0.75, size = n)
+		# return stat.norm.rvs(size = self.n)
+		# return stat.cauchy.rvs(size = self.n)
+		return stat.bernoulli.rvs(0.75, size = self.n)
 
-
+# The class representing the N-BRW. 
 class N_BRW:
+	# INPUT Point process that drives the N-BRW, the number N. 
 	def __init__(self, pointProcess, N):
 		self.N = N
 		self.pointProcess = pointProcess
 		self.currPos = [0]*N
 		self.history = [self.currPos[:]]
-		
+	
+	# INPUT nGen, the number of generations to run the N-BRW for
+	# OUTPUT stores the N-BRW in the array self.history
 	def run(self, nGen):
 		for gen in range(nGen):
 			print('Currently in generation {0}'.format(gen))
 			self.currPos = self.select(self.branch())[0]
 			self.history += [self.currPos]
 
-	# INPUT array of positions and a poinProcess supporting .simulate()
+	# INPUT array of positions and a poinProcess object supporting .simulate()
 	# OUTPUT array of tuples of the form (position, parent index)
 	def branch(self):
 		n = len(self.currPos)
@@ -47,6 +54,7 @@ class N_BRW:
 		return (nextGen, genealogy)
 
 
+# The code below runs the simulation for 50 generations with N=10. 
 nGenerations = 50
 N = 10
 
@@ -69,5 +77,4 @@ plt.gcf().subplots_adjust(bottom=0.15)
 plt.plot(rolledTime, rolledPositions, '.')
 plt.ylabel('Position')
 plt.xlabel('Generation')
-# plt.title('Bernoulli binary N-BRW with N=10, p = 0.75')
 plt.show()

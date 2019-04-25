@@ -5,20 +5,28 @@ import scipy.integrate as integrate
 from scipy.special import expi
 import sys
 from pynverse import inversefunc
-# sys.setrecursionlimit(60000)
+sys.setrecursionlimit(60000)
 
+# THe class representing the N-BRW driven by the Cauchy PPP. 
 class CPP_nBRW:
+	# INPUT the number N
 	def __init__(self, N):
 		self.N = N
 		self.currPos = [0]*N
 		self.history = [self.currPos[:]]
 
+	# INPUT nGen, the number of generations to run the N-BRW for. 
+	# OUTPUT stores the N-BRW in the array self.history
 	def run(self, nGen):
 		for gen in range(nGen):
 			print('Currently in generation {0}'.format(gen))
 			self.currPos = self.branch_and_select()
 			self.history += [self.currPos]
 
+	# The rest of the class is made up of internal methods 
+	# required to do the calculations
+
+	
 	def unnormalized_cdf(self, x, lower_bound):
 		return self.primitive(x) - self.primitive(lower_bound)
 
@@ -59,6 +67,7 @@ class CPP_nBRW:
 		newPositions = sorted(self.simulate())
 		return newPositions[-self.N:]
 
+# The code below runs the simulation for 1000 generations with N=100. 
 N = 100
 nGenerations = 1000
 
